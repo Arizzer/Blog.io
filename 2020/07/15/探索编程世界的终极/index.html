@@ -16,7 +16,7 @@
 <meta property="og:description" content="本文是博主为群友撰写的同人文，感谢能因为代码和妄想破绽和各位大佬们相遇，故撰此文，以作纪念~ 特别鸣谢：  暴扣404（暴佬，美国留学精英，群创始人） KM（巨佬，神秘的群404，年龄尚小但已然站在了群技术之巅，巨佬yyds！（orz）） 阿瑾（瑾佬，同济才女，群指定叼鱼人员） 彼岸双生（岸佬，加国留学精英，麦马之魂） 主流（py，加国留学精英，群年龄最小的未来之光） 幻想乐章（乐章，国内某高校精">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-15T15:12:52.524Z">
-<meta property="article:modified_time" content="2020-07-15T15:36:34.107Z">
+<meta property="article:modified_time" content="2020-07-16T05:21:08.523Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="同人">
 <meta property="article:tag" content="纪念">
@@ -444,7 +444,7 @@
 <p>“很抱歉，既然这样，也没有玩下去的必要了，不过我还是很好奇，你们已经是明牌了，而我手上握着无数的炸<br>弹，连赌场都是我开的。”——</p>
 <p>“你们，拿什么和我斗？”</p>
 <p>“拿什么？”你轻轻地笑出了声。</p>
-<p>“喂喂？能听见嘛，对，就是在读这段文字的屏幕外的’我’，麻烦帮忙把这个网页关一下”</p>
+<p>“喂喂？能听见嘛，对，就是在读这段文字的屏幕外的’你’，麻烦帮忙把这个网页关一下”</p>
 <p>&emsp;<br>——END——</p>
 
       
@@ -560,6 +560,7 @@
 
 
 
+
   
   
   
@@ -569,26 +570,27 @@
   
 
   
-  
-      <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: '',
-  	clientSecret: '',
-  	repo: 'Blog.io',
-  	owner: '',
-  	admin: [''],
-  	id: 'Wed Jul 15 2020 23:12:52 GMT+0800',
-  	distractionFreeMode: 'true'
-})
-gitalk.render('gitalk-container') 
-}
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "XAEf9Kn4JhAJ3eIBdDH6Kj46-MdYXbMMI",
+            app_key: "jsu9JjBDhaep2fsue1IP5Js0",
+            placeholder: "Just go go",
+            avatar:"retro"
+        });
+    }
 </script>
+    </section>
   
 
 

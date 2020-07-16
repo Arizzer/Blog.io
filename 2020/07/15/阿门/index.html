@@ -389,6 +389,7 @@
 
 
 
+
   
   
   
@@ -398,26 +399,27 @@
   
 
   
-  
-      <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: '',
-  	clientSecret: '',
-  	repo: 'Blog.io',
-  	owner: '',
-  	admin: [''],
-  	id: 'Wed Jul 15 2020 22:34:46 GMT+0800',
-  	distractionFreeMode: 'true'
-})
-gitalk.render('gitalk-container') 
-}
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "XAEf9Kn4JhAJ3eIBdDH6Kj46-MdYXbMMI",
+            app_key: "jsu9JjBDhaep2fsue1IP5Js0",
+            placeholder: "Just go go",
+            avatar:"retro"
+        });
+    }
 </script>
+    </section>
   
 
 
