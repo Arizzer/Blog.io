@@ -190,7 +190,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-增加（Create）"><a href="#1-增加（Create）" class="headerlink" title="1.增加（Create）"></a>1.增加（Create）</h2><p>调用<code>mongoTemplate.insert()</code>方法即可。</p>
+        <br>
+
+<h2 id="1-增加（Create）"><a href="#1-增加（Create）" class="headerlink" title="1.增加（Create）"></a>1.增加（Create）</h2><p>调用<code>mongoTemplate.insert()</code>方法即可。</p>
 <p>例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">import</span> org.springframework.data.mongodb.core.MongoTemplate;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line"><span class="comment">//使用@Autowried自动注入MongoTemplate实例</span></span><br><span class="line">   <span class="keyword">private</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   		Song song = <span class="keyword">new</span> Song();<span class="comment">//新建一个Song类型的对象，用于储存专辑，歌手等信息</span></span><br><span class="line">   		song.setSubjectId(<span class="string">"s001"</span>);</span><br><span class="line">   		song.setLyrics(<span class="string">"Kalafina"</span>);</span><br><span class="line">   		song.setName(<span class="string">"満天"</span>);</span><br><span class="line"></span><br><span class="line">   	mongoTemplate.insert(song);<span class="comment">//将该Song对象添加至MongoTemplates数据库实例中</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <br>
@@ -1091,6 +1093,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
@@ -1104,18 +1118,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
