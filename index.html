@@ -177,7 +177,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/">Spring中使用MongDB进行CRUD</a>
+      <a class="article-title" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/">Spring中使用MongoDB进行CRUD</a>
     </h1>
   
 
@@ -193,106 +193,11 @@
         <p>Spring中使用MongoDB进行CRUD：</p>
 <h2 id="1-增加（Create）"><a href="#1-增加（Create）" class="headerlink" title="1.增加（Create）"></a>1.增加（Create）</h2><p>调用<code>mongoTemplate.insert()</code>方法即可。</p>
 <p>例：</p>
-<pre><code>import org.springframework.data.mongodb.core.MongoTemplate;
-
-@Autowired
-//使用@Autowried自动注入MongoTemplate实例
-private MongoTemplate mongoTemplate;
-
-    public void test() {
-        Song song = new Song();//新建一个Song类型的对象，用于储存专辑，歌手等信息
-        song.setSubjectId(&quot;s001&quot;);
-        song.setLyrics(&quot;Kalafina&quot;);
-        song.setName(&quot;満天&quot;);
-
-    mongoTemplate.insert(song);//将该Song对象添加至MongoTemplates数据库实例中
-}</code></pre><br>
-
-<h2 id="2-查询（Read）"><a href="#2-查询（Read）" class="headerlink" title="2. 查询（Read）"></a>2. 查询（Read）</h2><p>调用<code>fingById()</code>方法即可。</p>
-<p><code>fingById()</code>方法的第一个参数是主键<strong>id</strong>，第二个参数是具体的<strong>类</strong></p>
-<p>例：</p>
-<pre><code> private static final Logger LOG = LoggerFactory.getLogger(SongService);
-
-@Autowired
-public Song get(String songId) {
-// 输入的主键 id 必须有文本，不能为空或全空格
-    if (!StringUtils.hasText(songId)) {
-         LOG.error(&quot;input songId is blank.&quot;);
-         return null;
-    }
-
-    Song song = mongoTemplate.findById(songId, Song.class);
-
-    return song;
-}</code></pre><br>
-
-<h2 id="3-修改（Update）"><a href="#3-修改（Update）" class="headerlink" title="3.修改（Update）"></a>3.修改（Update）</h2><p>修改的操作分为两个部分: </p>
-<ol>
-<li>修改哪条数据? </li>
-<li>改数据的哪个字段修改成什么值? </li>
-</ol>
-<p>所以,修改操作也分为两部分:修改条件和修改的字段。</p>
-<p>具体实现：</p>
-<p>先使用条件对象 <strong>Criteria</strong> 构建条件对象 <strong>Query</strong> 实例，然后在调用修改对象 <strong>Update</strong> 的方法 <strong>.set()</strong> 设置需要修改的字段。最后调用 <code>mongoTemplate.updateFirst(query, updateData, Song.class)</code> 方法完成修改;第 3 个参数是具体的类</p>
-<p>例：</p>
-<pre><code>private static final Logger LOG = LoggerFactory.getLogger(SongService);
-
-@Override
-public boolean modify(Song song) {
-    // 作为服务，要对入参进行判断，不能假设被调用时，入参一定正确
-    if (song == null || !StringUtils.hasText(song.getId())) {
-      LOG.error(&quot;input song data is not correct.&quot;);
-      return false;
-    }
-
-    // 主键不能修改
-    Query query = new Query(Criteria.where(&quot;id&quot;).is(song.getId()));
-
-    Update updateData = new Update();
-    // 值为 null 表示不修改。值为长度为 0 的字符串 &quot;&quot; 表示清空此字段
-    if (song.getName() != null) {
-        updateData.set(&quot;name&quot;, song.getName());  
-    }
-
-    if (song.getLyrics() != null) {
-      updateData.set(&quot;lyrics&quot;, song.getLyrics());
-    }
-
-    if (song.getSubjectId() != null) {
-      updateData.set(&quot;subjectId&quot;, song.getSubjectId());
-    }
-
-    UpdateResult result = mongoTemplate.updateFirst(query, updateData, Song.class);
-    return result != null &amp;&amp; result.getModifiedCount() &gt; 0;
-    //若result不为0且修改记录数大于0则返回true，否则返回false
-}</code></pre><br>
->总结：`mongoTemplate.updateFirst(query, updateData, Song.class)`方法中，**Song.class**用于确定需要修改的数据类名，**query**用于通过唯一的**id**锁定要修改的具体数据是哪一个，**updateData**用于储存修改后的新数据。
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">import</span> org.springframework.data.mongodb.core.MongoTemplate;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line"><span class="comment">//使用@Autowried自动注入MongoTemplate实例</span></span><br><span class="line">   <span class="keyword">private</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   		Song song = <span class="keyword">new</span> Song();<span class="comment">//新建一个Song类型的对象，用于储存专辑，歌手等信息</span></span><br><span class="line">   		song.setSubjectId(<span class="string">"s001"</span>);</span><br><span class="line">   		song.setLyrics(<span class="string">"Kalafina"</span>);</span><br><span class="line">   		song.setName(<span class="string">"満天"</span>);</span><br><span class="line"></span><br><span class="line">   	mongoTemplate.insert(song);<span class="comment">//将该Song对象添加至MongoTemplates数据库实例中</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <br>
-
-<h2 id="4-删除（Delete）"><a href="#4-删除（Delete）" class="headerlink" title="4.删除（Delete）"></a>4.删除（Delete）</h2><p>调用<code>mongoTemplate.remove()</code>方法即可。</p>
-<p>例：</p>
-<pre><code>private static final Logger LOG = LoggerFactory.getLogger(SongService);
-
-@Override
-public boolean delete(String songId) {
-    // 输入的主键 id 必须有文本，不能为空或全空格
-    if (!StringUtils.hasText(songId)) {
-      LOG.error(&quot;input songId is blank.&quot;);
-      return false;
-    }
-
-    Song song = new Song();
-    song.setId(songId);
-    //创建一个对象并设置好属性值,作为删除的条件,符合条件的数据都将被删除 可以设置更多的属性值来提高
-    //精确性,但通过主键来删除数据,是保证不误删的一个比较好的办法
-
-    DeleteResult result = mongoTemplate.remove(song);
-    return result != null &amp;&amp; result.getDeletedCount() &gt; 0;
-    //若result不为0且修改记录数大于0则返回true，否则返回false
-    }</code></pre><br>
-
-
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/#more">more >></a>
+        
       
 
       
@@ -300,6 +205,29 @@ public boolean delete(String songId) {
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1169,6 +1097,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
