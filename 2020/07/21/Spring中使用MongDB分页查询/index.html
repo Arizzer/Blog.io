@@ -16,12 +16,12 @@
 <meta property="og:description" content="调用 PageRequest.of() 方法构建一个分页对象,然后注入到查询对象。 PageRequest.of() 方法用于确定分页规则：  第一个参数是页码,注意从0 开始计数,第一页的值是0 ; 第二个参数是每页的数量。  例： 12345import org.springframework.data.domain.PageRequest;import org.springframework">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-21T15:21:09.953Z">
-<meta property="article:modified_time" content="2020-07-21T16:18:11.440Z">
+<meta property="article:modified_time" content="2020-07-21T16:20:26.574Z">
 <meta property="article:author" content="观测">
+<meta property="article:tag" content="MongoDB">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="Spring">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="MongoDB">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
@@ -212,32 +212,26 @@
 <p>例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Page;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.support.PageableExecutionUtils;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 总数</span></span><br><span class="line"><span class="keyword">long</span> count = mongoTemplate.count(query, Song<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">// 构建分页器</span></span><br><span class="line">Page&lt;Song&gt; pageResult = PageableExecutionUtils.getPage(songs, pageable, <span class="keyword">new</span> LongSupplier() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getAsLong</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p><code>PageableExecutionUtils.getPage()</code>方法第一个参数是查询结果;第二个参数是分页条件对象;第三个参数稍微复杂一点,实现一个 <strong>LongSupplier</strong> 接口的匿名类,在匿名类的 <code>getAsLong()</code> 方法中返回结果总数，方法返回值是一个 <strong>Page 分页器</strong>对象。</p>
-<p>关于Page分页器的一些常见方法如下：</p>
+<p>关于<strong>Page</strong>分页器的一些常见方法如下：</p>
 <blockquote>
 <p>getTotalElements() </p>
 </blockquote>
-<h5 id="返回类型-long-，返回元素总数"><a href="#返回类型-long-，返回元素总数" class="headerlink" title="返回类型:long ，返回元素总数"></a>返回类型:long ，返回元素总数</h5><hr>
-<blockquote>
+<h5 id="返回类型-long-，返回元素总数"><a href="#返回类型-long-，返回元素总数" class="headerlink" title="返回类型:long ，返回元素总数"></a>返回类型:long ，返回元素总数</h5><blockquote>
 <p>getTotalPages() </p>
 </blockquote>
-<h5 id="返回类型-int-，返回总页数"><a href="#返回类型-int-，返回总页数" class="headerlink" title="返回类型:int ，返回总页数"></a>返回类型:int ，返回总页数</h5><hr>
-<blockquote>
+<h5 id="返回类型-int-，返回总页数"><a href="#返回类型-int-，返回总页数" class="headerlink" title="返回类型:int ，返回总页数"></a>返回类型:int ，返回总页数</h5><blockquote>
 <p>getContent() </p>
 </blockquote>
-<h5 id="返回类型-List-，返回当前页面元素集合"><a href="#返回类型-List-，返回当前页面元素集合" class="headerlink" title="返回类型:List ，返回当前页面元素集合"></a>返回类型:List<T> ，返回当前页面元素集合</T></h5><hr>
-<blockquote>
+<h5 id="返回类型-List-，返回当前页面元素集合"><a href="#返回类型-List-，返回当前页面元素集合" class="headerlink" title="返回类型:List ，返回当前页面元素集合"></a>返回类型:List<T> ，返回当前页面元素集合</T></h5><blockquote>
 <p>getNumber() </p>
 </blockquote>
-<h5 id="返回类型-int-返回当前页码号-，注意是以-0-开始计数的-0-表示第一页-1-表示第二页"><a href="#返回类型-int-返回当前页码号-，注意是以-0-开始计数的-0-表示第一页-1-表示第二页" class="headerlink" title="返回类型:int 返回当前页码号 ，注意是以 0 开始计数的,0 表示第一页,1 表示第二页"></a>返回类型:int 返回当前页码号 ，注意是以 0 开始计数的,0 表示第一页,1 表示第二页</h5><hr>
-<blockquote>
+<h5 id="返回类型-int-返回当前页码号-，注意是以-0-开始计数的-0-表示第一页-1-表示第二页"><a href="#返回类型-int-返回当前页码号-，注意是以-0-开始计数的-0-表示第一页-1-表示第二页" class="headerlink" title="返回类型:int 返回当前页码号 ，注意是以 0 开始计数的,0 表示第一页,1 表示第二页"></a>返回类型:int 返回当前页码号 ，注意是以 0 开始计数的,0 表示第一页,1 表示第二页</h5><blockquote>
 <p>getSize() </p>
 </blockquote>
-<h5 id="返回类型-int-，返回每页额定元素数"><a href="#返回类型-int-，返回每页额定元素数" class="headerlink" title="返回类型:int ，返回每页额定元素数"></a>返回类型:int ，返回每页额定元素数</h5><hr>
-<blockquote>
+<h5 id="返回类型-int-，返回每页额定元素数"><a href="#返回类型-int-，返回每页额定元素数" class="headerlink" title="返回类型:int ，返回每页额定元素数"></a>返回类型:int ，返回每页额定元素数</h5><blockquote>
 <p>getNumberOfElements() </p>
 </blockquote>
-<h5 id="返回类型-int-，返回页中的元素数"><a href="#返回类型-int-，返回页中的元素数" class="headerlink" title="返回类型:int ，返回页中的元素数"></a>返回类型:int ，返回页中的元素数</h5><hr>
-
+<h5 id="返回类型-int-，返回页中的元素数"><a href="#返回类型-int-，返回页中的元素数" class="headerlink" title="返回类型:int ，返回页中的元素数"></a>返回类型:int ，返回页中的元素数</h5><br>
       
 
       
@@ -250,6 +244,10 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
         		</li>
       		 
@@ -259,10 +257,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
         		</li>
       		
 		</ul>
@@ -507,6 +501,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
@@ -519,18 +525,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">同人</a>
               </li>
              
@@ -539,7 +533,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
