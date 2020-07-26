@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>MongoDB配置 | 观测的博客</title>
+  <title>Spring中启动IOC容器 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文档为加密文档">
+  <meta name="description" content="作为启动类（Application），我们通常使用@SpringBootApplication注解声明当前类是一个启动类.可以通过@Bean注解生成IOC容器管理的bean。 要启动IOC容器，我们需要引入org.springframework.context.annotation.AnnotationConfigApplicationContext类 然后通过ApplicationConte">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB配置">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="Spring中启动IOC容器">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="本文档为加密文档">
+<meta property="og:description" content="作为启动类（Application），我们通常使用@SpringBootApplication注解声明当前类是一个启动类.可以通过@Bean注解生成IOC容器管理的bean。 要启动IOC容器，我们需要引入org.springframework.context.annotation.AnnotationConfigApplicationContext类 然后通过ApplicationConte">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-22T11:41:07.084Z">
-<meta property="article:modified_time" content="2020-07-22T11:43:27.485Z">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j4/ioc.svg">
+<meta property="article:published_time" content="2020-07-26T04:53:47.982Z">
+<meta property="article:modified_time" content="2020-07-26T06:25:13.238Z">
 <meta property="article:author" content="观测">
-<meta property="article:tag" content="私密">
+<meta property="article:tag" content="个人学习">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://style.youkeda.com/img/ham/course/j4/ioc.svg">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
   
@@ -172,35 +176,45 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-MongoDB配置" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-Spring中启动IOC容器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      MongoDB配置
+      Spring中启动IOC容器
     </h1>
   
 
         
-        <a href="/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2020-07-22T11:41:07.084Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
+        <a href="/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2020-07-26T04:53:47.982Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <div class="hbe-input-container">
-  <input type="password" id="hbePass" placeholder="" />
-    <label for="hbePass">欢迎来到我的博客，请输入密码以继续阅读。</label>
-    <div class="bottom-line"></div>
-  </div>
-  <script id="hbeData" type="hbeData" data-hmacdigest="f91dd99e3f7ae2df4c43717205470530bdc87295338336a19bbb51ff9c9e6117">6f43ece061c3d70f2483e303dc01a325a02b7ad91eb375b34ad5ee8c5f29691ab441a40e05419aff508bfeaa0f38f664d7c47f7e73684110e8a3846b947baea21213fdcb25e08dd9575770173e557053f0fb4d1447bd241b8fab85dfc209aff954776f5a6c8e13566bd989ddb3bff3a6a8e4b60fdb5ccdeff42ef5b86a7c8e3667015ed1876dfc456f22c9b57d668e0ada85af2f95d94a014de908fabb7455cd0508dc981dc78224485ee82e968a0a1110ce0ed2720ade497caf574db71673c7e48c2dd23538da6c74c41a6327e22503206d8dc653ae9b1601c145c399de00a248422ff33400adfc99cb281a3cb75d520140c3db1533c84c23c747468e3126bcf9898858173f33a78967719b6e1153bff815392f2ad36acd6dd3a634e32141d16860751bf85e04641a4969db1926dab44be92321a5e17939b72ab572b112308d4f360f94f7e4315b966adac0d3cb60164489d2088f760d008ea64f1265272a54122331486578e8944897ab0e22dbe23d76d87093941705c6a636f7296dfc34043019610352161fe6cc9ae36e7e57094ac083d83317ab26a2284916ae2afaeb47aad0cc7c24606f0fd5d6312b0faab803310672b1116be8fc656536e5782e2f639804f7efa838f33d354a0e1d6c00e7c9692208c345f82dd1898dce0450cf1210d00058f49e0a370266eabdecfb157b50955b18e2dc677d48d9d723386a5019bb8e6c1e4412522e512b1c41798bcd5134ebc212f99d2a3f4976a9ddc458a0f4a06e28f797c2d9fb3a6b6a44e4e8a305e46e22920b8f7885d956abf63376aa3a11d0e72a4a9e7591e74afab250c6480856498091a45c32ad431e4c276a2444be6d2c7b8f300a03d2aaac35be1ef93cca05afaaba8a371dcd73252fc8322079e5bbfef4305009c584f4b19e95bff6d0bae7379c7ab6f2cf930999d047864eee854006ead5da347f076058224ef491db9bb8431fcc3ec574975c87b1d68f684a3859cd9082a0d8fd5f34307acfb44e74b27a526408ea56d4bd6b24298be7f928166db51fe899feb0c67384df8a85e562bc840003ff94af1058727295beda0f5ea44d66ccbd225fb8256aefd0f4ba1606d2aa3624968e9e038a4fafd9693c944da1ff59ae05a81a8fcc26904c47e39e9f273716a1b7df2a5bb6866a38746552ba35c5a5cf1bdb95302644f3bebe6a245e92f6b81ed7a5b2b8d1a709df8b6ed13dca31c3203a1247f09785fe3a5cb09ba21c41ce55065618fd87678b650dcef8140d69dd6183800f3883e504df4a19b9a088ba756f1c6a50379db2bf93bacd8b069813789d835dd3cbdd2b2513c101fd674bd040f3d474d2c3f0f60b13965c42a28bf29b3d5f64e0d3ace89e512946badb9bebc91f97af4a930fcef67ceafea4cca6dc764f30f80d2f90035111d7fefe9f41732ad2eda3d8c2a731a298784aabc0d020d25728c3fba56d55241f4e8db737f2ffc1551ac250151bd71c2c721166156f7ccb1985205d09d56cb6250d5e4e8dce33732c655404197cee1378058e1fa2e78094f231dbfcdd24043c3adfcd6ed6aee78e3406535bb4b34cbcc4c72e98c03061e4dc1c898eafe655cd4355a90c2412c459129d470fc0f3df328a4646268141171ee9b79c685cabfcec8c326e6c3819a1d9af687607f94acd49af73c26ef9874c994659f536656d1da00a38a830c19df805a5b69a62e1e3042fea79da784de55c03042affd52a2d0ff1119dce54443a983aa5b99ec39ee18fc3a0b89292b6619dcb70a6bc4456024cc11f2f69c976c13cb9c9a001e78e3b8963716c4fca9c2510c333c1d0364519b6a5f7e86c85293140e3ff59b448862ace8be90e08e32f32b7580b00c4bd579dff61952cd4d05c8c8cf861e73290025dbf0d6a90b2b9348ce3a841e2685e96e02dcb62f62597882e49c1abb8a06ec4ae2d2d904240b1029980dcbdf73bb40633720e34464cb63a5af90345c0f84fff5c8ebd5718262f2330a7cffa4903a511f03630513d0d0e6d27b0c952255943691fb68c92788c2f6b971cd93a02b360b87c30071fb54e4d19f48b2248e1907e9f05683e0a492062d0866ce0dc232091a72b3f9892b8c37203e0fd3ec068e3f8d43ea328c3895593b3b8f27664b5dabb2f14b12b9f1e5f16f2d98fcab40a4683ea74c0d3b60e99abba5220250cc6644376a0d5395222872db99b7d9d2ea5a41bb7faf6b15af4f217a1bfa41515ee6f0d4152f412a9fffbc308767ef92f4a59d67974c7c43b0f7d714fadeebf0413421c6eee6b599beb41b0c1867f22f0a7ed01a358fcab5587e6e7bc80eb20254f194fcdce815338d0d5ddb20a0a09993388e63d31af744097d344e107fec6362ee5e202057bc19949c2cb274849b4462d24b52c5fdce993e4b1e12243c5c32d24dd0dee3110a4b61c390f302d2f3f7acb8d17ff8fd9d8608e496b70659848e30c027bc79b55734e52831ac3a2df68dbe804711d1365df38766d2dd11bc508ceccc79aea5db1a35cc901365870a3d701f0dfadd295518d29a89341b9b59a5d69faca9b2853eb8707ecdf3625f19ec9c121df8e6bb878e523af1969c2494c178a336f0edd250682db118192276a3a2f3ead32a25adef0aff6575a157c00fe0091257c40881ce8a02d7f0866750863c8dff253fed902e4fa04560bb02415744230ae832a9db60c78c4dbc6ce47a607d95b1b812144b4af191aff16fb5d021d140e75aba88f5a01b9a1edf7eaca079568c06452ceb07764245156e897b5cebcad370cdb6c05e641414ac9895dcb739ed88f61deac2a03ce5ed72ec6db192265498a03929de4c464ec7fa0a9541f09f831be23235a4c45af697e4b027911f9a615b17c8127870ff5bda56622d30aa1530a783e2e163e72e8d3d7c65ccac79b3c664bd7bda22227e44916ca8df13e5eee46028dbe5d2fa5f7f3343daa6a6f2222262cb898813e7f183fb74f248b06a7fe</script>
-</div>
-<script src="/Blog.io/lib/blog-encrypt.js"></script><link href="/Blog.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+        <br>
+
+<p>作为启动类（Application），我们通常使用<code>@SpringBootApplication</code>注解声明当前类是一个启动类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean。</p>
+<p>要启动IOC容器，我们需要引入<code>org.springframework.context.annotation.AnnotationConfigApplicationContext</code>类</p>
+<p>然后通过<code>ApplicationContext</code>类启动：</p>
+<p><code>ApplicationContext context = new AnnotationConfigApplicationContext(&quot;com.xxx&quot;);</code></p>
+<p>这段代码会自动加载包<code>com.xxx</code>下的 Bean,只要引用了 Spring 注解的类都可以被加载(前提是在这个包下),因此，启动类我们一般放在最外侧的包中，保证所有的类都可以被扫描加载到。</p>
+<a id="more"></a>
+
+<p>下图是Spring中IOC的原理实现图：<br><br></p>
+<p><img src="https://style.youkeda.com/img/ham/course/j4/ioc.svg" alt></p>
+<p>实例化需要调用Bean实例，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SongService songService = context.getBean(SongService<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>当然，也会有需要调用启动类所在包以外包的情况，我们一般通过在<code>@SpringBootApplication</code>注解中加入<code>scanBasePackages</code>参数进行操作，实例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>(scanBasePackages=&#123;<span class="string">"com.arizzer.app"</span>, <span class="string">"com.arizzer.service"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppApplication</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(AppApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过在参数中添加其他需要扫描的包名，这样在启动类所在包的类中实例化，或是自动注入，都可以正常扫描了。</p>
+<p>（也可以通过添加<code>@ComponentScan</code>注解完成，操作类似：<code>@ComponentScan({&quot;com.arizzer.app&quot;, &quot;com.arizzer.service&quot;})</code>）</p>
+
       
 
       
@@ -213,7 +227,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">私密</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -269,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +305,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Spring中的一些常用的注解(持续更新)
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring中使用MongoDB进行分页查询</div>
+    <a href="/Blog.io/2020/07/25/Java%E4%B8%AD%E8%AF%BB%E5%8F%96%E8%B5%84%E6%BA%90%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java中读取资源的一些常见方法</div>
       <i class="icon-circle-right"></i>
     </a>
   

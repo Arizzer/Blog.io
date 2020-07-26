@@ -170,6 +170,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spring中启动IOC容器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/">Spring中启动IOC容器</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2020-07-26T04:53:47.982Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<p>作为启动类（Application），我们通常使用<code>@SpringBootApplication</code>注解声明当前类是一个启动类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean。</p>
+<p>要启动IOC容器，我们需要引入<code>org.springframework.context.annotation.AnnotationConfigApplicationContext</code>类</p>
+<p>然后通过<code>ApplicationContext</code>类启动：</p>
+<p><code>ApplicationContext context = new AnnotationConfigApplicationContext(&quot;com.xxx&quot;);</code></p>
+<p>这段代码会自动加载包<code>com.xxx</code>下的 Bean,只要引用了 Spring 注解的类都可以被加载(前提是在这个包下),因此，启动类我们一般放在最外侧的包中，保证所有的类都可以被扫描加载到。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java中读取资源的一些常见方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -255,19 +345,19 @@
 
 
   
-    <article id="post-Spring中的一些基础知识小记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Spring中的一些常用的注解(持续更新)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B0/">Spring中的一些基础知识小记</a>
+      <a class="article-title" href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/">Spring中的一些常用的注解(持续更新)</a>
     </h1>
   
 
         
-        <a href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B0/" class="archive-article-date">
+        <a href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" class="archive-article-date">
   	<time datetime="2020-07-24T13:41:03.702Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-24</time>
 </a>
         
@@ -277,8 +367,9 @@
       
         <br>
 
-<h3 id="1-常见的注解"><a href="#1-常见的注解" class="headerlink" title="1.常见的注解"></a>1.常见的注解</h3><h4 id="类注解（ElementType-TYPE）"><a href="#类注解（ElementType-TYPE）" class="headerlink" title="类注解（ElementType.TYPE）"></a>类注解（ElementType.TYPE）</h4><ul>
-<li><p><code>@Component</code>该注解是通用的 Bean 注解,其余三个注解都是扩展自Component  </p>
+
+<h3 id="类注解（ElementType-TYPE）"><a href="#类注解（ElementType-TYPE）" class="headerlink" title="类注解（ElementType.TYPE）"></a>类注解（ElementType.TYPE）</h3><ul>
+<li><p><code>@Component</code>该注解是通用的 Bean 注解,下属三个注解都是扩展自Component  </p>
 </li>
 <li><p><code>@Service</code>代表 Service Bean，常作用于<strong>服务层（业务层）</strong></p>
 </li>
@@ -286,9 +377,11 @@
 </li>
 <li><p><code>@Repository</code>作用于<strong>持久化</strong>相关 Beaan</p>
 </li>
+<li><p><code>@SpringBootApplication</code>声明当前类是一个配置类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean</p>
+</li>
 </ul>
         
-          <a class="article-more-a" href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B0/#more">more >></a>
+          <a class="article-more-a" href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/#more">more >></a>
         
       
 
@@ -306,11 +399,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -320,7 +413,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/">展开全文 >></a>
         </p>
       
 
@@ -473,11 +566,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -566,11 +659,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -927,80 +1020,6 @@
 
 
   
-    <article id="post-2020.7.15 博客实装功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2020/07/17/2020.7.15%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/">2020.7.15 博客实装功能</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2020/07/17/2020.7.15%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-  	<time datetime="2020-07-17T05:07:03.018Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>yilia主题个性化处理完成，自定义了大部分模块</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">功能实装</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2020/07/17/2020.7.15%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/Blog.io/page/2/">2</a><a class="extend next" rel="next" href="/Blog.io/page/2/">下一页</a>
@@ -1125,6 +1144,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -1133,19 +1156,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">

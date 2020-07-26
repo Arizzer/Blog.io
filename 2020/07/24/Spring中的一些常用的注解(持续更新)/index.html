@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>Spring中的一些基础知识小记 | 观测的博客</title>
+  <title>Spring中的一些常用的注解(持续更新) | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.常见的注解类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,其余三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan">
+  <meta name="description" content="类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,下属三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan  @SpringBootApplication声明当前类是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring中的一些基础知识小记">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B0/index.html">
+<meta property="og:title" content="Spring中的一些常用的注解(持续更新)">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="1.常见的注解类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,其余三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan">
+<meta property="og:description" content="类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,下属三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan  @SpringBootApplication声明当前类是">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-24T13:41:03.702Z">
-<meta property="article:modified_time" content="2020-07-24T15:29:56.287Z">
+<meta property="article:modified_time" content="2020-07-26T06:06:36.980Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
-<meta property="article:tag" content="Java">
 <meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
@@ -174,19 +174,19 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-Spring中的一些基础知识小记" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-Spring中的一些常用的注解(持续更新)" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Spring中的一些基础知识小记
+      Spring中的一些常用的注解(持续更新)
     </h1>
   
 
         
-        <a href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B0/" class="archive-article-date">
+        <a href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" class="archive-article-date">
   	<time datetime="2020-07-24T13:41:03.702Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-24</time>
 </a>
         
@@ -196,8 +196,9 @@
       
         <br>
 
-<h3 id="1-常见的注解"><a href="#1-常见的注解" class="headerlink" title="1.常见的注解"></a>1.常见的注解</h3><h4 id="类注解（ElementType-TYPE）"><a href="#类注解（ElementType-TYPE）" class="headerlink" title="类注解（ElementType.TYPE）"></a>类注解（ElementType.TYPE）</h4><ul>
-<li><p><code>@Component</code>该注解是通用的 Bean 注解,其余三个注解都是扩展自Component  </p>
+
+<h3 id="类注解（ElementType-TYPE）"><a href="#类注解（ElementType-TYPE）" class="headerlink" title="类注解（ElementType.TYPE）"></a>类注解（ElementType.TYPE）</h3><ul>
+<li><p><code>@Component</code>该注解是通用的 Bean 注解,下属三个注解都是扩展自Component  </p>
 </li>
 <li><p><code>@Service</code>代表 Service Bean，常作用于<strong>服务层（业务层）</strong></p>
 </li>
@@ -205,23 +206,40 @@
 </li>
 <li><p><code>@Repository</code>作用于<strong>持久化</strong>相关 Beaan</p>
 </li>
+<li><p><code>@SpringBootApplication</code>声明当前类是一个配置类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean</p>
+</li>
 </ul>
 <a id="more"></a>
 <br>
 
-<h4 id="方法注解（ElementType-MRTHOD）"><a href="#方法注解（ElementType-MRTHOD）" class="headerlink" title="方法注解（ElementType.MRTHOD）"></a>方法注解（ElementType.MRTHOD）</h4><ul>
+<h3 id="方法注解（ElementType-MRTHOD）"><a href="#方法注解（ElementType-MRTHOD）" class="headerlink" title="方法注解（ElementType.MRTHOD）"></a>方法注解（ElementType.MRTHOD）</h3><ul>
 <li><p><code>@Override</code>该注解表示重写，用来检查子类中的方法名与父类是否一致（通常要写）</p>
 </li>
-<li><p><code>@Autowired</code>该注解也可应用于类的属性（ElementType.FIELD），用于<strong>将Spring容器中的bean自动的和我们需要这个bean的类组装在一起协同使用。</strong>配合<code>@Repository</code>注释可以精准定位：</p>
+<li><p><code>@Autowired</code>该注解也可应用于类的属性（ElementType.FIELD），用于<strong>将Spring容器中的bean自动的和我们需要这个bean的类组装在一起协同使用。</strong>配合<code>@Repository</code>注释可以精准定位：<br>实现一个名为UserRepository的接口</p>
 </li>
 </ul>
-<p>实现一个名为UserRepository的接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.proc.bean.repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">save</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>实现其实现类：</p>
+<p>实现其实现：  </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.proc.bean.repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将该UserRepository属性类型的userRepositoryImps类在容器中命名为userRepository</span></span><br><span class="line"><span class="meta">@Repository</span>(<span class="string">"userRepository"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserRepositoryImps</span> <span class="keyword">implements</span> <span class="title">UserRepository</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"UserRepositoryImps save"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当我们在业务层调用UserRepository时，可以通过<code>@Autowired</code>免去setter的过程:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserRepository userRepository;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@ResponseBody</code>该注解表示该方法的返回结果直接写入 HTTP response body 中，一般在异步获取数据时使用【也就是AJAX】。</li>
+</ul>
+<blockquote>
+<p>注意：在使用<code>@RequestMapping</code>后，返回值通常解析为跳转路径，但是加上<code>@ResponseBody</code>后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 <code>@ResponseBody</code>后，会<strong>直接返回 json 数据</strong>。）</p>
+</blockquote>
+<ul>
+<li><code>@RestController</code>该注解等同于：<code>@ResponseBody</code> + <code>@Controller</code></li>
+</ul>
+<h3 id="参数注解（ElementType-PARAMETER）"><a href="#参数注解（ElementType-PARAMETER）" class="headerlink" title="参数注解（ElementType.PARAMETER）"></a>参数注解（ElementType.PARAMETER）</h3><ul>
+<li><code>@RequestParam</code>该注解作用于类的参数，常用于web领域</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">( @RequestParam(<span class="string">"id"</span>)</span> String id)</span>&#123;</span><br><span class="line">	......	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
       
 
@@ -239,11 +257,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -299,7 +317,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -501,6 +519,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -509,19 +531,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
