@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
   <title>Spring中的一些常用的注解(持续更新) | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,下属三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan  @SpringBootApplication声明当前类是">
+  <meta name="description" content="类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,下属三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring中的一些常用的注解(持续更新)">
 <meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,下属三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan  @SpringBootApplication声明当前类是">
+<meta property="og:description" content="类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,下属三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-24T13:41:03.702Z">
-<meta property="article:modified_time" content="2020-07-26T06:06:36.980Z">
+<meta property="article:modified_time" content="2020-07-26T16:42:08.520Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="Spring">
@@ -206,10 +206,12 @@
 </li>
 <li><p><code>@Repository</code>作用于<strong>持久化</strong>相关 Beaan</p>
 </li>
-<li><p><code>@SpringBootApplication</code>声明当前类是一个配置类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean</p>
-</li>
 </ul>
 <a id="more"></a>
+
+<ul>
+<li><code>@SpringBootApplication</code>声明当前类是一个配置类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean</li>
+</ul>
 <br>
 
 <h3 id="方法注解（ElementType-MRTHOD）"><a href="#方法注解（ElementType-MRTHOD）" class="headerlink" title="方法注解（ElementType.MRTHOD）"></a>方法注解（ElementType.MRTHOD）</h3><ul>
@@ -230,16 +232,31 @@
 <blockquote>
 <p>注意：在使用<code>@RequestMapping</code>后，返回值通常解析为跳转路径，但是加上<code>@ResponseBody</code>后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 <code>@ResponseBody</code>后，会<strong>直接返回 json 数据</strong>。）</p>
 </blockquote>
+<br>
+* `@RestController`该注解等同于：`@ResponseBody` + `@Controller`
+
 <ul>
-<li><code>@RestController</code>该注解等同于：<code>@ResponseBody</code> + <code>@Controller</code></li>
+<li><code>@RequestMapping</code>该注解用于路由（解析URL，并提供资源内容给调用者），根据作用可以分解<br>为<code>@GetMapping</code>和<code>@RostMapping</code>，分别用于Get和Post请求，常用于<strong>控制层</strong>。</li>
 </ul>
+<br>
+
 <h3 id="参数注解（ElementType-PARAMETER）"><a href="#参数注解（ElementType-PARAMETER）" class="headerlink" title="参数注解（ElementType.PARAMETER）"></a>参数注解（ElementType.PARAMETER）</h3><ul>
-<li><code>@RequestParam</code>该注解作用于类的参数，常用于web领域</li>
+<li><code>@RequestParam</code>该注解作用于类的参数，常用于web领域。</li>
 </ul>
 <p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">( @RequestParam(<span class="string">"id"</span>)</span> String id)</span>&#123;</span><br><span class="line">	......	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//经过@RequestMapping路由后为：“xxx/?=xxxxxx”</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">( @RequestParam(<span class="string">"id"</span>)</span> String id)</span>&#123;</span><br><span class="line">	......	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一旦加上参数注解就代表要参与传递，如果不想让某个参数必须传递，可以用<code>required=false</code>修饰，例如下面的代码，要求传入两个参数，但是只有”id”是必须传入的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/songlist"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(@RequestParam(name=<span class="string">"pageNum"</span>,required = <span class="keyword">false</span>)</span> <span class="keyword">int</span> pageNum,@<span class="title">RequestParam</span><span class="params">(<span class="string">"id"</span>)</span> String id)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"html/songList.html"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
 
-
+<h3 id="类注解（ElementType-FIELD）"><a href="#类注解（ElementType-FIELD）" class="headerlink" title="类注解（ElementType.FIELD）"></a>类注解（ElementType.FIELD）</h3><ul>
+<li><p><code>@Autowired</code>见上文</p>
+</li>
+<li><p><code>@PostConstruct</code>该注解被用来修饰一个非静态的void()方法。被<code>@PostConstruct</code>修饰的方法会在服务器加载<strong>Servlet</strong>的时候运行，并且只会被服务器执行一次。<code>@PostConstruct</code>在构造函数之后执行，i常添加在init()方法前。</p>
+</li>
+</ul>
+<p>三种注解或方法在整个Bean初始化中的执行顺序：</p>
+<p><code>Constructor(构造方法)</code> -&gt; <code>@Autowired(依赖注入)</code> -&gt; <code>@PostConstruct(注释的方法)</code></p>
 
       
 
@@ -527,11 +544,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,7 +556,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,6 +565,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">纪念</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
