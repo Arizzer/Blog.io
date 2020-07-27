@@ -16,7 +16,7 @@
 <meta property="og:description" content="ThymeLeaf是Spring中默认的模板方案，通过它可以完成一些动态页面的开发。 首先，我们需要添加依赖： 1234&lt;dependency&gt;  &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;  &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;&#x2F;artifactI">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-26T13:57:48.254Z">
-<meta property="article:modified_time" content="2020-07-26T16:47:25.849Z">
+<meta property="article:modified_time" content="2020-07-27T02:39:09.976Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="Java">
@@ -207,7 +207,8 @@
 <p>最基础的一个类就是Model类，通过它将前后端进行连接，例如在如下示例代码中：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SongListControl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> SongListService songListService;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RequestMapping</span>(<span class="string">"/songlist"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span>String id,Model model)</span>&#123;</span><br><span class="line"></span><br><span class="line">    SongList songList = songListService.get(id);</span><br><span class="line">	</span><br><span class="line">    model.addAttribute(<span class="string">"songList"</span>,songList);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"songList"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>有几个初级知识点需要理解巩固：<br>1.通过<code>@Controller</code>告知Spring该类属于控制层，没有使用<code>@RestController</code>是因为在返回结果需要被解析为跳转路径，而不是JSON等类型的数据。</p>
+<p>有几个初级知识点需要理解巩固：</p>
+<p>1.通过<code>@Controller</code>告知Spring该类属于控制层，没有使用<code>@RestController</code>是因为在返回结果需要被解析为跳转路径，而不是JSON等类型的数据。</p>
 <p>2.<code>@Autowired</code>：自动注入一个SongListService 实例.</p>
 <p>3.<code>@RequestMapping(&quot;/songlist&quot;)</code>：如果是在本地启动8080端口，对应URL为<code>http://localhost:8080/songlist</code>。</p>
 <p>4.<code>@RequestParam(&quot;id&quot;)String id</code>：如果是在本地启动8080端口，对应URL为<code>http://localhost:8080/songlist?id=xxx</code>。</p>
@@ -497,11 +498,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,11 +514,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
