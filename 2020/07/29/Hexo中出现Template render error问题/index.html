@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>阿门 | 观测的博客</title>
+  <title>Hexo中出现Template render error问题 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp; 叙事章一亚历克·乔伊斯，一个令当地神学院颇为头疼的存在。 据说在升入神学院以前，亚历克是个性情温顺的孩子，为人质朴，乐善好施，对主有着绝对的虔诚。早晨会将怀里的松饼掰一块喂给隔壁罗珊婶婶养的猫，傍晚会在打扫完校园后才踩着暮色的脚印回家。 如果没有那件事的发生，人们猜测亚历克会成为一个巡礼士，去异域传播福音；亦或是成为一名教员，留在当地神学院任教；如果再能得到一点主的惠泽，去更大的城市">
+  <meta name="description" content="问题陈述：在Hexo中，有些特殊字符如果不转义，可能会出现渲染错误，进而影响 hexo g 的执行，比较常见的转义错误源是 { 。 如何解决：直接使用特殊字节编码代替原符号，对照表如下： 123456789101112131415161718192021- &amp;#45; &amp;minus; — 减号! &amp;#33; — 惊叹号Exclamation mark ” &amp;#3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阿门">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/index.html">
+<meta property="og:title" content="Hexo中出现Template render error问题">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/29/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="&amp;emsp; 叙事章一亚历克·乔伊斯，一个令当地神学院颇为头疼的存在。 据说在升入神学院以前，亚历克是个性情温顺的孩子，为人质朴，乐善好施，对主有着绝对的虔诚。早晨会将怀里的松饼掰一块喂给隔壁罗珊婶婶养的猫，傍晚会在打扫完校园后才踩着暮色的脚印回家。 如果没有那件事的发生，人们猜测亚历克会成为一个巡礼士，去异域传播福音；亦或是成为一名教员，留在当地神学院任教；如果再能得到一点主的惠泽，去更大的城市">
+<meta property="og:description" content="问题陈述：在Hexo中，有些特殊字符如果不转义，可能会出现渲染错误，进而影响 hexo g 的执行，比较常见的转义错误源是 { 。 如何解决：直接使用特殊字节编码代替原符号，对照表如下： 123456789101112131415161718192021- &amp;#45; &amp;minus; — 减号! &amp;#33; — 惊叹号Exclamation mark ” &amp;#3">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-15T14:34:46.625Z">
-<meta property="article:modified_time" content="2020-07-27T03:34:50.385Z">
+<meta property="article:published_time" content="2020-07-28T17:46:33.651Z">
+<meta property="article:modified_time" content="2020-07-28T18:00:11.725Z">
 <meta property="article:author" content="观测">
-<meta property="article:tag" content="Writingprompts">
+<meta property="article:tag" content="个人学习">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
@@ -172,122 +172,35 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-阿门" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-Hexo中出现Template render error问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      阿门
+      Hexo中出现Template render error问题
     </h1>
   
 
         
-        <a href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2020-07-15T14:34:46.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
+        <a href="/Blog.io/2020/07/29/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-07-28T17:46:33.651Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&emsp;</p>
-<h3 id="叙事章一"><a href="#叙事章一" class="headerlink" title="叙事章一"></a>叙事章一</h3><p>亚历克·乔伊斯，一个令当地神学院颇为头疼的存在。</p>
-<p>据说在升入神学院以前，亚历克是个性情温顺的孩子，为人质朴，乐善好施，对主有着绝对的虔诚。早晨会将怀里的松饼掰一块喂给隔壁罗珊婶婶养的猫，傍晚会在打扫完校园后才踩着暮色的脚印回家。</p>
-<p>如果没有那件事的发生，人们猜测亚历克会成为一个巡礼士，去异域传播福音；亦或是成为一名教员，留在当地神学院任教；如果再能得到一点主的惠泽，去更大的城市成为神父，那会是整个小镇的荣幸。</p>
-<p> 是的，如果没有发生那件事。</p>
-<a id="more"></a>
+        <br>
 
-<p> 亚历克有个朋友，叫多利，准确的说应该是多利·查尔斯。</p>
-<p> 多利死了，在所有人的眼前。</p>
-<p>亚历克已经不记得多利是怎么死的了，只知道他是当着所有人的面死去的。是坠亡么？是溺毙么？是绞刑么？不，绞刑不可能，没有人会动用绞刑……</p>
-<p>死因呢？亚历克也记不得了，失足，盗窃，污蔑……都有可能。</p>
-<p>亚历克只记得结果：多利死了。</p>
-<p>多利是他的发小，两个人的家挨在一起。他的奶奶罗珊婶婶是一位好阿婆，总是帮忙在亚历克的父母出远门的时候照看他的家。</p>
-<p>多利死后，他的父母简单地处理了一下后事，甚至连葬礼都没有进行，仿佛在忌惮些什么。不久后，除了坚持留在镇上的罗珊婶婶，他们一家逃离般地搬出了小镇。</p>
-<p>那之后，亚历克就变了，他变得有些和以前不一样，他一直试图去查明多利的死亡真相，但是亚历克记不住，每次一好像要有什么事实要浮现出来，整个世界就会化成巨兽，一口将他吞进深不见底的腹部。</p>
-<p>亚历克不再上学了，因为父母常年在外经商，他把自己一个人锁在屋子里，除了他自己，没有人知道他在干什么。</p>
-<p>因为义务教育的强制性，年满6岁的孩童都必须进入私塾或者公立学校，又或者是神学学堂进行学习，直到从高等学府毕业。</p>
-<p>于是，本应进入当地神学院学习的亚历克，成为了教员们眼中令人头大的对象。</p>
-<p>有人说他受邪神的蛊惑，已经迷失了心智。</p>
-<p>也有人说他受的打击太大，患上了精神疾病。</p>
-<p>没有人知道具体发生了什么，就连亚历克自己也是，现在的他所做的一切，仿佛只是遵循生物的本能。</p>
-<p>罗珊婶婶家的猫再也吃不到松饼了，每天都能看见两三个身着白衣的成年人类来到它家的隔壁，有时会从口中念些猫所听不懂的语言，有时则会忿忿地用脚猛踹两下门，随后嘟嘟囔囔地离开。</p>
-<p>猫感到恐惧，跳进了房间。</p>
-<hr>
-<p>“明天是神学院那帮人说的最后期限，但是他们不知道，今晚这一切都将改变……”亚历克吸了吸墨水，继续草草地写着日记。自从多利死亡以后，他发现自己的记忆力越来越差了，自己明明是看着多利在自己眼前死去的，但是却不记得死法，也不知道原因，这之前的记忆更是模糊，他现在只把精力花在一件事上，今晚，这件事将得到执行。</p>
-<p>窗外暴雨如注，今天是难得的雷雨天，据说深夜的时候雨会停，残月会将云层恶狠狠地划开，这是古籍上记载召唤邪灵的最佳时间。</p>
-<p>既然谁也不告诉自己自己的兄弟如何死去，那么就借助邪灵的力量将一切都屠杀干净，说不定，还能将多利复生。——这是亚历克此时的想法，他早已忘记自己此前是虔诚信徒的事实。</p>
-<p>神学院的教员们也对亚历克的变化一时间无从下手，拒绝义务教育本身还好，身为神学预备生若是拒绝进入高等的神学院学习，教廷是可以认定其渎神而处以死刑的。</p>
-<p>听闻了亚历克此前的良好表现，教员们怎么也想不到这样的一个孩子现在会变成这样。无论是在屋外好心的劝导，又或者是以主的名义征召，得到的要么是沉默，要么是从窗口扔出的花瓶或者其他杂物。</p>
-<p>明天是最后的期限，如果明天亚历克依然拒绝入学，可能就会被推上绞刑架，伟大的主不需要叛神的伪信徒。</p>
-<p>虽然亚历克现在做的事情，已经不能用伪信徒两个字来形容。</p>
-<p>雨继续下着，风与雷电在这座小镇上咆哮，每家每户都将门窗紧闭，在内心祷告，祈祷神明宽恕，平息风雨。</p>
-<p>至于发生这一切的起因，多利的死，没有人去谈论。</p>
-<p>这很不正常，太不正常了，不管是对于亚历克，还是小镇的居民，又或者是神职人员。</p>
-<p>仿佛这是一个禁忌，或者这个人不曾存在。</p>
-<p>雨在深夜停了，小镇又重归寂静。</p>
-<p>在镇北的小山丘上，亚历克已经摆好了祭品，画好了咒纹。</p>
-<p>冗杂的咒语自亚历克的口中念出，咒纹逐渐亮起，天空中的獠牙月仿佛在滴血，当最后一段咒语念完的那一刹那，紫光冲天，劲风暴起，烟雾蔓延，一个身影在法阵的中央缓缓现身。</p>
-<p>“是谁胆敢召唤我，可悲的凡……等等，老兄，真的是你么？”</p>
-<p>恶魔的声音突然变成了亚历克那许久未能听见的声音。</p>
-<p>是多利的声音。</p>
-<p>亚历克愣了一下，这无疑就是多利，但眼前的恶魔还是记忆里多利的样子…………吗？</p>
-<p>亚历克感到一阵头晕，每次他感觉快要发现些什么的时候都会这样。</p>
-<p>恶魔的相貌在他眼中不停地扭曲着。</p>
-<p>“老兄，快醒醒！…………亚历克·乔伊斯！”恶魔咆哮着。</p>
-<p>月亮依然像镰刀一般垂在空中，冷漠，不带一点感情。</p>
-<p>&emsp;</p>
-<h3 id="叙事章二："><a href="#叙事章二：" class="headerlink" title="叙事章二："></a>叙事章二：</h3><p>“今天是亚历克被那教廷帮人皮畜生抓走的第八天，不知道现在情况怎么样……”</p>
-<p>多利一直都有写日记的习惯，自从亚历克被那帮混蛋抓走后，每天写日记的用语也变的粗鲁起来。</p>
-<p>多利和亚历克一直都是好朋友，同时也是主忠诚的信徒。两人是邻居，自小便一起长大，亚历克是典型的隔壁家的好孩子，为人腼腆，成绩优异，经常受街坊邻居的称赞。</p>
-<p>而多利不一样，在小镇的居民眼里，多利一直是“爱搞事的捣蛋鬼”，经常喜欢做一些恶趣味的小把戏，别说是孩子，就是大人被他捉弄过的也不少。</p>
-<p>有时候，他也会殴打别人家的孩子，然后被大人们捉住，狠狠地揍一顿，回到家以后，又会被自己的父母揍一顿，虽然没有人知道事情的起因是对方偷了学校的圣经想要倒卖换钱。</p>
-<p>除了亚历克。</p>
-<p>亚历克和多利形影不离，他知道真相，他试图和大人们解释，但是没有人听进去，反而让亚历克远离多利：“小心点，别被那家伙带坏了。”</p>
-<p>多利也不在乎，他只按照他心中的正义做事。</p>
-<p>直到那一天，在神学学堂的忏悔室外，他们听到了一些不同寻常的声音。</p>
-<p>是学堂的神父，那个混蛋多利从第一眼就不喜欢他，神父面部的器官扭成一个诡异的笑容，在他面前的是一位女学徒，神父用手指示意女学徒不要出声，然后那双油腻的手便开始试图往女学徒的身上摩挲。</p>
-<p>往后的事，多利便记不大清了，依稀记得自己克制不住地冲了进去，狠狠给了神父三拳，还是三十拳？不重要，反正直到自己被亚历克拉开，神父的五官已经看不清楚了。</p>
-<p>再往后，一切就开始变得更不寻常了，因为自己没有被抓走，被抓走的，是亚历克。</p>
-<p>多利猜测是因为自己的父亲曾经在中央教廷做过两年的侍从，神父碍于父亲的面子，不敢动他。</p>
-<p>于是，和多利在一起的亚历克就成了替罪羊：自己无势，父母在外，发生了什么都没有关系。</p>
-<p>多利去找女学徒，女学徒却当着大家的面大喊：“神父只是在帮我忏悔，没有对我做什么，亚历克一直在装老好人，他想要非礼我！多亏神父帮我才让我逃过一劫！”说这话时，她的脸上看不到激动，只有木讷与恐惧。</p>
-<p>多利被他的父亲架走了，在家关禁闭。</p>
-<p>同时，亚历克的绞刑预计在事情发生的八天后执行。</p>
-<p>今天，就是第八天。</p>
-<p>正午，衣衫褴褛的亚历克被运到了镇中央，他早就没有了意识，“主的审判”令他肉身劳损，精神崩坏，现在的他只是一摊没有灵魂的肉泥。</p>
-<p>神父在一旁咂嘴：“便宜他了。”</p>
-<p>教堂的钟声响起，神父的侍从装模作样地列举起了亚历克的罪证，围观的群众窃窃私语，在事件发生的一开始还有群众讨论亚历克会不会是被陷害的，但是到了现在，已经全然没有这种声音了，比起一个孩子，他们更相信德高望重的神父。</p>
-<p>“绞刑开始——”</p>
-<p>亚历克被推上了绞刑架，行刑官粗鲁地将绳子套上了亚历克的头。</p>
-<p>就在这时，人群中闪出一个身影，一下子把行刑官撞倒在地，赫然是多利。</p>
-<p>神父愣了一下，随即大吼：“抓住他！！！”</p>
-<p>多利把自己的好朋友救了下来，但他也知道，自己这么做也仅仅是会把自己也搭进去而已。</p>
-<p>“老兄，快醒醒！…………亚历克·乔伊斯！”</p>
-<p>多利绝望地嘶吼着，但双手都已经被人拉开，周围的空气中环绕着“绞死他！绞死他！”的声音。</p>
-<p>那是天使的赞歌。</p>
-<p>&emsp;</p>
-<h3 id="叙事章三："><a href="#叙事章三：" class="headerlink" title="叙事章三："></a>叙事章三：</h3><p>我是一只猫，一只快要老死的猫。</p>
-<p>我的最后一个主人已经离开了我大概有9年了，而我，也将要随她而去。</p>
-<p>人们说，猫有九条命，那是妖猫，会被教廷抓走。</p>
-<p>我大概是把九条命用在了一条命上，我已经86岁了，距离奥古斯都帝国的灭亡，已经过去了5年，现在是新仕帝国的年代。</p>
-<p>人们也说，猫能通灵，我不知道能进入人的意识，这算不算通灵。</p>
-<p>我这一生进过很多人的意识，最让我震撼的，还是那两个人类小孩，明明已经都被打成植物人了，思维却依然保持着活跃，还有忿慨。</p>
-<p>大概是不甘？</p>
-<p>可是这个世界上不甘的人太多了，历史不会因为不甘而停止它的碾压。</p>
-<p>对生灵的碾压。</p>
-<p>我回到了我的小窝，那个下水道口，虽然很潮湿，但还算过得去。</p>
-<p>就这样，可以睡过去了。</p>
-<p>老主人叫什么来着？好像是罗珊？待会就能再见了，不知道你还记不记得我。</p>
-<p>……</p>
-<p>谁在上面吵闹啊？是报童的叫卖声吧，唔，让老猫我做个好梦吧………..</p>
-<p>…………</p>
-<p>新仕帝国五年，一只猫死在了下水道口。</p>
-<p>一张报纸因为报童的疏忽，飘在老猫的身上。</p>
-<p>头版上赫然印着：旧廷神父被处以绞刑！——主在上，愿圣灵得以涤净这亵渎教廷的灵魂。</p>
-<p>阿门。<br>&emsp;<br>——END——</p>
+<h3 id="问题陈述："><a href="#问题陈述：" class="headerlink" title="问题陈述："></a>问题陈述：</h3><p>在Hexo中，有些特殊字符如果不转义，可能会出现渲染错误，进而影响 <code>hexo g</code> 的执行，比较常见的转义错误源是 <code>{</code> 。</p>
+<h3 id="如何解决："><a href="#如何解决：" class="headerlink" title="如何解决："></a>如何解决：</h3><p>直接使用特殊字节编码代替原符号，对照表如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- &amp;#45; &amp;minus; — 减号</span><br><span class="line">! &amp;#33; — 惊叹号Exclamation mark </span><br><span class="line">” &amp;#34; &quot; 双引号Quotation mark # &amp;#35; — 数字标志Number sign $ &amp;#36; — 美元标志Dollar sign </span><br><span class="line">% &amp;#37; — 百分号Percent sign </span><br><span class="line">&amp; &amp;#38; &amp; Ampersand </span><br><span class="line">‘ &#39; — 单引号Apostrophe </span><br><span class="line">( &amp;#40; — 小括号左边部分Left parenthesis </span><br><span class="line">) &amp;#41; — 小括号右边部分Right parenthesis </span><br><span class="line">* &amp;#42; — 星号Asterisk </span><br><span class="line">+ &amp;#43; — 加号Plus sign </span><br><span class="line">&lt; &amp;#60; &lt; 小于号Less than </span><br><span class="line">&#x3D; &amp;#61; — 等于符号Equals sign </span><br><span class="line">&gt; &amp;#62; &gt; 大于号Greater than </span><br><span class="line">? &amp;#63; — 问号Question mark </span><br><span class="line">@ &amp;#64; — Commercial at </span><br><span class="line">[ &amp;#91; --- 中括号左边部分Left square bracket </span><br><span class="line"> &amp;#92; --- 反斜杠Reverse solidus (backslash) </span><br><span class="line">] &amp;#93; — 中括号右边部分Right square bracket </span><br><span class="line">&#123; &amp;#123; — 大括号左边部分Left curly brace </span><br><span class="line">| &amp;#124; — 竖线Vertical bar </span><br><span class="line">&#125; &amp;#125; — 大括号右边部分Right curly brace</span><br></pre></td></tr></table></figure>
+
+
+
+<p>但是，如果特殊字符被包含在了行内代码中，仍然有可能无法被正确转义，遇到这种情况，博主暂时还没有比较好的解决方法orz</p>
 
       
 
@@ -301,7 +214,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Writingprompts</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
         		</li>
       		
 		</ul>
@@ -357,7 +270,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/29/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -371,18 +284,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2020/07/15/%E6%8E%A2%E7%B4%A2%E7%BC%96%E7%A8%8B%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%88%E6%9E%81/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          探索编程世界的终极
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">你出局了</div>
+    <a href="/Blog.io/2020/07/28/2020.7.29%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2020.7.29 博客实装功能</div>
       <i class="icon-circle-right"></i>
     </a>
   

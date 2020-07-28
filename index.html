@@ -170,6 +170,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Hexo中出现Template render error问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/29/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/">Hexo中出现Template render error问题</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/29/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-07-28T17:46:33.651Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="问题陈述："><a href="#问题陈述：" class="headerlink" title="问题陈述："></a>问题陈述：</h3><p>在Hexo中，有些特殊字符如果不转义，可能会出现渲染错误，进而影响 <code>hexo g</code> 的执行，比较常见的转义错误源是 <code>{</code> 。</p>
+<h3 id="如何解决："><a href="#如何解决：" class="headerlink" title="如何解决："></a>如何解决：</h3><p>直接使用特殊字节编码代替原符号，对照表如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- &amp;#45; &amp;minus; — 减号</span><br><span class="line">! &amp;#33; — 惊叹号Exclamation mark </span><br><span class="line">” &amp;#34; &quot; 双引号Quotation mark # &amp;#35; — 数字标志Number sign $ &amp;#36; — 美元标志Dollar sign </span><br><span class="line">% &amp;#37; — 百分号Percent sign </span><br><span class="line">&amp; &amp;#38; &amp; Ampersand </span><br><span class="line">‘ &#39; — 单引号Apostrophe </span><br><span class="line">( &amp;#40; — 小括号左边部分Left parenthesis </span><br><span class="line">) &amp;#41; — 小括号右边部分Right parenthesis </span><br><span class="line">* &amp;#42; — 星号Asterisk </span><br><span class="line">+ &amp;#43; — 加号Plus sign </span><br><span class="line">&lt; &amp;#60; &lt; 小于号Less than </span><br><span class="line">&#x3D; &amp;#61; — 等于符号Equals sign </span><br><span class="line">&gt; &amp;#62; &gt; 大于号Greater than </span><br><span class="line">? &amp;#63; — 问号Question mark </span><br><span class="line">@ &amp;#64; — Commercial at </span><br><span class="line">[ &amp;#91; --- 中括号左边部分Left square bracket </span><br><span class="line"> &amp;#92; --- 反斜杠Reverse solidus (backslash) </span><br><span class="line">] &amp;#93; — 中括号右边部分Right square bracket </span><br><span class="line">&#123; &amp;#123; — 大括号左边部分Left curly brace </span><br><span class="line">| &amp;#124; — 竖线Vertical bar </span><br><span class="line">&#125; &amp;#125; — 大括号右边部分Right curly brace</span><br></pre></td></tr></table></figure>
+
+
+
+<p>但是，如果特殊字符被包含在了行内代码中，仍然有可能无法被正确转义，遇到这种情况，博主暂时还没有比较好的解决方法orz</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/29/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020.7.29 博客实装功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -264,7 +346,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <br>
+        <p>title: Spring中使用ThymeLeaf进行动态页面开发（二）<br>tags:</p>
+<pre><code>- 个人学习
+    - Spring
+    - Java
+    - ThymeLeaf</code></pre><br>
 
 <p>在上文中，我们主要介绍了在后端使用<strong>Model类</strong>和在前端使用”<strong>th:text=</strong>“达到前端调用后端数据的效果。</p>
 <p>其中的 <code>th:text=</code> 是ThymeLeaf自定义的HTML标签，语法的作用就是会动态替换掉 html 标签的内部内容。</p>
@@ -272,7 +358,9 @@
 <p>注：<code>th</code> 开头的标签属性均是使用 <strong>ThymeLeaf</strong> 语法，无须添加任何配置，但是在IDEA中，如果不在 <code>&lt;html&gt;</code> 标签中添加 <code>xmlns</code> 则会提示警告（但不影响正常运行），使用“<strong>Alt+enter</strong>”后会自动填写相关配置：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
-
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/28/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/#more">more >></a>
+        
       
 
       
@@ -280,29 +368,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ThymeLeaf</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -964,84 +1029,6 @@
 
 
   
-    <article id="post-2020.7.18 博客实装功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2020/07/18/2020.7.18%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/">2020.7.18 博客实装功能</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2020/07/18/2020.7.18%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-  	<time datetime="2020-07-18T15:11:52.852Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>添加网易云外链播放器</li>
-<li>移动端相册功能正常实装（但PC端或仍需要VPN才可正常浏览缩略图与原图）</li>
-<li>添加当切换标签页时标题自动切换的小彩蛋</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">功能实装</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2020/07/18/2020.7.18%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/Blog.io/page/2/">2</a><a class="extend next" rel="next" href="/Blog.io/page/2/">下一页</a>
@@ -1166,11 +1153,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1178,11 +1165,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
