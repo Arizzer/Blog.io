@@ -6,20 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>Java中读取资源的一些常见方法 | 观测的博客</title>
+  <title>观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.使用File类我们可以使用 File file &#x3D; new File(xxx) 读取文件。 File类有以下几个常见的构造函数： 12345678&#x2F;&#x2F;通过绝对路径或相对路径创建一个新 File 实例File(String path)&#x2F;&#x2F;根据parent路径名字符串和child路径名字符串创建一个新 File 实例File(String parent, String child)&#x2F;&#x2F;通过给定">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java中读取资源的一些常见方法">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/25/Java%E4%B8%AD%E8%AF%BB%E5%8F%96%E8%B5%84%E6%BA%90%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/index.html">
+  <meta name="description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
+<meta property="og:type" content="website">
+<meta property="og:title" content="观测的博客">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/page/3/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="1.使用File类我们可以使用 File file &#x3D; new File(xxx) 读取文件。 File类有以下几个常见的构造函数： 12345678&#x2F;&#x2F;通过绝对路径或相对路径创建一个新 File 实例File(String path)&#x2F;&#x2F;根据parent路径名字符串和child路径名字符串创建一个新 File 实例File(String parent, String child)&#x2F;&#x2F;通过给定">
+<meta property="og:description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-25T14:03:36.073Z">
-<meta property="article:modified_time" content="2020-07-30T08:18:37.132Z">
 <meta property="article:author" content="观测">
-<meta property="article:tag" content="个人学习">
-<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
@@ -173,84 +169,38 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-Java中读取资源的一些常见方法" class="article article-type-post " itemscope itemprop="blogPost">
+  
+    <article id="post-阿门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Java中读取资源的一些常见方法
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/">阿门</a>
     </h1>
   
 
         
-        <a href="/Blog.io/2020/07/25/Java%E4%B8%AD%E8%AF%BB%E5%8F%96%E8%B5%84%E6%BA%90%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-07-25T14:03:36.073Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-25</time>
+        <a href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/" class="archive-article-date">
+  	<time datetime="2020-07-15T14:34:46.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
 </a>
         
       </header>
     
 <!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-          <span class="btn-bg"></span>
-          <span class="btn-text">文章导航</span>
-          </p>
-	<div id="toc-article" class="toc-article">
-	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用File类"><span class="toc-number">1.</span> <span class="toc-text">1.使用File类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用IO类"><span class="toc-number">2.</span> <span class="toc-text">2.使用IO类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-利用Spring读取"><span class="toc-number">3.</span> <span class="toc-text">3.利用Spring读取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#总结："><span class="toc-number">3.1.</span> <span class="toc-text">总结：</span></a></li></ol></li></ol>
-         </div>
-   <script type="text/javascript">
-	function showToc(){
-		var toc_article = document.getElementById("toc-article");
-		var show_toc_btn = document.getElementById("show-toc-btn");
-		toc_article.setAttribute("style","display:block");
-		show_toc_btn.setAttribute("style","display:none");
-		};
-	function showBtn(){
-		var toc_article = document.getElementById("toc-article");
-		var show_toc_btn = document.getElementById("show-toc-btn");
-		toc_article.setAttribute("style","display:none");
-		show_toc_btn.setAttribute("style","display:block");
-		};
-   </script>
-      		
+		
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <br>
-
-<h3 id="1-使用File类"><a href="#1-使用File类" class="headerlink" title="1.使用File类"></a>1.使用File类</h3><p>我们可以使用 <code>File file = new File(xxx)</code> 读取文件。</p>
-<p>File类有以下几个常见的构造函数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过绝对路径或相对路径创建一个新 File 实例</span></span><br><span class="line">File(String path)</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据parent路径名字符串和child路径名字符串创建一个新 File 实例</span></span><br><span class="line">File(String parent, String child)</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过给定的父文件对象和子路径名字符串创建一个新的File实例</span></span><br><span class="line">File(File parent, String child)</span><br></pre></td></tr></table></figure>
-<p>但是File类无法读取jar等压缩包中的资源。</p>
-<a id="more"></a>
-
-<h3 id="2-使用IO类"><a href="#2-使用IO类" class="headerlink" title="2.使用IO类"></a>2.使用IO类</h3><p>在 Java 内部当中,我们一般把文件路径称为 <strong>classpath</strong>,所以读取内部的文件就是从 classpath 内读取,classpath 指定的文件不能解析成 <strong>File</strong> 对象,但是可以解析成 <strong>InputStream</strong>,我们借助 Java IO 就可以读取出来了。</p>
-<p><strong>classpath</strong> 类似虚拟目录，它的根目录是从<code>/</code> 开始代表的是<code>src/main/java</code>或者<code>src/main/resources</code>目录。</p>
-<p>需要添加的依赖：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	  &lt;groupId&gt;commons-io&lt;/groupId&gt;</span><br><span class="line">	  &lt;artifactId&gt;commons-io&lt;/artifactId&gt;</span><br><span class="line">	  &lt;version&gt;2.6&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<p>以下是测试代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 读取 classpath 的内容</span></span><br><span class="line">    InputStream in = Test.class.getClassLoader().getResourceAsStream("data.json");</span><br><span class="line">    <span class="comment">// 使用 commons-io 库读取文本</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      String content = IOUtils.toString(in, <span class="string">"utf-8"</span>);</span><br><span class="line">      System.out.println(content);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">      <span class="comment">// IOUtils.toString 有可能会抛出异常，需要我们捕获一下</span></span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中有<code>InputStream in = Test.class.getClassLoader().getResourceAsStream(&quot;data.json&quot;);</code>，<code>Test.class</code>指的是当前的 Test.java 编译后的 Java class 文件。<code>getClassLoader()</code>表示从 Java 运行的类加载器(ClassLoader)实例中查找文件,类装载器负责从Java字符文件将字符流读入内存，并构造Class类对象，再通过<code>getResourceAsStream()</code>方法可以得到目标文件的输入流。</p>
-<h3 id="3-利用Spring读取"><a href="#3-利用Spring读取" class="headerlink" title="3.利用Spring读取"></a>3.利用Spring读取</h3><p>Spring给我们提供了更便捷的读写方式，即利用<code>org.springframework.core.io.Resource</code>类封装文件,这个类的优势在于可以支持普通的 <strong>File</strong> ，也可以支持 <strong>classpath</strong> 文件，还可以调用远程文件。</p>
-<p>首先需要用<code>@Autowired</code>注解引入一个 *<em>ResourceLoader *</em>类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> ResourceLoader loader;</span><br></pre></td></tr></table></figure>
-
-<p>然后定义一个FileServiceImpl的实现类实现FileService接口，在其中定义一个getContent()方法，可以通过路径名返回对应资源：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> fm.douban.service.FileService;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.io.IOUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.Resource;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.ResourceLoader;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileServiceImpl</span> <span class="keyword">implements</span> <span class="title">FileService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ResourceLoader loader;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getContent</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//通过传入的路径名获得Resource对象，再将其转换为输入流（InputStream）</span></span><br><span class="line">            InputStream in = loader.getResource(name).getInputStream();</span><br><span class="line">			<span class="comment">//将该输入流用utf-8格式转换为字符串后返回</span></span><br><span class="line">            <span class="keyword">return</span> IOUtils.toString(in,<span class="string">"utf-8"</span>);</span><br><span class="line">		<span class="comment">//发生异常则返回null</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调用时：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//启动IOC容器，会自动加载包com.xxx下的 Bean,只要引用了 Spring 注解的类都可以被加载(前提是在这个包下)</span></span><br><span class="line">ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(<span class="string">"com.xxx"</span>);</span><br><span class="line"><span class="comment">//通过getBean()获取Bean</span></span><br><span class="line">FileService fileService = context.getBean(FileService<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">//调用getContent()方法，classpath:data/urls.txt表示读取资源时通过classpath的方式读取，相对路径是data/urls.txt，根目录是recource包（src/main/resources）</span></span><br><span class="line">String content = fileService.getContent(<span class="string">"classpath:data/urls.txt"</span>);</span><br><span class="line"><span class="comment">//输出内容</span></span><br><span class="line">System.out.println(content);</span><br></pre></td></tr></table></figure>
-<p>如果用file的方式读取，例子如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用getContent()方法，file:mywork/readme.md表示读取资源时通过file的方式读取，相对路径是mywork/readme.md，根目录就是工程目录</span></span><br><span class="line">String content2 = fileService.getContent(<span class="string">"file:mywork/readme.md"</span>);</span><br><span class="line">System.out.println(content2);</span><br></pre></td></tr></table></figure>
-
-<p>也可以抓取网页源文件：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String content2 = fileService.getContent(<span class="string">"https://arizzer.github.io/Blog.io/"</span>);</span><br><span class="line">System.out.println(content2);</span><br></pre></td></tr></table></figure>
-<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>在Spring当中,把本地文件，classpath文件，远程文件都封装成<strong>Resource</strong>对象来统一加载，非常方便~</p>
-
+        <p>&emsp;</p>
+<h3 id="叙事章一"><a href="#叙事章一" class="headerlink" title="叙事章一"></a>叙事章一</h3><p>亚历克·乔伊斯，一个令当地神学院颇为头疼的存在。</p>
+<p>据说在升入神学院以前，亚历克是个性情温顺的孩子，为人质朴，乐善好施，对主有着绝对的虔诚。早晨会将怀里的松饼掰一块喂给隔壁罗珊婶婶养的猫，傍晚会在打扫完校园后才踩着暮色的脚印回家。</p>
+<p>如果没有那件事的发生，人们猜测亚历克会成为一个巡礼士，去异域传播福音；亦或是成为一名教员，留在当地神学院任教；如果再能得到一点主的惠泽，去更大的城市成为神父，那会是整个小镇的荣幸。</p>
+<p> 是的，如果没有发生那件事。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/#more">more >></a>
+        
       
 
       
@@ -263,11 +213,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Writingprompts</a>
         		</li>
       		
 		</ul>
@@ -276,84 +222,100 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/25/Java%E4%B8%AD%E8%AF%BB%E5%8F%96%E8%B5%84%E6%BA%90%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-  
-<nav id="article-nav">
-  
-    <a href="/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
-          Spring中启动IOC容器
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
         
-      </div>
-    </a>
-  
-  
-    <a href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring中的一些常用的注解(持续更新)</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
+        
+    </div>
+</aside>
 
+
+
+
+  
+    <article id="post-你出局了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/">你出局了</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/" class="archive-article-date">
+  	<time datetime="2020-07-15T05:29:20.434Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;</p>
+<h3 id="观察日记："><a href="#观察日记：" class="headerlink" title="观察日记："></a>观察日记：</h3><p>…………</p>
+<p>“12月15日，应该快到16日了，可能是雨天，因为窗外有雨声，今天依然是黑暗的一天…….”</p>
+<p>我一只手僵硬地拿着压缩饼干，撑在桌子上，另一只手则用笔在日记本上写着，字迹歪歪扭扭，如同母鸡在用自己的爪子拙劣地划着石子。</p>
+<p>我已经习惯了黑暗的每一天。</p>
+<p>人类也一样。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Writingprompts</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -376,35 +338,9 @@
 
   
   
-  
-
-  
-
-  
-
-  
-
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div> 
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/js/Valine.min.js"></script>
-<script>
-   var notify = 'true' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "XAEf9Kn4JhAJ3eIBdDH6Kj46-MdYXbMMI",
-            app_key: "jsu9JjBDhaep2fsue1IP5Js0",
-            placeholder: "欢迎留言~",
-            avatar:"retro"
-        });
-    }
-</script>
-
-    </section>
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/Blog.io/page/2/">上一页</a><a class="page-number" href="/Blog.io/">1</a><a class="page-number" href="/Blog.io/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -427,8 +363,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

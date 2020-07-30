@@ -170,6 +170,279 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MongoDB配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/">MongoDB配置</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2020-07-22T11:41:07.084Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        本文档为加密文档
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">私密</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring中使用MongDB进行分页查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">Spring中使用MongoDB进行分页查询</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
+  	<time datetime="2020-07-21T15:21:09.953Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>调用 <code>PageRequest.of()</code> 方法构建一个分页对象,然后注入到查询对象。</p>
+<p><code>PageRequest.of()</code> 方法用于确定分页规则：</p>
+<ol>
+<li>第一个参数是页码,注意从<strong>0</strong> 开始计数,第一页的值是<strong>0</strong> ;</li>
+<li>第二个参数是每页的数量。</li>
+</ol>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.domain.PageRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Pageable;</span><br><span class="line"></span><br><span class="line">Pageable pageable = PageRequest.of(<span class="number">0</span> , <span class="number">20</span>);</span><br><span class="line">query.with(pageable);</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring中使用MongDB进行CRUD" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/">Spring中使用MongoDB进行CRUD</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/" class="archive-article-date">
+  	<time datetime="2020-07-21T02:11:45.259Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h2 id="1-增加（Create）"><a href="#1-增加（Create）" class="headerlink" title="1.增加（Create）"></a>1.增加（Create）</h2><p>调用<code>mongoTemplate.insert()</code>方法即可。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">import</span> org.springframework.data.mongodb.core.MongoTemplate;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line"><span class="comment">//使用@Autowried自动注入MongoTemplate实例</span></span><br><span class="line">   <span class="keyword">private</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   		Song song = <span class="keyword">new</span> Song();<span class="comment">//新建一个Song类型的对象，用于储存专辑，歌手等信息</span></span><br><span class="line">   		song.setSubjectId(<span class="string">"s001"</span>);</span><br><span class="line">   		song.setLyrics(<span class="string">"Kalafina"</span>);</span><br><span class="line">   		song.setName(<span class="string">"満天"</span>);</span><br><span class="line"></span><br><span class="line">   	mongoTemplate.insert(song);<span class="comment">//将该Song对象添加至MongoTemplates数据库实例中</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<br>
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/21/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020.7.18 博客实装功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -188,6 +461,9 @@
         
       </header>
     
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
@@ -266,6 +542,9 @@
         
       </header>
     
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <p>现在是北京时间2020年7月18日凌晨0时29分，距离头发的掉落已经过去了四天左右的时间，个人博客的开发从零开始（下载git，部署github）到现在（最新功能为文档加密功能的实装），可以说是经历了不少的挫折。靠着自己在CSDN，简书，以及各路github项目的说明下终于完成了不少功能的实装。</p>
@@ -343,6 +622,9 @@
         
       </header>
     
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
@@ -423,6 +705,9 @@
         
       </header>
     
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
@@ -501,6 +786,9 @@
         
       </header>
     
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <p>yilia主题个性化处理完成，自定义了大部分模块</p>
@@ -575,6 +863,9 @@
         
       </header>
     
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
@@ -653,6 +944,9 @@
         
       </header>
     
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文是博主为群友撰写的同人文，感谢能因为代码和妄想破绽和各位大佬们相遇，故撰此文，以作纪念~</p>
@@ -724,170 +1018,9 @@
 
 
   
-    <article id="post-阿门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/">阿门</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2020-07-15T14:34:46.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;</p>
-<h3 id="叙事章一"><a href="#叙事章一" class="headerlink" title="叙事章一"></a>叙事章一</h3><p>亚历克·乔伊斯，一个令当地神学院颇为头疼的存在。</p>
-<p>据说在升入神学院以前，亚历克是个性情温顺的孩子，为人质朴，乐善好施，对主有着绝对的虔诚。早晨会将怀里的松饼掰一块喂给隔壁罗珊婶婶养的猫，傍晚会在打扫完校园后才踩着暮色的脚印回家。</p>
-<p>如果没有那件事的发生，人们猜测亚历克会成为一个巡礼士，去异域传播福音；亦或是成为一名教员，留在当地神学院任教；如果再能得到一点主的惠泽，去更大的城市成为神父，那会是整个小镇的荣幸。</p>
-<p> 是的，如果没有发生那件事。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Writingprompts</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2020/07/15/%E9%98%BF%E9%97%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-你出局了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/">你出局了</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/" class="archive-article-date">
-  	<time datetime="2020-07-15T05:29:20.434Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;</p>
-<h3 id="观察日记："><a href="#观察日记：" class="headerlink" title="观察日记："></a>观察日记：</h3><p>…………</p>
-<p>“12月15日，应该快到16日了，可能是雨天，因为窗外有雨声，今天依然是黑暗的一天…….”</p>
-<p>我一只手僵硬地拿着压缩饼干，撑在桌子上，另一只手则用笔在日记本上写着，字迹歪歪扭扭，如同母鸡在用自己的爪子拙劣地划着石子。</p>
-<p>我已经习惯了黑暗的每一天。</p>
-<p>人类也一样。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Writingprompts</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2020/07/15/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/Blog.io/">上一页</a><a class="page-number" href="/Blog.io/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/Blog.io/">上一页</a><a class="page-number" href="/Blog.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/Blog.io/page/3/">3</a><a class="extend next" rel="next" href="/Blog.io/page/3/">下一页</a>
     </nav>
   
 
@@ -1005,11 +1138,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1017,11 +1150,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1029,7 +1162,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">校内学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">描统</a>
               </li>
              
               <li class="article-tag-list-item">
