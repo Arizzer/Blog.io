@@ -6,22 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>Spring中的一些常用的注解(持续更新) | 观测的博客</title>
+  <title>自己写的公会战情况统计程序 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,下属三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan">
+  <meta name="description" content="最近《公主连结》的公会战又开启了，之前凭借yobot当上了管理（在这里感谢雨滴大佬，真是太nb了），不过毕竟不是自己敲出来的代码，总觉得没有感觉。老是想着能不能自己写个程序为工会做点贡献，正好，我们工会的排名和奖励机制和别的工会不大一样，别的工会一般是按照游戏里提供的“伤害”或者“积分”进行排序。我们为了防止有些人专挑好打的boss打，使用的是“红蓝刀积分”机制。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring中的一些常用的注解(持续更新)">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/index.html">
+<meta property="og:title" content="自己写的公会战情况统计程序">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/08/25/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%85%AC%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="类注解（ElementType.TYPE） @Component该注解是通用的 Bean 注解,下属三个注解都是扩展自Component    @Service代表 Service Bean，常作用于服务层（业务层）  @Controller代表 Web Bean，常作用于控制层  @Repository作用于持久化相关 Beaan">
+<meta property="og:description" content="最近《公主连结》的公会战又开启了，之前凭借yobot当上了管理（在这里感谢雨滴大佬，真是太nb了），不过毕竟不是自己敲出来的代码，总觉得没有感觉。老是想着能不能自己写个程序为工会做点贡献，正好，我们工会的排名和奖励机制和别的工会不大一样，别的工会一般是按照游戏里提供的“伤害”或者“积分”进行排序。我们为了防止有些人专挑好打的boss打，使用的是“红蓝刀积分”机制。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-24T13:41:03.702Z">
-<meta property="article:modified_time" content="2020-07-30T08:28:00.172Z">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-3.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-4.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-2.png">
+<meta property="article:published_time" content="2020-08-25T15:49:33.755Z">
+<meta property="article:modified_time" content="2020-08-25T16:47:22.084Z">
 <meta property="article:author" content="观测">
-<meta property="article:tag" content="个人学习">
-<meta property="article:tag" content="Spring">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="随笔">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://arizzer.github.io/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-1.png">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
   
@@ -170,119 +174,68 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-Spring中的一些常用的注解(持续更新)" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-自己写的公会战情况统计程序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Spring中的一些常用的注解(持续更新)
+      自己写的公会战情况统计程序
     </h1>
   
 
         
-        <a href="/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" class="archive-article-date">
-  	<time datetime="2020-07-24T13:41:03.702Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-24</time>
+        <a href="/Blog.io/2020/08/25/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%85%AC%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2020-08-25T15:49:33.755Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-25</time>
 </a>
         
       </header>
     
 <!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-          <span class="btn-bg"></span>
-          <span class="btn-text">文章导航</span>
-          </p>
-	<div id="toc-article" class="toc-article">
-	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#类注解（ElementType-TYPE）"><span class="toc-number">1.</span> <span class="toc-text">类注解（ElementType.TYPE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法注解（ElementType-MRTHOD）"><span class="toc-number">2.</span> <span class="toc-text">方法注解（ElementType.MRTHOD）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数注解（ElementType-PARAMETER）"><span class="toc-number">3.</span> <span class="toc-text">参数注解（ElementType.PARAMETER）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性注解（ElementType-FIELD）"><span class="toc-number">4.</span> <span class="toc-text">属性注解（ElementType.FIELD）</span></a></li></ol>
-         </div>
-   <script type="text/javascript">
-	function showToc(){
-		var toc_article = document.getElementById("toc-article");
-		var show_toc_btn = document.getElementById("show-toc-btn");
-		toc_article.setAttribute("style","display:block");
-		show_toc_btn.setAttribute("style","display:none");
-		};
-	function showBtn(){
-		var toc_article = document.getElementById("toc-article");
-		var show_toc_btn = document.getElementById("show-toc-btn");
-		toc_article.setAttribute("style","display:none");
-		show_toc_btn.setAttribute("style","display:block");
-		};
-   </script>
-      		
+		
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <br>
 
-
-<h3 id="类注解（ElementType-TYPE）"><a href="#类注解（ElementType-TYPE）" class="headerlink" title="类注解（ElementType.TYPE）"></a>类注解（ElementType.TYPE）</h3><ul>
-<li><p><code>@Component</code>该注解是通用的 Bean 注解,下属三个注解都是扩展自Component  </p>
-</li>
-<li><p><code>@Service</code>代表 Service Bean，常作用于<strong>服务层（业务层）</strong></p>
-</li>
-<li><p><code>@Controller</code>代表 Web Bean，常作用于<strong>控制层</strong></p>
-</li>
-<li><p><code>@Repository</code>作用于<strong>持久化</strong>相关 Beaan</p>
-</li>
-</ul>
+<p>最近《公主连结》的公会战又开启了，之前凭借<a href="https://www.pcrbot.com/yobot/" target="_blank" rel="noopener">yobot</a>当上了管理（在这里感谢雨滴大佬，真是太nb了），不过毕竟不是自己敲出来的代码，总觉得没有感觉。老是想着能不能自己写个程序为工会做点贡献，正好，我们工会的排名和奖励机制和别的工会不大一样，别的工会一般是按照游戏里提供的“伤害”或者“积分”进行排序。我们为了防止有些人专挑好打的boss打，使用的是“红蓝刀积分”机制。</p>
 <a id="more"></a>
 
+<p>红蓝刀机制大概是这样的意思，《公主连结》的公会战一共有5个Boss，每个Boss的难易程度不一样，管理们商量出每个boss的正常伤害区间，大于这个区间的最大值就是蓝刀，小于最小值就是红刀，在区间内就是白刀。</p>
+<p>同时，考虑到尾刀的存在，专门设置了橙刀，用来标记尾刀。</p>
+<p>每种刀的积分如下：</p>
 <ul>
-<li><code>@SpringBootApplication</code>声明当前类是一个配置类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean</li>
+<li>蓝刀：+1（优质刀，一般靠暴击或者精准对轴才能打出来）</li>
+<li>橙刀：+0.5（尾刀，尾刀统一按照+0.5计算，因此dd刀最好出在尾刀里）</li>
+<li>白刀：+0（标准刀，基本按照轴来，伤害大概在这个区间里）</li>
+<li>红刀：-1（劣质刀，没有按照轴来，或产生重大失误）</li>
 </ul>
-<br>
+<p>靠着雨滴大佬的yobot，可以自动生成Excel表格来统计各个玩家的伤害情况：</p>
+<p><img src="/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-1.png" alt></p>
+<p>我就想，能不能写一个程序，根据管理们的红蓝刀线来自动完成上色功能呢？</p>
+<p>乍一想，实现逻辑应该是挺简单的（也确实挺简单），通过Python按列遍历数据，然后根据不同区间填充不同的颜色即可。不过实际操作起来，因为以前没有试过”批量修改格式”，因此面向百度编程看很久，最终肝到凌晨4点才得以结束。</p>
+<p>同时，因为实在是赶时间，代码写的也是完全以“能运行”为第一要义，完全没有考虑代码的可维护性，结构顺序，以及好好写注释（笑）。</p>
+<p>每一个函数的作用就不细讲了，反正也是仅对我们工会有用的一个程序，源码会放在文末。大概讲一讲遇到的瓶颈，也算是记录一下心得。</p>
+<h4 id="1-修改文本"><a href="#1-修改文本" class="headerlink" title="1.修改文本"></a>1.修改文本</h4><p>第一步当然是读取Excel文本的数据，读取完了以后自然要修改，当时在 <code>xlwt</code> 和 <code>openxyxl</code> 两个库中纠结，最终选择了通过 <code>xlwt</code> 与 <code>xlutils</code> 组合完成。</p>
+<h4 id="2-着色"><a href="#2-着色" class="headerlink" title="2.着色"></a>2.着色</h4><p>这也是最核心的步骤，但是在CSDN以及别的论坛上对着色的介绍都甚少，最终花了很久才找到了解决方案，主要是通过 <code>write_save.write()</code> 方法来完成。</p>
+<h4 id="3-着漂亮的色"><a href="#3-着漂亮的色" class="headerlink" title="3.着漂亮的色"></a>3.着漂亮的色</h4><p>第一次成功着色以后的蓝色显得太刺眼，不是很好看，最后通过 <code>xlwt.add_palette_colour(&quot;blue_colour&quot;, 40)</code>来完成。40这个数字是 <code>add_palette_colour</code> 里规定的，范围在8~64，每个数字对应一个RGB编码，具体的RGB编码在源代码的注释里。（就是因为一个一个试，试了好久才找到合适的颜色orz）</p>
+<h4 id="4-伤害值获取"><a href="#4-伤害值获取" class="headerlink" title="4.伤害值获取"></a>4.伤害值获取</h4><p>其实很简单，注意到数据的记录格式都是类似：(2-5) 1109626 这种类型，只要使用 <code>value=int(value[6:])</code> 将字符串第六位以后的字符截取，并转化为整型即可。</p>
+<h4 id="5-确定当前遍历的是几周目的第几王，以此确定使用哪个区间的哪个颜色"><a href="#5-确定当前遍历的是几周目的第几王，以此确定使用哪个区间的哪个颜色" class="headerlink" title="5.确定当前遍历的是几周目的第几王，以此确定使用哪个区间的哪个颜色"></a>5.确定当前遍历的是几周目的第几王，以此确定使用哪个区间的哪个颜色</h4><p>用嵌套循环完成，外层确定周目数，内层确定王数，然后使用“+”进行字符串拼接，再决定使用哪个区间的哪个颜色 <code>temp</code> ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a=str(i)+<span class="string">"-"</span>+str(j)</span><br><span class="line">	<span class="keyword">if</span> a <span class="keyword">in</span> boss:</span><br><span class="line">        temp=judge(i,j, sheet1.cell(current_row, turn).value)</span><br><span class="line">        <span class="keyword">if</span>(temp):</span><br><span class="line">            write_save.write(current_row, turn, sheet1.cell(current_row,turn).value,temp)</span><br></pre></td></tr></table></figure>
 
-<h3 id="方法注解（ElementType-MRTHOD）"><a href="#方法注解（ElementType-MRTHOD）" class="headerlink" title="方法注解（ElementType.MRTHOD）"></a>方法注解（ElementType.MRTHOD）</h3><ul>
-<li><p><code>@Override</code>该注解表示重写，用来检查子类中的方法名与父类是否一致（通常要写）</p>
-</li>
-<li><p><code>@Autowired</code>该注解也可应用于类的属性（ElementType.FIELD），用于<strong>将Spring容器中的bean自动的和我们需要这个bean的类组装在一起协同使用。</strong>配合<code>@Repository</code>注释可以精准定位：<br>实现一个名为UserRepository的接口</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.proc.bean.repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">save</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>实现其实现：  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.proc.bean.repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将该UserRepository属性类型的userRepositoryImps类在容器中命名为userRepository</span></span><br><span class="line"><span class="meta">@Repository</span>(<span class="string">"userRepository"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserRepositoryImps</span> <span class="keyword">implements</span> <span class="title">UserRepository</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"UserRepositoryImps save"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当我们在业务层调用UserRepository时，可以通过<code>@Autowired</code>免去setter的过程:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserRepository userRepository;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><code>@ResponseBody</code>该注解表示该方法的返回结果直接写入 HTTP response body 中，一般在异步获取数据时使用【也就是AJAX】。</li>
-</ul>
-<blockquote>
-<p>注意：在使用<code>@RequestMapping</code>后，返回值通常解析为跳转路径，但是加上<code>@ResponseBody</code>后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 <code>@ResponseBody</code>后，会<strong>直接返回 json 数据</strong>。）</p>
-</blockquote>
-<br>
+<h4 id="6-尾刀的确定"><a href="#6-尾刀的确定" class="headerlink" title="6.尾刀的确定"></a>6.尾刀的确定</h4><p>这个其实也比较简单，注意到生成的excel表格中如果是尾刀则右边的格子必定存在数据，那么就只需要遍历偶数列，然后判断当前格子的右边是否空缺即可</p>
+<p>放一下交互界面：</p>
+<p><img src="/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-3.png" alt></p>
+<p>然后是涂色结果：</p>
+<p><img src="/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-4.png" alt></p>
+<p>书记用了都说好.jpg：</p>
+<p><img src="/Blog.io/assets/img/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B7%A5%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/HZ-2.png" alt></p>
+<p>最后放上源码~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> xlrd,xlwt</span><br><span class="line"><span class="keyword">from</span> click <span class="keyword">import</span> pause</span><br><span class="line"><span class="keyword">from</span> xlutils.copy <span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line">xlwt.add_palette_colour(<span class="string">"blue_colour"</span>, <span class="number">40</span>)</span><br><span class="line"></span><br><span class="line">style1 = xlwt.easyxf(<span class="string">'pattern: pattern solid, fore_colour red;'</span>)</span><br><span class="line">style2 = xlwt.easyxf(<span class="string">'pattern: pattern solid, fore_colour orange;'</span>)</span><br><span class="line">style3 = xlwt.easyxf(<span class="string">'pattern: pattern solid, fore_colour blue_colour;'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findx</span><span class="params">(str1, c)</span>:</span></span><br><span class="line">    icount = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> str1:</span><br><span class="line">        <span class="keyword">if</span> char == c:</span><br><span class="line">            icount = char</span><br><span class="line">    <span class="keyword">return</span> icount</span><br><span class="line"></span><br><span class="line"><span class="comment">#【A1】125-150    【A2】125-140    【A3】 105-120     【A4】 105-125    【A5】125-140</span></span><br><span class="line"><span class="comment">#【B1】115-130    【B2】110-130     【B3】75-95       【B4】75-100      【B5】75-100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">judge</span><span class="params">(turn,boss,value)</span>:</span></span><br><span class="line">    value=int(value[<span class="number">6</span>:])</span><br><span class="line">    <span class="keyword">if</span> turn&gt;=<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">if</span> boss==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> value&gt;=<span class="number">1300000</span>:</span><br><span class="line">                <span class="keyword">return</span> style3</span><br><span class="line">            <span class="keyword">if</span> value&lt;<span class="number">1150000</span>:</span><br><span class="line">                <span class="keyword">return</span> style1</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> boss==<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">if</span> value&gt;=<span class="number">1300000</span>:</span><br><span class="line">                <span class="keyword">return</span> style3</span><br><span class="line">            <span class="keyword">if</span> value&lt;<span class="number">1100000</span>:</span><br><span class="line">                <span class="keyword">return</span> style1</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> boss==<span class="number">3</span>:</span><br><span class="line">            <span class="keyword">if</span> value&gt;=<span class="number">950000</span>:</span><br><span class="line">                <span class="keyword">return</span> style3</span><br><span class="line">            <span class="keyword">if</span> value&lt;<span class="number">750000</span>:</span><br><span class="line">                <span class="keyword">return</span> style1</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> boss==<span class="number">4</span>:</span><br><span class="line">            <span class="keyword">if</span> value&gt;=<span class="number">1000000</span>:</span><br><span class="line">                <span class="keyword">return</span> style3</span><br><span class="line">            <span class="keyword">if</span> value&lt;<span class="number">750000</span>:</span><br><span class="line">                <span class="keyword">return</span> style1</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> boss==<span class="number">5</span>:</span><br><span class="line">            <span class="keyword">if</span> value&gt;=<span class="number">1000000</span>:</span><br><span class="line">                <span class="keyword">return</span> style3</span><br><span class="line">            <span class="keyword">if</span> value&lt;<span class="number">750000</span>:</span><br><span class="line">                <span class="keyword">return</span> style1</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(current_row,turn)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">10</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">6</span>):</span><br><span class="line">            a=str(i)+<span class="string">"-"</span>+str(j)</span><br><span class="line">            <span class="keyword">if</span> a <span class="keyword">in</span> boss:</span><br><span class="line">                temp=judge(i,j, sheet1.cell(current_row, turn).value)</span><br><span class="line">                <span class="keyword">if</span>(temp):</span><br><span class="line">                    write_save.write(current_row, turn, sheet1.cell(current_row, turn).value,temp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">"欢迎使用本公会战自动填色器，请您首先新建一个Excel文件，将机器人生成的Excel内容复制到这个新建的文件中，然后，"</span></span><br><span class="line">      <span class="string">"输入这个新建文件的路径（例如：C:\\Users\\86188\\Desktop\\8.25公会战.xls）"</span>)</span><br><span class="line">file_path=input(<span class="string">"请输入新建的Excel文件的路径："</span>)</span><br><span class="line"><span class="comment">#读取文件并新建文件</span></span><br><span class="line">file = xlrd.open_workbook(file_path,formatting_info=<span class="literal">True</span>)</span><br><span class="line">write_data = copy(file)</span><br><span class="line">write_save = write_data.get_sheet(<span class="number">0</span>)</span><br><span class="line">sheet1 = file.sheet_by_index(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span> turn <span class="keyword">in</span> [<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>]:</span><br><span class="line">    current_row = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> boss <span class="keyword">in</span> sheet1.col_values(turn):</span><br><span class="line">        index(current_row, turn)</span><br><span class="line">        <span class="keyword">if</span> sheet1.cell(current_row, turn+<span class="number">1</span>).value <span class="keyword">and</span> current_row&gt;=<span class="number">2</span>:</span><br><span class="line">            write_save.write(current_row, turn, sheet1.cell(current_row, turn).value, style2)</span><br><span class="line">            write_save.write(current_row, turn + <span class="number">1</span>, sheet1.cell(current_row, turn + <span class="number">1</span>).value, style2)</span><br><span class="line">        current_row +=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">write_data.save(file_path)</span><br><span class="line">print(<span class="string">"处理完毕，请点击任意处退出"</span>)</span><br><span class="line">pause()</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p><code>@RestController</code>该注解等同于：<code>@ResponseBody</code> + <code>@Controller</code></p>
-</li>
-<li><p><code>@RequestMapping</code>该注解用于路由（解析URL，并提供资源内容给调用者），根据作用可以分解<br>为<code>@GetMapping</code>和<code>@RostMapping</code>，分别用于Get和Post请求，常用于<strong>控制层</strong>。</p>
-</li>
-</ul>
-<ul>
-<li><code>@PostConstruct</code>该注解被用来修饰一个非静态的void()方法。被<code>@PostConstruct</code>修饰的方法会在服务器加载<strong>Servlet</strong>的时候运行，并且只会被服务器执行一次。<code>@PostConstruct</code>在构造函数之后执行，i常添加在init()方法前。</li>
-</ul>
-<p>三种注解或方法在整个Bean初始化中的执行顺序：</p>
-<p><code>Constructor(构造方法)</code> -&gt; <code>@Autowired(依赖注入)</code> -&gt; <code>@PostConstruct(注释的方法)</code></p>
-<br>
-
-<h3 id="参数注解（ElementType-PARAMETER）"><a href="#参数注解（ElementType-PARAMETER）" class="headerlink" title="参数注解（ElementType.PARAMETER）"></a>参数注解（ElementType.PARAMETER）</h3><ul>
-<li><code>@RequestParam</code>该注解作用于类的参数，常用于web领域。</li>
-</ul>
-<p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//经过@RequestMapping路由后为：“xxx/?=xxxxxx”</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">( @RequestParam(<span class="string">"id"</span>)</span> String id)</span>&#123;</span><br><span class="line">	......	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一旦加上参数注解就代表要参与传递，如果不想让某个参数必须传递，可以用<code>required=false</code>修饰，例如下面的代码，要求传入两个参数，但是只有”id”是必须传入的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/songlist"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(@RequestParam(name=<span class="string">"pageNum"</span>,required = <span class="keyword">false</span>)</span> <span class="keyword">int</span> pageNum,@<span class="title">RequestParam</span><span class="params">(<span class="string">"id"</span>)</span> String id)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"html/songList.html"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-
-<h3 id="属性注解（ElementType-FIELD）"><a href="#属性注解（ElementType-FIELD）" class="headerlink" title="属性注解（ElementType.FIELD）"></a>属性注解（ElementType.FIELD）</h3><ul>
-<li><code>@Autowired</code>见上文</li>
-</ul>
 
       
 
@@ -296,15 +249,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
         		</li>
       		
 		</ul>
@@ -360,7 +309,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/24/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/08/25/%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%85%AC%E4%BC%9A%E6%88%98%E6%83%85%E5%86%B5%E7%BB%9F%E8%AE%A1%E7%A8%8B%E5%BA%8F/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -374,18 +323,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2020/07/25/Java%E4%B8%AD%E8%AF%BB%E5%8F%96%E8%B5%84%E6%BA%90%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java中读取资源的一些常见方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MongoDB配置</div>
+    <a href="/Blog.io/2020/08/15/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">失败的程序</div>
       <i class="icon-circle-right"></i>
     </a>
   
