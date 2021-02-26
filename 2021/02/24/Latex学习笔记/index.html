@@ -16,7 +16,7 @@
 <meta property="og:description" content="&amp;emsp; 源文件基本结构基本结构分文两个部分：导言区和正文区。   1.导言区导言区主要负责文档的一些全局设置，比较常见的导言区内容有以下几种： 1\documentclass&amp;#123;article&amp;#125;  \documentclass负责修饰文章的种类，常见的种类有：article、book、report、letter、ctexart等。 1\usepackage&amp;#123;cte">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-24T10:45:33.456Z">
-<meta property="article:modified_time" content="2021-02-24T14:42:40.788Z">
+<meta property="article:modified_time" content="2021-02-26T13:44:40.437Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="Latex">
@@ -196,7 +196,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#源文件基本结构"><span class="toc-number">1.</span> <span class="toc-text">源文件基本结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-导言区"><span class="toc-number">1.1.</span> <span class="toc-text">1.导言区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-正文区"><span class="toc-number">1.2.</span> <span class="toc-text">2.正文区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#中文设置"><span class="toc-number">2.</span> <span class="toc-text">中文设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字体设置"><span class="toc-number">3.</span> <span class="toc-text">字体设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-字体族设置"><span class="toc-number">3.1.</span> <span class="toc-text">1.字体族设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-字体系列"><span class="toc-number">3.2.</span> <span class="toc-text">2.字体系列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-字体形状"><span class="toc-number">3.3.</span> <span class="toc-text">3.字体形状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-字体大小"><span class="toc-number">3.4.</span> <span class="toc-text">4.字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-自定义命令"><span class="toc-number">3.5.</span> <span class="toc-text">5.自定义命令</span></a></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#源文件基本结构"><span class="toc-number">1.</span> <span class="toc-text">源文件基本结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-导言区"><span class="toc-number">1.1.</span> <span class="toc-text">1.导言区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-正文区"><span class="toc-number">1.2.</span> <span class="toc-text">2.正文区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#中文设置"><span class="toc-number">2.</span> <span class="toc-text">中文设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字体设置"><span class="toc-number">3.</span> <span class="toc-text">字体设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-字体族设置"><span class="toc-number">3.1.</span> <span class="toc-text">1.字体族设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-字体系列"><span class="toc-number">3.2.</span> <span class="toc-text">2.字体系列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-字体形状"><span class="toc-number">3.3.</span> <span class="toc-text">3.字体形状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-字体大小"><span class="toc-number">3.4.</span> <span class="toc-text">4.字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-自定义命令"><span class="toc-number">3.5.</span> <span class="toc-text">5.自定义命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文档的基本结构"><span class="toc-number">4.</span> <span class="toc-text">文档的基本结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-小节的构建"><span class="toc-number">4.1.</span> <span class="toc-text">1.小节的构建</span></a></li></ol></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -291,6 +291,24 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\myfont</span><br></pre></td></tr></table></figure>
 
 <br>
+
+<h1 id="文档的基本结构"><a href="#文档的基本结构" class="headerlink" title="文档的基本结构"></a>文档的基本结构</h1><h2 id="1-小节的构建"><a href="#1-小节的构建" class="headerlink" title="1.小节的构建"></a>1.小节的构建</h2><p>常见的小节划分有：section，subsection，subsubsection等：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\section&#123;实验方法&#125; % 构建小节</span><br><span class="line">\section&#123;实验结果&#125; % 构建小节</span><br><span class="line">\subsection&#123;数据&#125; % 构建子小节</span><br><span class="line">\subsubsection&#123;实验条件&#125; % 构建子子小节</span><br><span class="line">\subsubsection&#123;实验过程&#125; % 构建子子小节</span><br><span class="line">\subsection&#123;图表&#125; % 构建子小节</span><br><span class="line">\subsection&#123;分析&#125; % 构建子小节</span><br><span class="line">\section&#123;结论&#125; % 构建小节</span><br><span class="line">\section&#123;致谢&#125; % 构建小节</span><br><span class="line">%在ctexbook类别下可以使用\chapter设置章节</span><br></pre></td></tr></table></figure>
+
+<p> 当然，对于不同的documentclass，有不同的小节规范，常见例子如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\documentclass&#123;article&#125; % \subsubsection有作用</span><br><span class="line"></span><br><span class="line">\documentclass&#123;ctexart&#125; % 一级标题居中排版 % \subsubsection有作用</span><br><span class="line"></span><br><span class="line">\documentclass&#123;ctexbook&#125;% \subsubsection无作用</span><br></pre></td></tr></table></figure>
+
+<p>对于更具体的小节设置，我们可以使用<code>\ctexset</code>来实现，具体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">\ctexset&#123;</span><br><span class="line">	section&#x3D;&#123;</span><br><span class="line">		%format用于设置章节标题全局格式，作用域为标题和编号</span><br><span class="line">		%字号为小三，字体为黑体，左对齐</span><br><span class="line">		%+号表示在原有格式下附加格式命令</span><br><span class="line">		% \raggedright表示左对齐，\raggedleft表示右对齐</span><br><span class="line">		format+ &#x3D; \zihao&#123;-3&#125; \heiti \raggedright,</span><br><span class="line">		%name用于设置章节编号前后的词语</span><br><span class="line">		%前、后词语用英文状态下,分开</span><br><span class="line">		%如果没有前或后词语可以不填</span><br><span class="line">		name &#x3D; &#123;,、&#125;,</span><br><span class="line">		%number用于设置章节编号数字输出格式</span><br><span class="line">		%输出section编号为中文</span><br><span class="line">		number &#x3D; \chinese&#123;section&#125;,</span><br><span class="line">		%beforeskip用于设置章节标题前的垂直间距</span><br><span class="line">		%ex为当前字号下字母x的高度</span><br><span class="line">		%基础高度为1.0ex，可以伸展到1.2ex，也可以收缩到0.8ex</span><br><span class="line">		beforeskip &#x3D; 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		%afterskip用于设置章节标题后的垂直间距</span><br><span class="line">		afterskip &#x3D; 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		%aftername用于控制编号和标题之间的格式</span><br><span class="line">		%\hspace用于增加水平间距</span><br><span class="line">		aftername &#x3D; \hspace&#123;0pt&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	subsection&#x3D;&#123;</span><br><span class="line">		format+ &#x3D; \zihao&#123;4&#125; \kaishu \raggedright,</span><br><span class="line">		%仅输出subsection编号且为中文</span><br><span class="line">		number &#x3D; \chinese&#123;subsection&#125;,</span><br><span class="line">		name &#x3D; &#123;（,）&#125;,</span><br><span class="line">		beforeskip &#x3D; 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		afterskip &#x3D; 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		aftername &#x3D; \hspace&#123;0pt&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	subsubsection&#x3D;&#123;</span><br><span class="line">		%设置对齐方式为居中对齐</span><br><span class="line">		format+ &#x3D; \zihao&#123;-4&#125; \fangsong \centering,</span><br><span class="line">		%仅输出subsubsection编号，格式为阿拉伯数字，打字机字体</span><br><span class="line">		number &#x3D; \ttfamily\arabic&#123;subsubsection&#125;,</span><br><span class="line">		name &#x3D; &#123;,.&#125;,</span><br><span class="line">		beforeskip &#x3D; 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		afterskip &#x3D; 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		aftername &#x3D; \hspace&#123;0pt&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>两个常用小技巧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\\ %换行 无缩进</span><br><span class="line"></span><br><span class="line">\par %产生新的段落 有缩进</span><br><span class="line"></span><br><span class="line">\tableofcontents %自动生成目录</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
 
 
       
@@ -554,7 +572,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,11 +588,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,10 +597,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,11 +612,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
