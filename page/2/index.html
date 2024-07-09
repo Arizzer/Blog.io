@@ -166,20 +166,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-常见排序算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-微观经济学笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">常见排序算法</a>
+      <a class="article-title" href="/Blog.io/2020/08/15/%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E7%AC%94%E8%AE%B0/">微观经济学笔记</a>
     </h1>
   
 
         
-        <a href="/Blog.io/2024/07/10/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.329Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+        <a href="/Blog.io/2020/08/15/%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-08-15T14:48:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-15</time>
 </a>
         
       </header>
@@ -191,11 +191,19 @@
       
         <br>
 
-<p>本文将主要介绍一些常见的排序算法，使用语法为Java，默认排序方向为从小到大。</p>
-<h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h3><p>原理很简单，直接上代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 冒泡排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. 每次循环，都能冒泡出剩余元素中最大的元素，因此需要循环 array.length 次</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 2. 每次遍历，只需要遍历 0 到 array.length - i - 1中元素，因此之后的元素都已经是最大的了</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; array.length - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">            <span class="comment">//3. 交换元素</span></span><br><span class="line">            <span class="keyword">if</span> (array[j] &gt; array[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">int</span> temp = array[j + <span class="number">1</span>];</span><br><span class="line">                array[j + <span class="number">1</span>] = array[j];</span><br><span class="line">                array[j] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>微观经济学全部公式<a href="https://wenku.baidu.com/view/3374ed01487302768e9951e79b89680203d86bde.html?rec_flag=default" target="_blank" rel="noopener">点击此处</a></p>
+<h1 id="第一章·导论"><a href="#第一章·导论" class="headerlink" title="第一章·导论"></a>第一章·导论</h1><p>主要了解以下知识点即可，不是重点：</p>
+<ul>
+<li><p><strong>稀缺性</strong>：</p>
+<p>社会拥有的资源是有限的，因此不能生产人们所希望拥有的所有物品和劳务。</p>
+<p>同时，稀缺性是由以下一对矛盾产生的。即：<strong>资源的有限性</strong>和<strong>需求的无限性</strong>。<strong>稀缺是经济学的前提</strong>。</p>
+</li>
+<li><p><strong>机会成本</strong>：</p>
+<p>把某资源投入到某一特定用途后，所放弃的在其他用途中所能得到的最大收益。（如：今晚看不看电影，假如看电影对你来说值20元，电影票10元。如果不去看电影，可以去做家教，家教收入15元。）</p>
+</li>
+</ul>
         
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/#more">more >></a>
+          <a class="article-more-a" href="/Blog.io/2020/08/15/%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E7%AC%94%E8%AE%B0/#more">more >></a>
         
       
 
@@ -209,11 +217,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">校内学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微经</a>
         		</li>
       		
 		</ul>
@@ -223,7 +231,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">展开全文 >></a>
+          <a class="article-more-a" href="/Blog.io/2020/08/15/%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
@@ -260,13 +268,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/">失败的程序</a>
+      <a class="article-title" href="/Blog.io/2020/08/15/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/">失败的程序</a>
     </h1>
   
 
         
-        <a href="/Blog.io/2024/07/10/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.324Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+        <a href="/Blog.io/2020/08/15/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2020-08-15T05:28:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-15</time>
 </a>
         
       </header>
@@ -282,7 +290,7 @@
 <p>程序的作用是根据输入的学号，读取 Excel 表格中的考试信息并统一打印出来，写这个程序的契机是学校期末考试的安排表出来了，用 Excel 的<code>Ctrl+F</code>虽然能快速查找到每场考试的信息，但是并不直观，也没有进行汇总，于是就想到用Python对 Excel 表格进行读操作。</p>
 <p>先上源码：</p>
         
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/#more">more >></a>
+          <a class="article-more-a" href="/Blog.io/2020/08/15/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/#more">more >></a>
         
       
 
@@ -310,7 +318,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/">展开全文 >></a>
+          <a class="article-more-a" href="/Blog.io/2020/08/15/%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%A8%8B%E5%BA%8F/">展开全文 >></a>
         </p>
       
 
@@ -340,20 +348,20 @@
 
 
   
-    <article id="post-南京邮电大学企业微信健康打卡脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-随手写的文本处理程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/%E5%8D%97%E4%BA%AC%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1%E8%84%9A%E6%9C%AC/">南京邮电大学企业微信健康打卡脚本</a>
+      <a class="article-title" href="/Blog.io/2020/08/15/%E9%9A%8F%E6%89%8B%E5%86%99%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/">随手写的文本处理程序</a>
     </h1>
   
 
         
-        <a href="/Blog.io/2024/07/10/%E5%8D%97%E4%BA%AC%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+        <a href="/Blog.io/2020/08/15/%E9%9A%8F%E6%89%8B%E5%86%99%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2020-08-15T04:06:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-15</time>
 </a>
         
       </header>
@@ -365,9 +373,418 @@
       
         <br>
 
-<p>时隔将近一年，本博客终于引来了更新（绝对不是因为摸鱼x</p>
+<p>没想到第一个为自己写的程序居然是用Python写的（确实简洁好用），在一开始写两门课的笔记的时候没想到图片会这么多，就都放在img文件夹下了，现在图片越来越多，是该分一下类，同时笔记中图片的路径也需要更改。于是就写了个更改路径的小程序，因为是一次性的，所以代码没啥可观性，这里仅记录一下：</p>
         
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E5%8D%97%E4%BA%AC%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1%E8%84%9A%E6%9C%AC/#more">more >></a>
+          <a class="article-more-a" href="/Blog.io/2020/08/15/%E9%9A%8F%E6%89%8B%E5%86%99%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/08/15/%E9%9A%8F%E6%89%8B%E5%86%99%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-8月复习计划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/30/8%E6%9C%88%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92/">8月复习计划</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/30/8%E6%9C%88%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92/" class="archive-article-date">
+  	<time datetime="2020-07-30T08:54:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<p>万恶的考试延迟，8月要开始复（预）习了：</p>
+<p><strong>描统+微经</strong>：预计总共用10天学完，上午描统，下午微经</p>
+<p><strong>大物</strong>：预计总共5天学完</p>
+<p><strong>高代</strong>：预计总共3天学完</p>
+<p><strong>数分</strong>：预计总共3天学完</p>
+<p><strong>Python</strong>：考前看看，预计1天</p>
+<p><strong>六级</strong>：随缘</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/30/8%E6%9C%88%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2020.7.30 博客实装功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/30/2020.7.30%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/">2020.7.30 博客实装功能</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/30/2020.7.30%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/" class="archive-article-date">
+  	<time datetime="2020-07-30T08:43:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>文章目录功能实装</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">功能实装</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/30/2020.7.30%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2020.7.28 博客实装功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/30/2020.7.28%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/">2020.7.28 博客实装功能</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/30/2020.7.28%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/" class="archive-article-date">
+  	<time datetime="2020-07-30T08:43:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>添加了一只可爱的小猫~</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">功能实装</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/30/2020.7.28%20%E5%8D%9A%E5%AE%A2%E5%AE%9E%E8%A3%85%E5%8A%9F%E8%83%BD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hexo中出现Template render error问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/30/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/">Hexo中出现Template render error问题</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/30/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-07-30T08:41:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="问题陈述："><a href="#问题陈述：" class="headerlink" title="问题陈述："></a>问题陈述：</h3><p>在Hexo中，有些特殊字符如果不转义，可能会出现渲染错误，进而影响 <code>hexo g</code> 的执行，比较常见的转义错误源是 <code>{</code> 。</p>
+<h3 id="如何解决："><a href="#如何解决：" class="headerlink" title="如何解决："></a>如何解决：</h3><p>直接使用特殊字节编码代替原符号，对照表如下：</p>
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/30/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2020/07/30/Hexo%E4%B8%AD%E5%87%BA%E7%8E%B0Template%20render%20error%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring中使用MongDB进行CRUD" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog.io/2020/07/30/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/">Spring中使用MongoDB进行CRUD</a>
+    </h1>
+  
+
+        
+        <a href="/Blog.io/2020/07/30/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/" class="archive-article-date">
+  	<time datetime="2020-07-30T08:39:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h2 id="1-增加（Create）"><a href="#1-增加（Create）" class="headerlink" title="1.增加（Create）"></a>1.增加（Create）</h2><p>调用<code>mongoTemplate.insert()</code>方法即可。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">import</span> org.springframework.data.mongodb.core.MongoTemplate;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line"><span class="comment">//使用@Autowried自动注入MongoTemplate实例</span></span><br><span class="line">   <span class="keyword">private</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   		Song song = <span class="keyword">new</span> Song();<span class="comment">//新建一个Song类型的对象，用于储存专辑，歌手等信息</span></span><br><span class="line">   		song.setSubjectId(<span class="string">"s001"</span>);</span><br><span class="line">   		song.setLyrics(<span class="string">"Kalafina"</span>);</span><br><span class="line">   		song.setName(<span class="string">"満天"</span>);</span><br><span class="line"></span><br><span class="line">   	mongoTemplate.insert(song);<span class="comment">//将该Song对象添加至MongoTemplates数据库实例中</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<br>
+        
+          <a class="article-more-a" href="/Blog.io/2020/07/30/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/#more">more >></a>
         
       
 
@@ -385,184 +802,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Autojs</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E5%8D%97%E4%BA%AC%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1%E8%84%9A%E6%9C%AC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-你出局了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/">你出局了</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2024/07/10/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.314Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;</p>
-<h3 id="观察日记："><a href="#观察日记：" class="headerlink" title="观察日记："></a>观察日记：</h3><p>…………</p>
-<p>“12月15日，应该快到16日了，可能是雨天，因为窗外有雨声，今天依然是黑暗的一天…….”</p>
-<p>我一只手僵硬地拿着压缩饼干，撑在桌子上，另一只手则用笔在日记本上写着，字迹歪歪扭扭，如同母鸡在用自己的爪子拙劣地划着石子。</p>
-<p>我已经习惯了黑暗的每一天。</p>
-<p>人类也一样。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Writingprompts</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-人大统计学笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/%E4%BA%BA%E5%A4%A7%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%94%E8%AE%B0/">人大统计学笔记</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2024/07/10/%E4%BA%BA%E5%A4%A7%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.308Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<h1 id="第一章·导论（摘自南财MOOC）"><a href="#第一章·导论（摘自南财MOOC）" class="headerlink" title="第一章·导论（摘自南财MOOC）"></a>第一章·导论（摘自南财MOOC）</h1><h2 id="1-统计数据及其分类"><a href="#1-统计数据及其分类" class="headerlink" title="1.统计数据及其分类"></a>1.统计数据及其分类</h2><h3 id="1-1数据类型一"><a href="#1-1数据类型一" class="headerlink" title="1.1数据类型一"></a>1.1数据类型一</h3><ol>
-<li><p>分类数据（变量）：男女，国家等。以<strong>定类尺度</strong>衡量。</p>
-</li>
-<li><p>顺序数据（变量）：优良及格，ABCD等。以<strong>定序尺度</strong>衡量。</p>
-</li>
-<li><p>数值型数据（变量）：产品产量，零件尺寸等。有两种尺度衡量：<strong>定距尺度</strong>和<strong>定比尺度</strong>。区别是<strong>定距尺度</strong>有<strong>零点</strong>，而<strong>定比尺度</strong>中<strong>零点</strong>则意义不大。</p>
-<p>(注：分类数据与顺序数据也被统称为<strong>品质数据</strong>或<strong>定性数据</strong>)</p>
-</li>
-</ol>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E4%BA%BA%E5%A4%A7%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">校内学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">描统</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
         		</li>
       		
 		</ul>
@@ -572,7 +820,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/%E4%BA%BA%E5%A4%A7%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/Blog.io/2020/07/30/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8CCRUD/">展开全文 >></a>
         </p>
       
 
@@ -602,20 +850,20 @@
 
 
   
-    <article id="post-Spring中的一些常用的注解(持续更新)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-探索编程世界的终极" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/">Spring中的一些常用的注解(持续更新)</a>
+      <a class="article-title" href="/Blog.io/2020/07/30/%E6%8E%A2%E7%B4%A2%E7%BC%96%E7%A8%8B%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%88%E6%9E%81/">探索编程世界的终极</a>
     </h1>
   
 
         
-        <a href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.302Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+        <a href="/Blog.io/2020/07/30/%E6%8E%A2%E7%B4%A2%E7%BC%96%E7%A8%8B%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%88%E6%9E%81/" class="archive-article-date">
+  	<time datetime="2020-07-30T08:33:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
 </a>
         
       </header>
@@ -625,21 +873,18 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <br>
-
-
-<h3 id="类注解（ElementType-TYPE）"><a href="#类注解（ElementType-TYPE）" class="headerlink" title="类注解（ElementType.TYPE）"></a>类注解（ElementType.TYPE）</h3><ul>
-<li><p><code>@Component</code>该注解是通用的 Bean 注解,下属三个注解都是扩展自Component  </p>
-</li>
-<li><p><code>@Service</code>代表 Service Bean，常作用于<strong>服务层（业务层）</strong></p>
-</li>
-<li><p><code>@Controller</code>代表 Web Bean，常作用于<strong>控制层</strong></p>
-</li>
-<li><p><code>@Repository</code>作用于<strong>持久化</strong>相关 Beaan</p>
-</li>
+        <p>本文是博主为群友撰写的同人文，感谢能因为代码和妄想破绽和各位大佬们相遇，故撰此文，以作纪念~</p>
+<p>特别鸣谢：</p>
+<ul>
+<li>暴扣404（暴佬，美国留学精英，群创始人）</li>
+<li>KM（巨佬，神秘的群404，年龄尚小但已然站在了群技术之巅，巨佬yyds！（orz））</li>
+<li>阿瑾（瑾佬，同济才女，群指定叼鱼人员）</li>
+<li>彼岸双生（岸佬，加国留学精英，麦马之魂）</li>
+<li>主流（py，加国留学精英，群年龄最小的未来之光）</li>
+<li>幻想乐章（乐章，国内某高校精英，群神秘之光）<br>&emsp;<br>未来很长，愿各位群友都能跃入人海，各有风雨灿烂</li>
 </ul>
         
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/#more">more >></a>
+          <a class="article-more-a" href="/Blog.io/2020/07/30/%E6%8E%A2%E7%B4%A2%E7%BC%96%E7%A8%8B%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%88%E6%9E%81/#more">more >></a>
         
       
 
@@ -653,15 +898,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">同人</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">纪念</a>
         		</li>
       		
 		</ul>
@@ -671,100 +912,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring中启动IOC容器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/">Spring中启动IOC容器</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<p>作为启动类（Application），我们通常使用<code>@SpringBootApplication</code>注解声明当前类是一个启动类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean。</p>
-<p>要启动IOC容器，我们需要引入<code>org.springframework.context.annotation.AnnotationConfigApplicationContext</code>类</p>
-<p>然后通过<code>ApplicationContext</code>类启动：</p>
-<p><code>ApplicationContext context = new AnnotationConfigApplicationContext(&quot;com.xxx&quot;);</code></p>
-<p>这段代码会自动加载包<code>com.xxx</code>下的 Bean,只要引用了 Spring 注解的类都可以被加载(前提是在这个包下),因此，启动类我们一般放在最外侧的包中，保证所有的类都可以被扫描加载到。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/Blog.io/2020/07/30/%E6%8E%A2%E7%B4%A2%E7%BC%96%E7%A8%8B%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%88%E6%9E%81/">展开全文 >></a>
         </p>
       
 
@@ -801,13 +949,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/">Spring中使用ThymeLeaf进行动态页面开发（二）</a>
+      <a class="article-title" href="/Blog.io/2020/07/30/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/">Spring中使用ThymeLeaf进行动态页面开发（二）</a>
     </h1>
   
 
         
-        <a href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.291Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+        <a href="/Blog.io/2020/07/30/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-30T08:32:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
 </a>
         
       </header>
@@ -826,7 +974,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
         
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/#more">more >></a>
+          <a class="article-more-a" href="/Blog.io/2020/07/30/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/#more">more >></a>
         
       
 
@@ -862,200 +1010,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring中使用ThymeLeaf进行动态页面开发（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/">Spring中使用ThymeLeaf进行动态页面开发（一）</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.286Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<p>ThymeLeaf是Spring中默认的模板方案，通过它可以完成一些动态页面的开发。</p>
-<p>首先，我们需要添加依赖：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ThymeLeaf</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring中使用MongDB进行分页查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">Spring中使用MongoDB进行分页查询</a>
-    </h1>
-  
-
-        
-        <a href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2024-07-09T17:41:47.281Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>调用 <code>PageRequest.of()</code> 方法构建一个分页对象,然后注入到查询对象。</p>
-<p><code>PageRequest.of()</code> 方法用于确定分页规则：</p>
-<ol>
-<li>第一个参数是页码,注意从<strong>0</strong> 开始计数,第一页的值是<strong>0</strong> ;</li>
-<li>第二个参数是每页的数量。</li>
-</ol>
-<p>例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.domain.PageRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Pageable;</span><br><span class="line"></span><br><span class="line">Pageable pageable = PageRequest.of(<span class="number">0</span> , <span class="number">20</span>);</span><br><span class="line">query.with(pageable);</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">展开全文 >></a>
+          <a class="article-more-a" href="/Blog.io/2020/07/30/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8ThymeLeaf%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
         </p>
       
 
@@ -1205,15 +1160,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1233,11 +1184,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1250,10 +1209,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
