@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/1-3.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/1-4.png">
 <meta property="article:published_time" content="2024-07-10T07:35:56.546Z">
-<meta property="article:modified_time" content="2024-07-10T09:44:27.114Z">
+<meta property="article:modified_time" content="2024-07-10T09:49:22.938Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
@@ -246,8 +246,7 @@
 <p>在普中A2开发板中，74HC138定义如下图所示：</p>
 <img src="/Blog.io/assets/img/STM51单片机学习记录（二）数码管的应用/1-3.png" style="zoom:60%;">
 
-<br>
-
+<p><br><br></p>
 <h3 id="2-位选与段选"><a href="#2-位选与段选" class="headerlink" title="2.位选与段选"></a>2.位选与段选</h3><p>在上述两图中可以看出：数码管的位选（即第几个数码管亮）是由74HC138控制的，在P22-P24（P24为高位）中输入对应的二进制，就会在右侧Y0-Y7的对应位置（对应数码管阴极）输出低电平（0），从而完成位选。例如，在普中A2开发板中，P22-P24的电平应有如下对应关系：</p>
 <table>
 <thead>
@@ -336,8 +335,7 @@
 <p>常见的数码管段码如下图：</p>
 <img src="/Blog.io/assets/img/STM51单片机学习记录（二）数码管的应用/1-4.png" style="zoom:50%;">
 
-<br>
-
+<p><br><br></p>
 <h3 id="3-消影"><a href="#3-消影" class="headerlink" title="3.消影"></a>3.消影</h3><p>数码管只能做到同时选中一位，如果需要实现同时亮多位，需要以很快的速度循环显示，即：</p>
 <p>位选→段选→位选→段选→位选→段选→位选→段选→……</p>
 <p>但这样会产生重影，因为在一次【位选→段选】结束，下一次位选来临时，由于新的段选还未执行，因此新的位选会直接先对老段选显示。</p>
@@ -622,11 +620,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,11 +632,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,15 +644,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -671,6 +665,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
