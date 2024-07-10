@@ -6,24 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>Spring中启动IOC容器 | 观测的博客</title>
+  <title>Tag: STM51 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作为启动类（Application），我们通常使用@SpringBootApplication注解声明当前类是一个启动类.可以通过@Bean注解生成IOC容器管理的bean。 要启动IOC容器，我们需要引入org.springframework.context.annotation.AnnotationConfigApplicationContext类 然后通过ApplicationConte">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spring中启动IOC容器">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/index.html">
+  <meta name="description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
+<meta property="og:type" content="website">
+<meta property="og:title" content="观测的博客">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/tags/STM51/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="作为启动类（Application），我们通常使用@SpringBootApplication注解声明当前类是一个启动类.可以通过@Bean注解生成IOC容器管理的bean。 要启动IOC容器，我们需要引入org.springframework.context.annotation.AnnotationConfigApplicationContext类 然后通过ApplicationConte">
+<meta property="og:description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j4/ioc.svg">
-<meta property="article:published_time" content="2020-07-26T06:25:14.000Z">
-<meta property="article:modified_time" content="2024-07-09T18:52:55.036Z">
 <meta property="article:author" content="观测">
-<meta property="article:tag" content="个人学习">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://style.youkeda.com/img/ham/course/j4/ioc.svg">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
   
@@ -172,55 +165,35 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-Spring中启动IOC容器" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 class="article-title" itemprop="name">
-      Spring中启动IOC容器
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/Blog.io/archives/2024" class="archive-year">2024</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/" class="archive-article-date">
+  	<time datetime="2024-07-10T05:15:44.283Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/">STM51单片机学习记录（一）延时函数与按键消抖</a>
     </h1>
   
 
-        
-        <a href="/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2020-07-26T06:25:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-26</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<p>作为启动类（Application），我们通常使用<code>@SpringBootApplication</code>注解声明当前类是一个启动类.可以通过<code>@Bean</code>注解生成IOC容器管理的bean。</p>
-<p>要启动IOC容器，我们需要引入<code>org.springframework.context.annotation.AnnotationConfigApplicationContext</code>类</p>
-<p>然后通过<code>ApplicationContext</code>类启动：</p>
-<p><code>ApplicationContext context = new AnnotationConfigApplicationContext(&quot;com.xxx&quot;);</code></p>
-<p>这段代码会自动加载包<code>com.xxx</code>下的 Bean,只要引用了 Spring 注解的类都可以被加载(前提是在这个包下),因此，启动类我们一般放在最外侧的包中，保证所有的类都可以被扫描加载到。</p>
-<a id="more"></a>
-
-<p>下图是Spring中IOC的原理实现图：<br><br></p>
-<p><img src="https://style.youkeda.com/img/ham/course/j4/ioc.svg" alt></p>
-<p>实例化需要调用Bean实例，例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SongService songService = context.getBean(SongService<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>当然，也会有需要调用启动类所在包以外包的情况，我们一般通过在<code>@SpringBootApplication</code>注解中加入<code>scanBasePackages</code>参数进行操作，实例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>(scanBasePackages=&#123;<span class="string">"com.arizzer.app"</span>, <span class="string">"com.arizzer.service"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppApplication</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(AppApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过在参数中添加其他需要扫描的包名，这样在启动类所在包的类中实例化，或是自动注入，都可以正常扫描了。</p>
-<p>（也可以通过添加<code>@ComponentScan</code>注解完成，操作类似：<code>@ComponentScan({&quot;com.arizzer.app&quot;, &quot;com.arizzer.service&quot;})</code>）</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -230,153 +203,24 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/Blog.io/2020/07/27/%E9%98%BF%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          阿门
-        
-      </div>
-    </a>
   
   
-    <a href="/Blog.io/2020/07/23/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring中使用MongoDB进行分页查询</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-
-    
-        <section id="comments" class="comments">
-          <style>
-            .comments{margin:30px;padding:10px;background:#fff}
-            @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
-          </style>
-          <div id="vcomment" class="comment"></div> 
-<script src="https://unpkg.com/leancloud-storage@4.12.2/dist/av-live-query-min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/valine/1.5.1/Valine.min.js"></script>
-<script>
-   var notify = 'true' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "sDLb9WwVsxsbQurLU4lU2BW7-gzGzoHsz",
-            app_key: "GeoflI2CuRR6d1g5Y7vqdF3X",
-            placeholder: "欢迎留言~",
-            avatar:"mp"
-        });
-    }
-</script>
-
-      </section>
     
 
 
@@ -400,9 +244,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
