@@ -21,8 +21,9 @@
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/3-2.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/3-3.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/4-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/4-2.png">
 <meta property="article:published_time" content="2024-07-14T06:17:48.369Z">
-<meta property="article:modified_time" content="2024-07-14T08:52:53.445Z">
+<meta property="article:modified_time" content="2024-07-14T09:38:32.506Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
@@ -297,6 +298,11 @@
 
 <br>
 
+<p>初始化部分也可以通过stc-isp内自带的定时器计算器自动生成，但仍需要手动对TF0等寄存器进行配置，下面是示例截图：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（三）定时器/4-2.png" style="zoom:100%;">
+
+<br>
+
 <h3 id="5-定时器中断函数编写"><a href="#5-定时器中断函数编写" class="headerlink" title="5.定时器中断函数编写"></a>5.定时器中断函数编写</h3><p>我们在配置好定时器以后，还需要对中断函数进行配置。定时器初始化函数相当于定好了一个闹钟，而定时器中断函数则相当于制定了“闹钟响后做什么事情”的计划表，这样才是一个完成的流程。</p>
 <p>下面先给出模板代码，然后再进行讲解：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Timer0_Routine</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> T0Count;</span><br><span class="line">	TL0 = <span class="number">0x18</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	TH0 = <span class="number">0xFC</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	T0Count++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count&gt;=<span class="number">50</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		T0Count=<span class="number">0</span>;</span><br><span class="line">        	P2_0=~P2_0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -390,6 +396,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          STM51单片机学习记录（四）串口通信
+        
+      </div>
+    </a>
   
   
     <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
@@ -571,6 +586,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
@@ -579,15 +598,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">私密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,11 +618,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
