@@ -6,17 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>Tag: 纪念 | 观测的博客</title>
+  <title>STM51单片机学习记录（三）定时器与中断系统 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="观测的博客">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/tags/%E7%BA%AA%E5%BF%B5/index.html">
+  <meta name="description" content="1.简介51单片机的定时器属于单片机的内部资源，其电路的连接和运转均在单片机内部完成定时器作用：  用于计时系统，可实现软件计时，或者使程序每隔一固定时间完成一项操作 替代长时间的Delay，提高CPU的运行效率和处理速度 ……  定时器个数：3个（T0、T1、T2），T0和T1与传统的51单片机兼容，T2是STM89C52单片机增加的资源。 注意：定时器的资源和单片机的型号是关联在一起的，不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM51单片机学习记录（三）定时器与中断系统">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
+<meta property="og:description" content="1.简介51单片机的定时器属于单片机的内部资源，其电路的连接和运转均在单片机内部完成定时器作用：  用于计时系统，可实现软件计时，或者使程序每隔一固定时间完成一项操作 替代长时间的Delay，提高CPU的运行效率和处理速度 ……  定时器个数：3个（T0、T1、T2），T0和T1与传统的51单片机兼容，T2是STM89C52单片机增加的资源。 注意：定时器的资源和单片机的型号是关联在一起的，不">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/2-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/2-2.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/3-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/3-2.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/3-3.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/4-1.png">
+<meta property="article:published_time" content="2024-07-14T06:17:48.369Z">
+<meta property="article:modified_time" content="2024-07-14T08:52:53.445Z">
 <meta property="article:author" content="观测">
+<meta property="article:tag" content="个人学习">
+<meta property="article:tag" content="STM51">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/2-1.png">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
   
@@ -165,62 +176,285 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-STM51单片机学习记录（三）定时器" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog.io/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Blog.io/2020/07/30/%E6%8E%A2%E7%B4%A2%E7%BC%96%E7%A8%8B%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%88%E6%9E%81/" class="archive-article-date">
-  	<time datetime="2020-07-30T08:33:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+
+
+<center><p>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog.io/2020/07/30/%E6%8E%A2%E7%B4%A2%E7%BC%96%E7%A8%8B%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%88%E6%9E%81/">探索编程世界的终极</a>
+    <h1 class="article-title_code_ant" itemprop="name">
+      STM51单片机学习记录（三）定时器与中断系统
     </h1>
   
+</p></center>
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2024-07-14T06:17:48.369Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-14</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-简介"><span class="toc-number">1.</span> <span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-定时器"><span class="toc-number">2.</span> <span class="toc-text">2.定时器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-中断系统"><span class="toc-number">3.</span> <span class="toc-text">3.中断系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-定时器初始化函数编写"><span class="toc-number">4.</span> <span class="toc-text">4.定时器初始化函数编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-定时器中断函数编写"><span class="toc-number">5.</span> <span class="toc-text">5.定时器中断函数编写</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>51单片机的定时器属于单片机的内部资源，其电路的连接和运转均在单片机内部完成定时器作用：</p>
+<ol>
+<li>用于计时系统，可实现软件计时，或者使程序每隔一固定时间完成一项操作</li>
+<li>替代长时间的Delay，提高CPU的运行效率和处理速度</li>
+<li>……</li>
+</ol>
+<p>定时器个数：3个（T0、T1、T2），T0和T1与传统的51单片机兼容，T2是STM89C52单片机增加的资源。</p>
+<p>注意：定时器的资源和单片机的型号是关联在一起的，不同的型号可能会有不同的定时器个数和操作方式，但一般来说，T0和T1的操作方式是所有51单片机所共有的。</p>
+<a id="more"></a>
+
+<br>
+
+<h3 id="2-定时器"><a href="#2-定时器" class="headerlink" title="2.定时器"></a>2.定时器</h3><p>STC89C52的T0和T1均有四种工作模式：    </p>
+<p>模式0：13位定时器/计数器    </p>
+<p>模式1：16位定时器/计数器（常用）    </p>
+<p>模式2：8位自动重装模式    </p>
+<p>模式3：两个8位计数器工作</p>
+<p>其中最常用的模式1框图如下：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（三）定时器/2-1.png" style="zoom:50%;">
+
+<p>16位定时器可表示的最大数字为65535，每隔65535个时钟脉冲，定时器就会向中断系统发出中断申请。基于此，我们可以设置初值，来实现任意时长的定时效果。初值的大小可以在TH0与TL0寄存器中设置。下面是对模式1框图的一些讲解：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（三）定时器/2-2.png" style="zoom:50%;">
+
+<br>
+
+<br>
+
+<h3 id="3-中断系统"><a href="#3-中断系统" class="headerlink" title="3.中断系统"></a>3.中断系统</h3><p>由于整个过程涉及到中断系统，因此在写对应函数时，需要加上对应的中断号。对应关系如下图所示：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（三）定时器/3-1.png" style="zoom:50%;">
+
+<br>
+
+<img src="/Blog.io/assets/img/STM51单片机学习记录（三）定时器/3-2.png" style="zoom:60%;">
+
+<br>
+
+<p>一些相关的寄存器如下图所示：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（三）定时器/3-3.png" style="zoom:60%;">
+
+<br>
+
+<h3 id="4-定时器初始化函数编写"><a href="#4-定时器初始化函数编写" class="headerlink" title="4.定时器初始化函数编写"></a>4.定时器初始化函数编写</h3><p>在写实际代码的时候，通常将定时器以单独文件保存，对于任何一个定时器，我们都需要对它进行初始化，来配置一些最基础的参数。</p>
+<p>首先配置TMOD（定时器模式寄存器），下面是每一位的具体含义：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（三）定时器/4-1.png" style="zoom:60%;">
+
+<p>由于模式一默认使用定时器0，因此对于TMOD我们只需要操作其末四位：</p>
+<p>末两位M1和M0用于选择定时器模式，我们常用模式1则该两位置01。</p>
+<p>CT位用于确认使用定时器还是计数器，我们使用定时器则该位置0。</p>
+<p>GATE门控位，置0时只使用TR寄存器就可以控制定时器开关，置1时还需要配置INT0才可控制定时器开关，我们将该位置0。</p>
+<p>由此得到最终的结果：TMOD的低四位置0001。</p>
+<p>由于TMOD不可位寻址，因此我们需要对TMOD整体赋值。同时，为了只改变定时器0的配置而不影响定时器1的配置（只操作低四位），我们使用与操作和或操作来完成：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TMOD&amp;=<span class="number">0XF0</span>;	<span class="comment">//低四位清零，高四位不变</span></span><br><span class="line">TMOD|=<span class="number">0X01</span>;	<span class="comment">//最低位置一，高四位不变</span></span><br></pre></td></tr></table></figure>
+
+<p>然后设置初值，我们设定定时器的时长为10ms，则对应的计算过程和最终结果如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TH0=<span class="number">0XDC</span>;	<span class="comment">//11.0592MHZ的晶振频率，12分以后为0.9216MHZ，约1.08mius晶振一次</span></span><br><span class="line">TL0=<span class="number">0X00</span>;	<span class="comment">//10000mius(10ms)需要晶振9216次，65535-9216+1=0XDC00（必须严格大于65535才会溢出）</span></span><br></pre></td></tr></table></figure>
+
+<p>根据模式1框图可知，定时器是通过累计脉冲次数产生溢出，从而触发中断，并执行中断程序，在触发中断时会将TF位置1，我们在初始化时将其置0。</p>
+<p>同时，由于我们将GATE门控位置0，我们只需要将TR0置1即可启动定时器。</p>
+<p>两者的配置代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TF0=<span class="number">0</span>;</span><br><span class="line">TR0=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>参考STC89C52系列中断系统结构图可知，想要Timer0执行中断，还需要将ET0（允许Timer0发生中断）和EA（允许中断的总开关）置1，将PT0（用于控制中断优先级，默认置0，即低优先级）置0，即：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ET0=<span class="number">1</span>;</span><br><span class="line">EA=<span class="number">1</span>;</span><br><span class="line">PT0=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这样，一个完成的定时器初始化函数就写好了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Timer0_Init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//TMOD=1;</span></span><br><span class="line">	TMOD&amp;=<span class="number">0XF0</span>;	<span class="comment">//低四位清零，高四位不变</span></span><br><span class="line">	TMOD|=<span class="number">0X01</span>;	<span class="comment">//最低位置一，高四位不变</span></span><br><span class="line">	TF0=<span class="number">0</span>;</span><br><span class="line">	TR0=<span class="number">1</span>;</span><br><span class="line">	TH0=<span class="number">0XDC</span>;	<span class="comment">//11.0592MHZ的晶振频率，12分以后为0.9216MHZ，约1.08mius晶振一次</span></span><br><span class="line">	TL0=<span class="number">0X00</span>;	<span class="comment">//10000mius(10ms)需要晶振9216次，65535-9216+1=0XDC00（必须严格大于65535才会溢出）</span></span><br><span class="line">	ET0=<span class="number">1</span>;</span><br><span class="line">	EA=<span class="number">1</span>;</span><br><span class="line">	PT0=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="5-定时器中断函数编写"><a href="#5-定时器中断函数编写" class="headerlink" title="5.定时器中断函数编写"></a>5.定时器中断函数编写</h3><p>我们在配置好定时器以后，还需要对中断函数进行配置。定时器初始化函数相当于定好了一个闹钟，而定时器中断函数则相当于制定了“闹钟响后做什么事情”的计划表，这样才是一个完成的流程。</p>
+<p>下面先给出模板代码，然后再进行讲解：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Timer0_Routine</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> T0Count;</span><br><span class="line">	TL0 = <span class="number">0x18</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	TH0 = <span class="number">0xFC</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	T0Count++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count&gt;=<span class="number">50</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		T0Count=<span class="number">0</span>;</span><br><span class="line">        	P2_0=~P2_0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们在定时器初始化函数中，设定该定时器为一个“每过10ms中断一次的定时器”，假设我们需要实现每过500ms亮或灭一次LED灯,那么可以通过设置静态变量T0Count来实现。每过10ms，定时器执行该中断程序，使得T0Count自增1。需要注意的是，每次中断执行时需要重新设定初值，否则定时器将一直判断脉冲溢出，无法正常工作。</p>
+<p>当中断执行10次，即过了500ms以后，执行反转P2_0的操作。同时将T0Count归零，进入下一个循环。</p>
+<p>以上只是一个示例，具体在初始化时设定定时器大小为多少，中断函数需要执行几次定时中断才触发对应事件均可自行更改完成。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">同人</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">纪念</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STM51单片机学习记录（二）数码管的应用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
   
 
+  
+
+  
+
+  
+
+    
+        <section id="comments" class="comments">
+          <style>
+            .comments{margin:30px;padding:10px;background:#fff}
+            @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+          </style>
+          <div id="vcomment" class="comment"></div> 
+<script src="https://unpkg.com/leancloud-storage@4.12.2/dist/av-live-query-min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "sDLb9WwVsxsbQurLU4lU2BW7-gzGzoHsz",
+            app_key: "GeoflI2CuRR6d1g5Y7vqdF3X",
+            placeholder: "欢迎留言~",
+            avatar:"mp"
+        });
+    }
+</script>
+
+      </section>
     
 
 
@@ -244,9 +478,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
