@@ -21,9 +21,8 @@
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/3-2.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/3-3.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/4-1.png">
-<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/4-2.png">
 <meta property="article:published_time" content="2024-07-14T06:17:48.369Z">
-<meta property="article:modified_time" content="2024-07-14T09:38:32.506Z">
+<meta property="article:modified_time" content="2024-07-15T06:21:36.000Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
@@ -298,16 +297,11 @@
 
 <br>
 
-<p>初始化部分也可以通过stc-isp内自带的定时器计算器自动生成，但仍需要手动对TF0等寄存器进行配置，下面是示例截图：</p>
-<img src="/Blog.io/assets/img/STM51单片机学习记录（三）定时器/4-2.png" style="zoom:100%;">
-
-<br>
-
 <h3 id="5-定时器中断函数编写"><a href="#5-定时器中断函数编写" class="headerlink" title="5.定时器中断函数编写"></a>5.定时器中断函数编写</h3><p>我们在配置好定时器以后，还需要对中断函数进行配置。定时器初始化函数相当于定好了一个闹钟，而定时器中断函数则相当于制定了“闹钟响后做什么事情”的计划表，这样才是一个完成的流程。</p>
 <p>下面先给出模板代码，然后再进行讲解：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Timer0_Routine</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> T0Count;</span><br><span class="line">	TL0 = <span class="number">0x18</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	TH0 = <span class="number">0xFC</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	T0Count++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count&gt;=<span class="number">50</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		T0Count=<span class="number">0</span>;</span><br><span class="line">        	P2_0=~P2_0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我们在定时器初始化函数中，设定该定时器为一个“每过10ms中断一次的定时器”，假设我们需要实现每过500ms亮或灭一次LED灯,那么可以通过设置静态变量T0Count来实现。每过10ms，定时器执行该中断程序，使得T0Count自增1。需要注意的是，每次中断执行时需要重新设定初值，否则定时器将一直判断脉冲溢出，无法正常工作。</p>
+<p>我们在定时器初始化函数中，设定该定时器为一个“每过10ms中断一次的定时器”，假设我们需要实现每过500ms亮或灭一次LED灯,那么可以通过设置静态变量T0Count来实现。每过10ms，定时器执行该中断程序，使得T0Count自增1。需要注意的是，每次中断执行时需要重新设定初值，否则定时器将从0开始累计脉冲，无法正常工作。</p>
 <p>当中断执行10次，即过了500ms以后，执行反转P2_0的操作。同时将T0Count归零，进入下一个循环。</p>
 <p>以上只是一个示例，具体在初始化时设定定时器大小为多少，中断函数需要执行几次定时中断才触发对应事件均可自行更改完成。</p>
 
@@ -598,23 +592,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,11 +600,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,14 +637,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
