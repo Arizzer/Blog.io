@@ -11,7 +11,7 @@
   <meta name="description" content="1.简介LED点阵屏由若干个独立的LED组成，LED以矩阵的形式排列，以灯珠亮灭来显示文字、图片、视频等。LED点阵屏广泛应用于各种公共场合，如汽车报站器、广告屏以及公告牌等。 LED点阵屏有以下三点特征：  LED点阵屏的结构类似于数码管，只不过是数码管把每一列的像素以“8”字型排列而已。 LED点阵屏与数码管一样，有共阴和共阳两种接法，不同的接法对应的电路结构不同。 LED点阵屏需要进行逐">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM51单片机学习记录（五）LED点阵屏幕">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/index.html">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/07/16/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/index.html">
 <meta property="og:site_name" content="观测的博客">
 <meta property="og:description" content="1.简介LED点阵屏由若干个独立的LED组成，LED以矩阵的形式排列，以灯珠亮灭来显示文字、图片、视频等。LED点阵屏广泛应用于各种公共场合，如汽车报站器、广告屏以及公告牌等。 LED点阵屏有以下三点特征：  LED点阵屏的结构类似于数码管，只不过是数码管把每一列的像素以“8”字型排列而已。 LED点阵屏与数码管一样，有共阴和共阳两种接法，不同的接法对应的电路结构不同。 LED点阵屏需要进行逐">
 <meta property="og:locale" content="en_US">
@@ -19,8 +19,8 @@
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/1-2.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/1-3.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/3-1.png">
-<meta property="article:published_time" content="2024-07-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-15T19:37:10.000Z">
+<meta property="article:published_time" content="2024-07-16T06:47:00.537Z">
+<meta property="article:modified_time" content="2024-07-16T06:54:57.732Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
@@ -189,8 +189,8 @@
 </p></center>
 
         
-        <a href="/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/" class="archive-article-date">
-  	<time datetime="2024-07-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-15</time>
+        <a href="/Blog.io/2024/07/16/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/" class="archive-article-date">
+  	<time datetime="2024-07-16T06:47:00.537Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-16</time>
 </a>
         
       </header>
@@ -244,6 +244,8 @@
 
 <br>
 
+<br>
+
 <h3 id="2-74HC595"><a href="#2-74HC595" class="headerlink" title="2.74HC595"></a>2.74HC595</h3><p>74HC595是串行输入并行输出的移位寄存器，可用3根线输入串行数据，8根线输出并行数据，多片级联后，可输出16位、24位、32位等，常用于IO口扩展。我们在这里用它来实现一次性为至多8位数据（一列数据）赋值。</p>
 <p>具体原理图如下：</p>
 <img src="/Blog.io/assets/img/STM51单片机学习记录（五）LED点阵屏幕/1-3.png" style="zoom:50%;">
@@ -263,7 +265,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sbit RCK=P3^<span class="number">5</span>;</span><br><span class="line">sbit SCK=P3^<span class="number">6</span>;</span><br><span class="line">sbit SER=P3^<span class="number">4</span>;</span><br></pre></td></tr></table></figure>
 
 <p>需要注意，不能写成“sbit RCK=P3_5;”这种形式，因为P3_5实际上是一个寄存器的名称，而此时等号右边需要一个具体的值。使用“sbit RCK=P3^5;”可以理解为对P3的实际地址进行异或操作（异或0表示保持不变，异或1表示取反）。</p>
-<p>例如P3=0xB0=0b 1011 0000，P3_5=0xB5=ob 1011 0101。</p>
+<p>例如P3=0xB0=0b 1011 0000，P3^5=0xB5=ob 1011 0101。</p>
 <p>而对整个寄存器定义则需要使用#define，例如：<code>#define MATRIX_LED_PORT    P0</code></p>
 <br>
 
@@ -272,7 +274,7 @@
 <li>共阳极即每个LED管的阳极共接在行线上，列输入的信号为1不亮，为0亮。</li>
 <li>③ 共阴极和共阳极模块相反，每个LED管的阴极共接在行线上，列输入的信号为0不亮，为1亮。</li>
 </ul>
-<p>共阳极LED点阵的各引脚的实际关系图如下图所示，其中DPa<del>DPh为74HC595传过来的8位数据。P00</del>P07则为位选。</p>
+<p>共阳极LED点阵的各引脚的实际关系图如下图所示，其中DPa~DPh为74HC595传过来的8位数据。P00~P07则为位选。</p>
 <img src="/Blog.io/assets/img/STM51单片机学习记录（五）LED点阵屏幕/3-1.png" style="zoom:50%;">
 
 <p>对于实现静态显示的功能，需要用到如下代码：</p>
@@ -375,7 +377,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/07/16/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -389,18 +391,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          STM51单片机学习记录（四）串口通信
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">STM51单片机学习记录（三）定时器与中断系统</div>
+    <a href="/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STM51单片机学习记录（四）串口通信</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -586,10 +579,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -598,11 +587,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,11 +607,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,6 +616,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
