@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>Tag: Writingprompts | 观测的博客</title>
+  <title>STM51单片机学习记录（五）LED点阵屏幕 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="观测的博客">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/tags/Writingprompts/index.html">
+  <meta name="description" content="1.简介LED点阵屏由若干个独立的LED组成，LED以矩阵的形式排列，以灯珠亮灭来显示文字、图片、视频等。LED点阵屏广泛应用于各种公共场合，如汽车报站器、广告屏以及公告牌等。 LED点阵屏有以下三点特征：  LED点阵屏的结构类似于数码管，只不过是数码管把每一列的像素以“8”字型排列而已。 LED点阵屏与数码管一样，有共阴和共阳两种接法，不同的接法对应的电路结构不同。 LED点阵屏需要进行逐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM51单片机学习记录（五）LED点阵屏幕">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
+<meta property="og:description" content="1.简介LED点阵屏由若干个独立的LED组成，LED以矩阵的形式排列，以灯珠亮灭来显示文字、图片、视频等。LED点阵屏广泛应用于各种公共场合，如汽车报站器、广告屏以及公告牌等。 LED点阵屏有以下三点特征：  LED点阵屏的结构类似于数码管，只不过是数码管把每一列的像素以“8”字型排列而已。 LED点阵屏与数码管一样，有共阴和共阳两种接法，不同的接法对应的电路结构不同。 LED点阵屏需要进行逐">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/1-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/1-2.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/1-3.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/3-1.png">
+<meta property="article:published_time" content="2024-07-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-15T19:37:10.000Z">
 <meta property="article:author" content="观测">
+<meta property="article:tag" content="个人学习">
+<meta property="article:tag" content="STM51">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/1-1.png">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
   
@@ -165,96 +174,294 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-STM51单片机学习记录（五）LED点阵屏幕" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog.io/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Blog.io/2020/07/27/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/" class="archive-article-date">
-  	<time datetime="2020-07-27T03:35:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+
+
+<center><p>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog.io/2020/07/27/%E4%BD%A0%E5%87%BA%E5%B1%80%E4%BA%86/">你出局了</a>
+    <h1 class="article-title_code_ant" itemprop="name">
+      STM51单片机学习记录（五）LED点阵屏幕
     </h1>
   
+</p></center>
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/" class="archive-article-date">
+  	<time datetime="2024-07-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-15</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-简介"><span class="toc-number">1.</span> <span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-74HC595"><span class="toc-number">2.</span> <span class="toc-text">2.74HC595</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LED点阵显示静态图像"><span class="toc-number">3.</span> <span class="toc-text">3.LED点阵显示静态图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LED点阵显示动态图像"><span class="toc-number">4.</span> <span class="toc-text">4.LED点阵显示动态图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-字模提取与坤坤动画"><span class="toc-number">5.</span> <span class="toc-text">5.字模提取与坤坤动画</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>LED点阵屏由若干个独立的LED组成，LED以矩阵的形式排列，以灯珠亮灭来显示文字、图片、视频等。LED点阵屏广泛应用于各种公共场合，如汽车报站器、广告屏以及公告牌等。</p>
+<p>LED点阵屏有以下三点特征：</p>
+<ul>
+<li>LED点阵屏的结构类似于数码管，只不过是数码管把每一列的像素以“8”字型排列而已。</li>
+<li>LED点阵屏与数码管一样，有共阴和共阳两种接法，不同的接法对应的电路结构不同。</li>
+<li>LED点阵屏需要进行逐行或逐列扫描，才能使所有LED同时显示。</li>
+</ul>
+<a id="more"></a>
+
+<br>
+
+<p>LED点阵需要由以下两个模块完成：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（五）LED点阵屏幕/1-1.png" style="zoom:50%;">
+
+<img src="/Blog.io/assets/img/STM51单片机学习记录（五）LED点阵屏幕/1-2.png" style="zoom:50%;">
+
+<br>
+
+<h3 id="2-74HC595"><a href="#2-74HC595" class="headerlink" title="2.74HC595"></a>2.74HC595</h3><p>74HC595是串行输入并行输出的移位寄存器，可用3根线输入串行数据，8根线输出并行数据，多片级联后，可输出16位、24位、32位等，常用于IO口扩展。我们在这里用它来实现一次性为至多8位数据（一列数据）赋值。</p>
+<p>具体原理图如下：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（五）LED点阵屏幕/1-3.png" style="zoom:50%;">
+
+<p>数据每次传一位给SER，放入移位寄存器中，SERCLK（简写为SCK）置1代表放行数据到下一位，置0表示禁止数据到下一位（有点像数据是一个球，SCK是一个横着的挡板，向外来回抽动一下，小球就掉到下一个格子里了）。RCLK（简写为RCK）也是同理，在移位寄存器放满后可以通过置1再置0的方式将数据映射到右边输出。</p>
+<p>由此可以得出74HC595的写数据代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> _74HC595_WriteByte(<span class="keyword">unsigned</span> <span class="keyword">char</span> Byte)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> i;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> flag=<span class="number">0x80</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		SER=Byte&amp;flag;<span class="comment">//从最高位开始取，每个循环会将flag右移一位</span></span><br><span class="line">		SCK=<span class="number">1</span>;</span><br><span class="line">		SCK=<span class="number">0</span>;</span><br><span class="line">		flag&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	RCK=<span class="number">1</span>;</span><br><span class="line">	RCK=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>初始化代码也很简单，将两个”挡板“”关闭“（置零）即可：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MatrixLED_Init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SCK=<span class="number">0</span>;</span><br><span class="line">	RCK=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>在实际代码编写中，不存在SCK，RCK等关键字，因此需要找到对应寄存器的实际地址，并在代码开头定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sbit RCK=P3^<span class="number">5</span>;</span><br><span class="line">sbit SCK=P3^<span class="number">6</span>;</span><br><span class="line">sbit SER=P3^<span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意，不能写成“sbit RCK=P3_5;”这种形式，因为P3_5实际上是一个寄存器的名称，而此时等号右边需要一个具体的值。使用“sbit RCK=P3^5;”可以理解为对P3的实际地址进行异或操作（异或0表示保持不变，异或1表示取反）。</p>
+<p>例如P3=0xB0=0b 1011 0000，P3_5=0xB5=ob 1011 0101。</p>
+<p>而对整个寄存器定义则需要使用#define，例如：<code>#define MATRIX_LED_PORT    P0</code></p>
+<br>
+
+<h3 id="3-LED点阵显示静态图像"><a href="#3-LED点阵显示静态图像" class="headerlink" title="3.LED点阵显示静态图像"></a>3.LED点阵显示静态图像</h3><p>LED点阵也分共阳极和共阴极两种：</p>
+<ul>
+<li>共阳极即每个LED管的阳极共接在行线上，列输入的信号为1不亮，为0亮。</li>
+<li>③ 共阴极和共阳极模块相反，每个LED管的阴极共接在行线上，列输入的信号为0不亮，为1亮。</li>
+</ul>
+<p>共阳极LED点阵的各引脚的实际关系图如下图所示，其中DPa<del>DPh为74HC595传过来的8位数据。P00</del>P07则为位选。</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（五）LED点阵屏幕/3-1.png" style="zoom:50%;">
+
+<p>对于实现静态显示的功能，需要用到如下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MatrixLED_ShowColumn</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> Column,Data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	_74HC595_WriteByte(Data);</span><br><span class="line">	MATRIX_LED_PORT=~(<span class="number">0x80</span>&gt;&gt;Column);</span><br><span class="line">	Delay(<span class="number">1</span>);</span><br><span class="line">	MATRIX_LED_PORT=<span class="number">0xFF</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先，将一列的Data数据写入LED点阵，然后设置P0从P07开始从左往右显示。同时，由于使用的是共阳极，P0有效的方法是置0，因此需要对每次的位选结果取反，然后输入给MATRIX_LED_PORT控制位选，即：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MatrixLED_ShowColumn</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> Column,Data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	_74HC595_WriteByte(Data);<span class="comment">//段选</span></span><br><span class="line">	MATRIX_LED_PORT=~(<span class="number">0x80</span>&gt;&gt;Column);<span class="comment">//位选，第几列就右移0x80几次</span></span><br><span class="line">	Delay(<span class="number">1</span>);</span><br><span class="line">	MATRIX_LED_PORT=<span class="number">0xFF</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与数码管原理一致：为了防止频繁段选清零导致整体亮度变暗，在段选后清零前应当加入一段延时，1ms即可。这样，流程就变成了：</p>
+<p>位选→段选→延时→段选清零→位选→段选→延时→段选清零→位选→段选→延时→段选清零→…</p>
+<p>从而实现消影。</p>
+<br>
+
+<h3 id="4-LED点阵显示动态图像"><a href="#4-LED点阵显示动态图像" class="headerlink" title="4.LED点阵显示动态图像"></a>4.LED点阵显示动态图像</h3><p>动态图像有平移变换和实时变化两种，但核心原理都一致。通过把每一列的高低电平数据存到数组中，再设立一个偏移变量offset，即可实现效果。</p>
+<p>总体流程为：</p>
+<p>8列（一帧画面）为一组，将一帧快速扫描一段时间，然后offset+1（平移变化）/offset+8（实时变化）显示下一帧画面，同时将扫描计时归零。</p>
+<p>需要注意的是，offset的取值范围应该为[0,sizeof(array)-8]，数组大小-8是为了动画平滑过渡，如不-8则在动画的最后一个循环会产生寻址越界。</p>
+<p>具体代码如下，本代码实现了坤坤打篮球的实时动画：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> offset=<span class="number">0</span>;<span class="comment">//偏移量</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> time=<span class="number">0</span>;<span class="comment">//扫描计时</span></span><br><span class="line">	MatrixLED_Init();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			MatrixLED_ShowColumn(i,IKUN[i+offset]);</span><br><span class="line">		&#125;</span><br><span class="line">		time++;</span><br><span class="line">		<span class="keyword">if</span>(time&gt;<span class="number">30</span>)&#123;<span class="comment">//扫描一段时间</span></span><br><span class="line">			time=<span class="number">0</span>;</span><br><span class="line">			offset+=<span class="number">8</span>;</span><br><span class="line">			offset%=(<span class="keyword">sizeof</span>(IKUN)<span class="number">-8</span>);<span class="comment">//使用取余运算限制offSet的范围</span></span><br><span class="line">		&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="5-字模提取与坤坤动画"><a href="#5-字模提取与坤坤动画" class="headerlink" title="5.字模提取与坤坤动画"></a>5.字模提取与坤坤动画</h3><p>字模可以用专门的字模提取软件来生成，避免了繁杂的计算，</p>
+<p>如果是需要生成文字，推荐使用PCtoLCD2020这款软件。</p>
+<p>如果是自己绘制图像，推荐使用字模提取这款软件。</p>
+<p>如果是转换现有图片，推荐使用Image2Lcd这款软件。</p>
+<p>下面给出坤坤打篮球的字模：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> code IKUN[]=&#123;</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x0E</span>,<span class="number">0x1B</span>,<span class="number">0x7F</span>,<span class="number">0x7F</span>,<span class="number">0x1B</span>,<span class="number">0x0E</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x04</span>,<span class="number">0x0C</span>,<span class="number">0x18</span>,<span class="number">0x7F</span>,<span class="number">0x7F</span>,<span class="number">0x1B</span>,<span class="number">0x0E</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x08</span>,<span class="number">0x0C</span>,<span class="number">0x05</span>,<span class="number">0x7F</span>,<span class="number">0x7F</span>,<span class="number">0x1E</span>,<span class="number">0x0C</span>,</span><br><span class="line">		<span class="number">0xC0</span>,<span class="number">0x00</span>,<span class="number">0x41</span>,<span class="number">0x22</span>,<span class="number">0x1A</span>,<span class="number">0x7C</span>,<span class="number">0x7D</span>,<span class="number">0x1A</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x60</span>,<span class="number">0x61</span>,<span class="number">0x12</span>,<span class="number">0x0A</span>,<span class="number">0x7E</span>,<span class="number">0x7F</span>,<span class="number">0x08</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x06</span>,<span class="number">0x0E</span>,<span class="number">0x08</span>,<span class="number">0x0B</span>,<span class="number">0x3E</span>,<span class="number">0x3E</span>,<span class="number">0x0B</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x03</span>,<span class="number">0x0B</span>,<span class="number">0x08</span>,<span class="number">0x0B</span>,<span class="number">0x3E</span>,<span class="number">0x3E</span>,<span class="number">0x0B</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x06</span>,<span class="number">0x0E</span>,<span class="number">0x08</span>,<span class="number">0x09</span>,<span class="number">0x3F</span>,<span class="number">0x3E</span>,<span class="number">0x0B</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x0E</span>,<span class="number">0x13</span>,<span class="number">0x7E</span>,<span class="number">0x7E</span>,<span class="number">0x1F</span>,<span class="number">0x0E</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x08</span>,<span class="number">0x13</span>,<span class="number">0x7E</span>,<span class="number">0x7E</span>,<span class="number">0x12</span>,<span class="number">0x1D</span>,<span class="number">0x0C</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x09</span>,<span class="number">0x12</span>,<span class="number">0x7E</span>,<span class="number">0x7F</span>,<span class="number">0x10</span>,<span class="number">0x13</span>,<span class="number">0x03</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x09</span>,<span class="number">0x12</span>,<span class="number">0x7E</span>,<span class="number">0x7F</span>,<span class="number">0x10</span>,<span class="number">0x1C</span>,<span class="number">0x0C</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x0C</span>,<span class="number">0x15</span>,<span class="number">0x7E</span>,<span class="number">0x7E</span>,<span class="number">0x17</span>,<span class="number">0x0E</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x30</span>,<span class="number">0x38</span>,<span class="number">0x0D</span>,<span class="number">0x7E</span>,<span class="number">0x7F</span>,<span class="number">0x1D</span>,<span class="number">0x08</span>,</span><br><span class="line">		<span class="number">0xC0</span>,<span class="number">0xC0</span>,<span class="number">0x30</span>,<span class="number">0x1B</span>,<span class="number">0x7C</span>,<span class="number">0x7F</span>,<span class="number">0x08</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x37</span>,<span class="number">0xF8</span>,<span class="number">0xFA</span>,<span class="number">0x34</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x1B</span>,<span class="number">0x7C</span>,<span class="number">0x7C</span>,<span class="number">0x1A</span>,<span class="number">0x01</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x09</span>,<span class="number">0x1E</span>,<span class="number">0x7C</span>,<span class="number">0x7F</span>,<span class="number">0x18</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x1B</span>,<span class="number">0x7C</span>,<span class="number">0x7C</span>,<span class="number">0x1B</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x09</span>,<span class="number">0x1E</span>,<span class="number">0x7C</span>,<span class="number">0x7F</span>,<span class="number">0x18</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x1B</span>,<span class="number">0x7C</span>,<span class="number">0x7C</span>,<span class="number">0x1B</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x08</span>,<span class="number">0x10</span>,<span class="number">0x16</span>,<span class="number">0x7C</span>,<span class="number">0x7F</span>,<span class="number">0x10</span>,<span class="number">0x08</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x10</span>,<span class="number">0x13</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x18</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x08</span>,<span class="number">0x13</span>,<span class="number">0x7C</span>,<span class="number">0x7F</span>,<span class="number">0x10</span>,<span class="number">0x10</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x08</span>,<span class="number">0x12</span>,<span class="number">0xFC</span>,<span class="number">0xFD</span>,<span class="number">0x3A</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x08</span>,<span class="number">0x12</span>,<span class="number">0xFC</span>,<span class="number">0xFC</span>,<span class="number">0x22</span>,<span class="number">0x10</span>,<span class="number">0x00</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x61</span>,<span class="number">0x12</span>,<span class="number">0x7C</span>,<span class="number">0x7F</span>,<span class="number">0x10</span>,<span class="number">0x60</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x20</span>,<span class="number">0x11</span>,<span class="number">0x12</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x19</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x31</span>,<span class="number">0x0A</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x0D</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x20</span>,<span class="number">0x11</span>,<span class="number">0x12</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x19</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x31</span>,<span class="number">0x0A</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x0D</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x20</span>,<span class="number">0x11</span>,<span class="number">0x12</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x19</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x31</span>,<span class="number">0x0A</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x0D</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x20</span>,<span class="number">0x11</span>,<span class="number">0x12</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x19</span>,</span><br><span class="line">		<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x31</span>,<span class="number">0x0A</span>,<span class="number">0x7C</span>,<span class="number">0x7E</span>,<span class="number">0x0D</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Writingprompts</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Blog.io/2020/07/27/%E9%98%BF%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2020-07-27T03:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog.io/2020/07/27/%E9%98%BF%E9%97%A8/">阿门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Writingprompts</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/Blog.io/2024/07/15/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          STM51单片机学习记录（四）串口通信
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STM51单片机学习记录（三）定时器与中断系统</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
   
 
+  
+
+  
+
+  
+
+    
+        <section id="comments" class="comments">
+          <style>
+            .comments{margin:30px;padding:10px;background:#fff}
+            @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+          </style>
+          <div id="vcomment" class="comment"></div> 
+<script src="https://unpkg.com/leancloud-storage@4.12.2/dist/av-live-query-min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "sDLb9WwVsxsbQurLU4lU2BW7-gzGzoHsz",
+            app_key: "GeoflI2CuRR6d1g5Y7vqdF3X",
+            placeholder: "欢迎留言~",
+            avatar:"mp"
+        });
+    }
+</script>
+
+      </section>
     
 
 
@@ -278,9 +485,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
