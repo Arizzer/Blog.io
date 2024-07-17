@@ -17,8 +17,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/1-1.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/1-2.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/1-3.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/1-4.png">
 <meta property="article:published_time" content="2024-07-16T08:08:09.969Z">
-<meta property="article:modified_time" content="2024-07-16T09:52:29.708Z">
+<meta property="article:modified_time" content="2024-07-17T11:14:15.654Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
@@ -202,7 +204,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-简介"><span class="toc-number">1.</span> <span class="toc-text">1.简介</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-简介"><span class="toc-number">1.</span> <span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-写入数据"><span class="toc-number">2.</span> <span class="toc-text">2.写入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-读出数据"><span class="toc-number">3.</span> <span class="toc-text">3.读出数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-BCD码与十进制码转换"><span class="toc-number">4.</span> <span class="toc-text">4.BCD码与十进制码转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-一次性写入与读取时间"><span class="toc-number">5.</span> <span class="toc-text">5.一次性写入与读取时间</span></a></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -273,6 +275,79 @@
 </tbody></table>
 <br>
 
+<p>VCC1可以连接外部电池，做到在VCC2断电的情况下依然可以独立运行。</p>
+<p>CE负责芯片使能，当其处于高电平时才能进行读写操作。</p>
+<p>IO负责数据输入/输出，用于读取命令字与数据。</p>
+<p>SCLK为串行时钟，在时钟上升沿写入数据，在时钟的下降沿读取数据。</p>
+<p>CE,IO,SCLK是我们在配置时钟时主要需要操作的三个寄存器。数据传输时序如下图所示：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（六）DS1302时钟/1-3.png" style="zoom:60%;">
+
+<br>
+
+<p>命令字格式与读写内容如下图所示：</p>
+<br>
+
+<img src="/Blog.io/assets/img/STM51单片机学习记录（六）DS1302时钟/1-4.png" style="zoom:60%;">
+
+<br>
+
+<p>地址命令字的最高位恒为1，次高位置1表示操作RAM，置0表示操作时钟。第五位到第一位表示需要操作的寄存器的地址。最后一位置1表示写入，置0表示读出。</p>
+<p>举例说明：对秒寄存器进行读操作，地址命令字应为0b 1000 0001，即0x81。</p>
+<p>其他操作在上表中均有给出。</p>
+<p>DS1302的初始化代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DS1302_Init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	DS1302_CE=<span class="number">0</span>;</span><br><span class="line">	DS1302_SCLK=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="2-写入数据"><a href="#2-写入数据" class="headerlink" title="2.写入数据"></a>2.写入数据</h3><p>先给出代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DS1302_WriteByte</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> Command,Data)</span></span>&#123;</span><br><span class="line">	 <span class="keyword">unsigned</span> <span class="keyword">char</span> i;</span><br><span class="line">	 </span><br><span class="line">	 DS1302_CE=<span class="number">1</span>;<span class="comment">//总共16个脉冲</span></span><br><span class="line">	 <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">		 DS1302_IO=Command&amp;(<span class="number">0x01</span>&lt;&lt;i);</span><br><span class="line">		 DS1302_SCLK=<span class="number">1</span>;</span><br><span class="line">		 DS1302_SCLK=<span class="number">0</span>;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">		 DS1302_IO=Data&amp;(<span class="number">0x01</span>&lt;&lt;i);</span><br><span class="line">		 DS1302_SCLK=<span class="number">1</span>;</span><br><span class="line">		 DS1302_SCLK=<span class="number">0</span>;</span><br><span class="line">	 &#125;</span><br><span class="line">	 DS1302_CE=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	 </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据时序图可知，想要进行读写操作，首先需要对CE置1，在读写完成后，需要对CE置0。</p>
+<p>先读入命令字，通过执行八次<code>DS1302_IO=Command&amp;(0x01&lt;&lt;i);</code>完成对命令字的读取，每次读取需要对SCLK的电平进行一次变化。命令字写入完成以后，在以同样的方式将数据写入IO，从而完成写入操作。</p>
+<p>整个过程总共经历了16个上升沿，对应8次命令字的写入与8次数据的写入，符合时序图。</p>
+<p>下面是写入数据时脉冲和有效上升沿下降沿的对应关系：</p>
+<p>8个脉冲（8个上升沿）+8个脉冲（8个上升沿）=16个脉冲（8个上升沿+8个上升沿）</p>
+<br>
+
+<h3 id="3-读出数据"><a href="#3-读出数据" class="headerlink" title="3.读出数据"></a>3.读出数据</h3><p>先给出代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="title">DS1302_ReadByte</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> Command)</span></span>&#123;</span><br><span class="line">	 <span class="keyword">unsigned</span> <span class="keyword">char</span> i,Data=<span class="number">0x00</span>;</span><br><span class="line">		Command|=<span class="number">0x01</span>;<span class="comment">/**由于写地址末位恒为0，读地址末位恒为1，且其余为都相同，</span></span><br><span class="line"><span class="comment">									因此可以把写地址|=0x01，这样得到的就是读地址了。可以减少宏定义地址数。**/</span></span><br><span class="line">	 DS1302_CE=<span class="number">1</span>;<span class="comment">//总共15个脉冲</span></span><br><span class="line">	 <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">		 DS1302_IO=Command&amp;(<span class="number">0x01</span>&lt;&lt;i);</span><br><span class="line">		 DS1302_SCLK=<span class="number">0</span>;</span><br><span class="line">		 DS1302_SCLK=<span class="number">1</span>;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">		 DS1302_SCLK=<span class="number">1</span>;</span><br><span class="line">		 DS1302_SCLK=<span class="number">0</span>;</span><br><span class="line">		 <span class="keyword">if</span>(DS1302_IO)&#123;Data|=(<span class="number">0x01</span>&lt;&lt;i);&#125;<span class="comment">//赋值给Data</span></span><br><span class="line">	 &#125;</span><br><span class="line">	 DS1302_CE=<span class="number">0</span>;</span><br><span class="line">	 DS1302_IO=<span class="number">0</span>;</span><br><span class="line">	 <span class="keyword">return</span> Data;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>与写入数据相同，想要进行读写操作，首先需要对CE置1，在读写完成后，需要对CE置0。</p>
+<p>先读入命令字，通过执行八次<code>DS1302_IO=Command&amp;(0x01&lt;&lt;i);</code>完成对命令字的读取，每次读取需要对SCLK的电平进行一次变化。</p>
+<p>然后通过执行八次<code>if(DS1302_IO){Data|=(0x01&lt;&lt;i);}</code>完成对数据的读取，需要注意的是，只有当DS1302_IO=1时才需要将数据写入Data对应的位上，如果删掉判断会导致Data的每一位均置1，结果为0xFF。</p>
+<p>可以看到两次循环DS1302_SCLK置0与置1的顺序不一样，这是因为读模式下时序只需要15个脉冲。在经过8个上升沿后，命令字部分被全部写入完成，接下来开始读取时间数据。由于下一个下降沿马上到来，因此相写入数据会少用一个脉冲。（注意上图SCLK各脉冲有效上升沿或下降沿的方向）</p>
+<p>下面是读出数据时脉冲和有效上升沿下降沿的对应关系：</p>
+<p>7个脉冲（7个上升沿）+1个脉冲（1个上升沿+1个下降沿）+7个脉冲（7个下降沿）=15个脉冲（8个上升沿+8个下降沿）</p>
+<p>在读取完成后，还需要将IO口置0，否则会导致显示混乱。</p>
+<br>
+
+<h3 id="4-BCD码与十进制码转换"><a href="#4-BCD码与十进制码转换" class="headerlink" title="4.BCD码与十进制码转换"></a>4.BCD码与十进制码转换</h3><p>在DS1302中，时间是以BCD码的形式存储的，例如：0x35=0011 0101，在十六进制转为十进制情况下为 3*16+5=53，但在BCD码中0x35用高位和低位分别存储8位数据，在BCD码转为十进制的情况下为35。</p>
+<p>需要注意BCD码的四位最多支持到1001，即十进制下的9，类似0x1A这样的数据不合法。</p>
+<p>如果不对BCD码进行转换，那么在时钟运行的时候，会出现显示9秒过后立马显示16秒的情况。这是因为9=0x 0000 1001，16=0x 0001 0000，按照BCD的进位规则是正确的，但给我们读数带来了困难。</p>
+<p>BCD码与十进制码的转换公式如下：</p>
+<p>BCD码转十进制：DEC=BCD/16*10+BCD%16; （2位BCD）</p>
+<p>十进制转BCD码：BCD=DEC/10*16+DEC%10; （2位BCD）</p>
+<br>
+
+<h3 id="5-一次性写入与读取时间"><a href="#5-一次性写入与读取时间" class="headerlink" title="5.一次性写入与读取时间"></a>5.一次性写入与读取时间</h3><p>前面我们介绍了如何将时间信息写入DS1302或如何从DS1302中读出时间信息，但这样只能对其中的某个寄存器进行操作，例如：<code>DS1302_WriteByte(0x8D,24)</code>可以将年份设置为24年。我们还需要一个函数完成对整体的年月日时分秒的一次性设置。</p>
+<p>首先，设置一个数组，用于存放年月日时分秒的信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> DS1302_Time[]=&#123;<span class="number">24</span>,<span class="number">7</span>,<span class="number">18</span>,<span class="number">23</span>,<span class="number">59</span>,<span class="number">55</span>,<span class="number">4</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里不使用unsigned char是因为之后在设置时间合法性的时候需要判断当前时间信息是否小于0，因此可能会出现负数的情况，如使用unsigned char定义数组则在数据从0减去1的时候会直接变成255，无法触发小于0的判定条件。</p>
+<p>然后，对各地址命令字的写操作进行宏定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DS1302_SECOND		0x80</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DS1302_MINUTE		0x82</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DS1302_HOUR		0x84</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DS1302_DATE		0x86</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DS1302_MONTH		0x88</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DS1302_DAY		0x8A</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DS1302_YEAR		0x8C</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DS1302_WP		0x8E</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要进行读操作，只需要对传进来的Command或等于0x01即可，有效减少了宏定义的数量。</p>
+<p>再然后就是对年月日时分秒分别进行赋值了。需要注意的是，0x8E为写保护开关，只有在最高位置0时才可以对寄存器进行写入，置1时无法写入。</p>
+<p>写入时，需要把十进制转化为BCD码。</p>
+<p>具体的写入代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DS1302_SetTime</span><span class="params">()</span></span>&#123;</span><br><span class="line">	DS1302_WriteByte(DS1302_WP,<span class="number">0x00</span>);</span><br><span class="line">	DS1302_WriteByte(DS1302_YEAR,DEC2BCD(DS1302_Time[<span class="number">0</span>]));<span class="comment">//把十进制转化为BCD码存入</span></span><br><span class="line">	DS1302_WriteByte(DS1302_MONTH,DEC2BCD(DS1302_Time[<span class="number">1</span>]));</span><br><span class="line">	DS1302_WriteByte(DS1302_DATE,DEC2BCD(DS1302_Time[<span class="number">2</span>]));</span><br><span class="line">	DS1302_WriteByte(DS1302_HOUR,DEC2BCD(DS1302_Time[<span class="number">3</span>]));</span><br><span class="line">	DS1302_WriteByte(DS1302_MINUTE,DEC2BCD(DS1302_Time[<span class="number">4</span>]));</span><br><span class="line">	DS1302_WriteByte(DS1302_SECOND,DEC2BCD(DS1302_Time[<span class="number">5</span>]));</span><br><span class="line">	DS1302_WriteByte(DS1302_DAY,DEC2BCD(DS1302_Time[<span class="number">6</span>]));</span><br><span class="line">	DS1302_WriteByte(DS1302_WP,<span class="number">0x80</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>读出时，需要将读到的BCD码转为十进制存回数组中。</p>
+<p>具体的读出代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DS1302_ReadTime</span><span class="params">()</span></span>&#123;</span><br><span class="line">	DS1302_Time[<span class="number">0</span>]=BCD2DEC(DS1302_ReadByte(DS1302_YEAR));<span class="comment">//把BCD码转化为十进制读取</span></span><br><span class="line">	DS1302_Time[<span class="number">1</span>]=BCD2DEC(DS1302_ReadByte(DS1302_MONTH));</span><br><span class="line">	DS1302_Time[<span class="number">2</span>]=BCD2DEC(DS1302_ReadByte(DS1302_DATE));</span><br><span class="line">	DS1302_Time[<span class="number">3</span>]=BCD2DEC(DS1302_ReadByte(DS1302_HOUR));</span><br><span class="line">	DS1302_Time[<span class="number">4</span>]=BCD2DEC(DS1302_ReadByte(DS1302_MINUTE));</span><br><span class="line">	DS1302_Time[<span class="number">5</span>]=BCD2DEC(DS1302_ReadByte(DS1302_SECOND));</span><br><span class="line">	DS1302_Time[<span class="number">6</span>]=BCD2DEC(DS1302_ReadByte(DS1302_DAY));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，就实现了一次性写入与读取时间，用户只需要调用<code>DS1302_SetTime()</code>与 <code>DS1302_ReadTime()</code>即可完成需求。</p>
 
       
 
@@ -548,7 +623,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,15 +635,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,7 +663,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,7 +671,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
