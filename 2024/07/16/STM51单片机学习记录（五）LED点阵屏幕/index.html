@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/1-3.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/3-1.png">
 <meta property="article:published_time" content="2024-07-16T06:47:00.537Z">
-<meta property="article:modified_time" content="2024-07-16T08:08:03.636Z">
+<meta property="article:modified_time" content="2024-07-24T14:41:42.973Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
@@ -269,6 +269,8 @@
 <p>而对整个寄存器定义则需要使用#define，例如：<code>#define MATRIX_LED_PORT    P0</code></p>
 <br>
 
+<br>
+
 <h3 id="3-LED点阵显示静态图像"><a href="#3-LED点阵显示静态图像" class="headerlink" title="3.LED点阵显示静态图像"></a>3.LED点阵显示静态图像</h3><p>LED点阵也分共阳极和共阴极两种：</p>
 <ul>
 <li>共阳极即每个LED管的阳极共接在行线上，列输入的信号为1不亮，为0亮。</li>
@@ -288,12 +290,16 @@
 <p>从而实现消影。</p>
 <br>
 
+<br>
+
 <h3 id="4-LED点阵显示动态图像"><a href="#4-LED点阵显示动态图像" class="headerlink" title="4.LED点阵显示动态图像"></a>4.LED点阵显示动态图像</h3><p>动态图像有平移变换和实时变化两种，但核心原理都一致。通过把每一列的高低电平数据存到数组中，再设立一个偏移变量offset，即可实现效果。</p>
 <p>总体流程为：</p>
 <p>8列（一帧画面）为一组，将一帧快速扫描一段时间，然后offset+1（平移变化）/offset+8（实时变化）显示下一帧画面，同时将扫描计时归零。</p>
 <p>需要注意的是，offset的取值范围应该为[0,sizeof(array)-8]，数组大小-8是为了动画平滑过渡，如不-8则在动画的最后一个循环会产生寻址越界。</p>
 <p>具体代码如下，本代码实现了坤坤打篮球的实时动画：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> offset=<span class="number">0</span>;<span class="comment">//偏移量</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> time=<span class="number">0</span>;<span class="comment">//扫描计时</span></span><br><span class="line">	MatrixLED_Init();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			MatrixLED_ShowColumn(i,IKUN[i+offset]);</span><br><span class="line">		&#125;</span><br><span class="line">		time++;</span><br><span class="line">		<span class="keyword">if</span>(time&gt;<span class="number">30</span>)&#123;<span class="comment">//扫描一段时间</span></span><br><span class="line">			time=<span class="number">0</span>;</span><br><span class="line">			offset+=<span class="number">8</span>;</span><br><span class="line">			offset%=(<span class="keyword">sizeof</span>(IKUN)<span class="number">-8</span>);<span class="comment">//使用取余运算限制offSet的范围</span></span><br><span class="line">		&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
 
 <br>
 
@@ -588,15 +594,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,6 +607,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM51</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,10 +630,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -637,6 +639,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">

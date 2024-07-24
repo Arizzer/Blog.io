@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/1-3.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/1-4.png">
 <meta property="article:published_time" content="2024-07-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-17T11:19:47.110Z">
+<meta property="article:modified_time" content="2024-07-24T14:42:02.350Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
@@ -299,6 +299,8 @@
 
 <br>
 
+<br>
+
 <h3 id="2-写入数据"><a href="#2-写入数据" class="headerlink" title="2.写入数据"></a>2.写入数据</h3><p>先给出代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DS1302_WriteByte</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> Command,Data)</span></span>&#123;</span><br><span class="line">	 <span class="keyword">unsigned</span> <span class="keyword">char</span> i;</span><br><span class="line">	 </span><br><span class="line">	 DS1302_CE=<span class="number">1</span>;<span class="comment">//总共16个脉冲</span></span><br><span class="line">	 <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">		 DS1302_IO=Command&amp;(<span class="number">0x01</span>&lt;&lt;i);</span><br><span class="line">		 DS1302_SCLK=<span class="number">1</span>;</span><br><span class="line">		 DS1302_SCLK=<span class="number">0</span>;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">		 DS1302_IO=Data&amp;(<span class="number">0x01</span>&lt;&lt;i);</span><br><span class="line">		 DS1302_SCLK=<span class="number">1</span>;</span><br><span class="line">		 DS1302_SCLK=<span class="number">0</span>;</span><br><span class="line">	 &#125;</span><br><span class="line">	 DS1302_CE=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	 </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
@@ -307,6 +309,8 @@
 <p>整个过程总共经历了16个上升沿，对应8次命令字的写入与8次数据的写入，符合时序图。</p>
 <p>下面是写入数据时脉冲和有效上升沿下降沿的对应关系：</p>
 <p>8个脉冲（8个上升沿）+8个脉冲（8个上升沿）=16个脉冲（8个上升沿+8个上升沿）</p>
+<br>
+
 <br>
 
 <h3 id="3-读出数据"><a href="#3-读出数据" class="headerlink" title="3.读出数据"></a>3.读出数据</h3><p>先给出代码：</p>
@@ -321,12 +325,16 @@
 <p>在读取完成后，还需要将IO口置0，否则会导致显示混乱。</p>
 <br>
 
+<br>
+
 <h3 id="4-BCD码与十进制码转换"><a href="#4-BCD码与十进制码转换" class="headerlink" title="4.BCD码与十进制码转换"></a>4.BCD码与十进制码转换</h3><p>在DS1302中，时间是以BCD码的形式存储的，例如：0x35=0011 0101，在十六进制转为十进制情况下为 3*16+5=53，但在BCD码中0x35用高位和低位分别存储8位数据，在BCD码转为十进制的情况下为35。</p>
 <p>需要注意BCD码的四位最多支持到1001，即十进制下的9，类似0x1A这样的数据不合法。</p>
 <p>如果不对BCD码进行转换，那么在时钟运行的时候，会出现显示9秒过后立马显示16秒的情况。这是因为9=0x 0000 1001，16=0x 0001 0000，按照BCD的进位规则是正确的，但给我们读数带来了困难。</p>
 <p>BCD码与十进制码的转换公式如下：</p>
 <p>BCD码转十进制：DEC=BCD/16*10+BCD%16; （2位BCD）</p>
 <p>十进制转BCD码：BCD=DEC/10*16+DEC%10; （2位BCD）</p>
+<br>
+
 <br>
 
 <h3 id="5-一次性写入与读取时间"><a href="#5-一次性写入与读取时间" class="headerlink" title="5.一次性写入与读取时间"></a>5.一次性写入与读取时间</h3><p>前面我们介绍了如何将时间信息写入DS1302或如何从DS1302中读出时间信息，但这样只能对其中的某个寄存器进行操作，例如：<code>DS1302_WriteByte(0x8D,24)</code>可以将年份设置为24年。我们还需要一个函数完成对整体的年月日时分秒的一次性设置。</p>
@@ -632,15 +640,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,6 +653,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM51</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -668,10 +676,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -681,6 +685,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
