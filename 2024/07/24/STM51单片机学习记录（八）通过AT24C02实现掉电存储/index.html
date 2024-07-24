@@ -6,21 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>STM51单片机学习记录（九）通过定时器实现消抖 | 观测的博客</title>
+  <title>STM51单片机学习记录（八）通过AT24C02实现掉电存储 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.秒表项目简介我们通过秒表这一项目完成通过定时器实现消抖的理解。 功能如下： 按独立按键1：开始&#x2F;暂停计时。 按独立按键2：计时清零。 按独立按键3：把数据存至AT24C02。 按独立按键4：将AT24C02中的数据读出。">
+  <meta name="description" content="1.AT24C02简介AT24C02是一种可以实现掉电不丢失的存储器，可用于保存单片机运行时想要永久保存的数据信息存储介质：E2PROM通讯接口：I2C总线容量：256字节。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STM51单片机学习记录（九）通过定时器实现消抖">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B9%9D%EF%BC%89%E9%80%9A%E8%BF%87%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%8A%96/index.html">
+<meta property="og:title" content="STM51单片机学习记录（八）通过AT24C02实现掉电存储">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89%E9%80%9A%E8%BF%87AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="1.秒表项目简介我们通过秒表这一项目完成通过定时器实现消抖的理解。 功能如下： 按独立按键1：开始&#x2F;暂停计时。 按独立按键2：计时清零。 按独立按键3：把数据存至AT24C02。 按独立按键4：将AT24C02中的数据读出。">
+<meta property="og:description" content="1.AT24C02简介AT24C02是一种可以实现掉电不丢失的存储器，可用于保存单片机运行时想要永久保存的数据信息存储介质：E2PROM通讯接口：I2C总线容量：256字节。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-07-24T13:19:40.000Z">
-<meta property="article:modified_time" content="2024-07-24T15:14:00.515Z">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/1-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/2-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/3-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/3-2.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/3-5.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/3-3.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/3-4.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/4-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/4-2.png">
+<meta property="article:published_time" content="2024-07-24T12:19:40.000Z">
+<meta property="article:modified_time" content="2024-07-24T15:17:23.663Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/1-1.png">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
   
@@ -169,7 +179,7 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-STM51单片机学习记录（九）通过定时器实现消抖" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-STM51单片机学习记录（八）通过AT24C02实现掉电存储" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -178,14 +188,14 @@
 <center><p>
   
     <h1 class="article-title_code_ant" itemprop="name">
-      STM51单片机学习记录（九）通过定时器实现消抖
+      STM51单片机学习记录（八）通过AT24C02实现掉电存储
     </h1>
   
 </p></center>
 
         
-        <a href="/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B9%9D%EF%BC%89%E9%80%9A%E8%BF%87%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%8A%96/" class="archive-article-date">
-  	<time datetime="2024-07-24T13:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-24</time>
+        <a href="/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89%E9%80%9A%E8%BF%87AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/" class="archive-article-date">
+  	<time datetime="2024-07-24T12:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-24</time>
 </a>
         
       </header>
@@ -199,7 +209,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-秒表项目简介"><span class="toc-number">1.</span> <span class="toc-text">1.秒表项目简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改独立按键C文件：Key-c"><span class="toc-number">2.</span> <span class="toc-text">2.修改独立按键C文件：Key.c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改数码管C文件：NiXie-c"><span class="toc-number">3.</span> <span class="toc-text">2.修改数码管C文件：NiXie.c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-主函数编写"><span class="toc-number">4.</span> <span class="toc-text">3.主函数编写</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-AT24C02简介"><span class="toc-number">1.</span> <span class="toc-text">1.AT24C02简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-I2C总线简介及原理"><span class="toc-number">2.</span> <span class="toc-text">2.I2C总线简介及原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-I2C数据帧"><span class="toc-number">3.</span> <span class="toc-text">3.I2C数据帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-AT24C02数据帧"><span class="toc-number">4.</span> <span class="toc-text">4.AT24C02数据帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-利用AT24C02实现掉电存储数据"><span class="toc-number">5.</span> <span class="toc-text">5.利用AT24C02实现掉电存储数据</span></a></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -221,118 +231,112 @@
       
         <br>
 
-<h3 id="1-秒表项目简介"><a href="#1-秒表项目简介" class="headerlink" title="1.秒表项目简介"></a>1.秒表项目简介</h3><p>我们通过秒表这一项目完成通过定时器实现消抖的理解。</p>
-<p>功能如下：</p>
-<p>按独立按键1：开始/暂停计时。</p>
-<p>按独立按键2：计时清零。</p>
-<p>按独立按键3：把数据存至AT24C02。</p>
-<p>按独立按键4：将AT24C02中的数据读出。</p>
+<h3 id="1-AT24C02简介"><a href="#1-AT24C02简介" class="headerlink" title="1.AT24C02简介"></a>1.AT24C02简介</h3><p>AT24C02是一种可以实现掉电不丢失的存储器，可用于保存单片机运行时想要永久保存的数据信息存储介质：E2PROM通讯接口：I2C总线容量：256字节。</p>
 <a id="more"></a>
 
 <br>
 
-<h3 id="2-修改独立按键C文件：Key-c"><a href="#2-修改独立按键C文件：Key-c" class="headerlink" title="2.修改独立按键C文件：Key.c"></a>2.修改独立按键C文件：Key.c</h3><p>先放出原先的Key.c文件内容：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;REGX52.H&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Delay.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="title">Key</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> KeyNum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(P3_1==<span class="number">0</span>)&#123;Delay(<span class="number">20</span>);<span class="keyword">while</span>(!P3_1)Delay(<span class="number">20</span>);KeyNum=<span class="number">1</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(P3_0==<span class="number">0</span>)&#123;Delay(<span class="number">20</span>);<span class="keyword">while</span>(!P3_0)Delay(<span class="number">20</span>);KeyNum=<span class="number">2</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(P3_2==<span class="number">0</span>)&#123;Delay(<span class="number">20</span>);<span class="keyword">while</span>(!P3_2)Delay(<span class="number">20</span>);KeyNum=<span class="number">3</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(P3_3==<span class="number">0</span>)&#123;Delay(<span class="number">20</span>);<span class="keyword">while</span>(!P3_3)Delay(<span class="number">20</span>);KeyNum=<span class="number">4</span>;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> KeyNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到，就像在《 STM51单片机学习记录（一)》中一样，可以通过在按键的前后加上Delay()函数实现消抖。但这样若长按按键会使程序陷入死循环。同时Delay()会对整个程序进行延时，在需要频繁检测按键变化时会占用大量的CPU资源。</p>
-<p>因此，我们可以对Key.c文件进行改进，用定时器实现就是一个很好的思路。</p>
-<p>我们的核心思路是复用定时中断，根据不同的定时时间触发不同的函数，以此实现类似“多个定时器”的效果。</p>
-<p>下面是Key需要触发的中断，我们通过T0Count1进行计数，累计计数20次(每隔20ms)，触发一次Key_Loop()函数，并将T0Count1清零重新计数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Timer0_Routine</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> T0Count1,T0Count2,T0Count3;</span><br><span class="line">	TL0 = <span class="number">0x66</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	TH0 = <span class="number">0xFC</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	T0Count1++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count1&gt;=<span class="number">20</span>)<span class="comment">//每隔20ms检测一次</span></span><br><span class="line">	&#123;</span><br><span class="line">		T0Count1=<span class="number">0</span>;</span><br><span class="line">		Key_Loop();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Key_Loop()函数如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Key_Loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> NowState,LastState;</span><br><span class="line">	LastState=NowState;</span><br><span class="line">	NowState=Key_GetState();</span><br><span class="line">	<span class="keyword">if</span>(LastState==<span class="number">1</span>&amp;&amp;NowState==<span class="number">0</span>)&#123;<span class="comment">//上一个状态非0，现在为0，表示按键松手</span></span><br><span class="line">		Key_KeyNumber=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(LastState==<span class="number">2</span>&amp;&amp;NowState==<span class="number">0</span>)&#123;</span><br><span class="line">		Key_KeyNumber=<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(LastState==<span class="number">3</span>&amp;&amp;NowState==<span class="number">0</span>)&#123;</span><br><span class="line">		Key_KeyNumber=<span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(LastState==<span class="number">4</span>&amp;&amp;NowState==<span class="number">0</span>)&#123;</span><br><span class="line">		Key_KeyNumber=<span class="number">4</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>核心逻辑是：通过判断20ms前（LastState）与20ms后（NowState）的电平变化来判断当前的按键状态。</p>
-<p>State=0表示按键接通，具体的关系如下：</p>
-<p>如果LastState=0，NowState=0，表示按键未按下；</p>
-<p>如果LastState=0，NowState=!0，表示按键刚按下；</p>
-<p>如果LastState=!0，NowState!=0，表示按键一直被按下；</p>
-<p>如果LastState=!0，NowState=0，表示按键刚放开；</p>
-<p>“按键刚放开的状态”（LastState=!0，NowState=0）可以代表按键已经完成按下这一动作，我们通过Key_GetState()函数获得瞬时捕获的State状态。Key_GetState()由原来的Key()改写而来：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="title">Key_GetState</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> KeyNum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(P3_1==<span class="number">0</span>)&#123;KeyNum=<span class="number">1</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(P3_0==<span class="number">0</span>)&#123;KeyNum=<span class="number">2</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(P3_2==<span class="number">0</span>)&#123;KeyNum=<span class="number">3</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(P3_3==<span class="number">0</span>)&#123;KeyNum=<span class="number">4</span>;&#125;</span><br><span class="line">	<span class="keyword">return</span> KeyNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>写到这里，Key_KeyNumber其实已经可以代表正确的消抖后的返回值了，我们再写一个Key()函数返回即可：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="title">Key</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> temp=<span class="number">0</span>;</span><br><span class="line">	temp=Key_KeyNumber;</span><br><span class="line">	Key_KeyNumber=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，我们不能直接<code>return Key_KeyNumber</code>，因为扫描是一直在进行的，每隔20msKey_KeyNumber就会更新一次。用一个例子来讲解：</p>
-<p>独立按键1在20ms时刻被按下，在这之前Key_KeyNumber=0，按下后Key_KeyNumber=1。</p>
-<p>若我们要判断60ms时按键的状态，按照实际情况，此时按键已经弹起，Key_KeyNumber应该=0，但由于再次调用时Key_KeyNumber没有重置，因此Key_KeyNumber仍然=1，与实际情况不符。</p>
-<table>
-<thead>
-<tr>
-<th align="center">时刻</th>
-<th align="center">0</th>
-<th align="center">20</th>
-<th align="center">40</th>
-<th align="center">60</th>
-<th align="center">80</th>
-<th align="center">100</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Key_KeyNumber</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody></table>
-<p>所以，我们每按一次就需要清零一次，可以用temp暂存一下，然后清零Key_KeyNumber，最终返回temp暂存的值。</p>
-<br>
-
-<br>
-
-<h3 id="2-修改数码管C文件：NiXie-c"><a href="#2-修改数码管C文件：NiXie-c" class="headerlink" title="2.修改数码管C文件：NiXie.c"></a>2.修改数码管C文件：NiXie.c</h3><p>先放出原先的NiXie.c文件内容：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;REGX52.H&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Delay.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> NiXieTable[]=&#123;<span class="number">0x3F</span>,<span class="number">0x06</span>,<span class="number">0x5B</span>,<span class="number">0x4F</span>,<span class="number">0x66</span>,<span class="number">0x6D</span>,<span class="number">0x7D</span>,<span class="number">0x07</span>,<span class="number">0x7F</span>,<span class="number">0x6F</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NiXie</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> location,number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">		<span class="keyword">switch</span>(location)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">4</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">5</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">6</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">7</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">8</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		P0=NiXieTable[number];</span><br><span class="line">		Delay(<span class="number">1</span>);</span><br><span class="line">		P0=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们用数码管来实现秒表的动态计时变化。在原先的NiXie.c中，我们为了消影会在段选结束后Delay(1)，然后将P0置0。</p>
-<p>出于同样的考量，我们选择用定时器实现同样的功能。</p>
-<p>下面是NiXie需要触发的中断，我们通过T0Count2进行计数，累计计数2次(每隔2ms)，触发一次NiXie_Loop()函数，并将T0Count2清零重新计数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Timer0_Routine</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> T0Count1,T0Count2,T0Count3;</span><br><span class="line">	TL0 = <span class="number">0x66</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	TH0 = <span class="number">0xFC</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	T0Count1++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count1&gt;=<span class="number">20</span>)<span class="comment">//每隔20ms检测一次</span></span><br><span class="line">	&#123;</span><br><span class="line">		T0Count1=<span class="number">0</span>;</span><br><span class="line">		Key_Loop();</span><br><span class="line">	&#125;</span><br><span class="line">	T0Count2++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count2&gt;=<span class="number">2</span>)<span class="comment">//每隔2ms检测一次</span></span><br><span class="line">	&#123;</span><br><span class="line">		T0Count2=<span class="number">0</span>;</span><br><span class="line">		NiXie_Loop();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>NiXie_Loop()函数如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NiXie_Loop</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;<span class="comment">//在中断函数中每隔2ms执行一次</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> i=<span class="number">1</span>;</span><br><span class="line">	NiXie_Scan(i,NiXie_Buf[i]);<span class="comment">//这里会每隔2ms向下扫描一位，总计16ms扫描完一轮8个数码管</span></span><br><span class="line">	i++;</span><br><span class="line">	<span class="keyword">if</span>(i&gt;<span class="number">8</span>)&#123;i=<span class="number">1</span>;&#125;<span class="comment">//i∈[1,8]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们通过调用NiXie_Scan函数实现对每一位的扫描，在对应位上显示的数字由NiXie_Buf[i]控制。NiXie_Scan()由原来的NiXie()改写而来：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NiXie_Scan</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> location,number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">		P0=<span class="number">0x00</span>;<span class="comment">//消影</span></span><br><span class="line">		<span class="keyword">switch</span>(location)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">4</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">5</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">6</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">7</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">8</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		P0=NiXieTable[number];<span class="comment">//这句执行完以后会过2ms再执行下一个NiXie_Scan。相当于Delay(2)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到，我们去掉了<code>Delay(1);</code>,同时将<code>P0=0x00;</code>放到了函数开头，这是因为NiXie_Loop()通定时器实现了Delay的功能，而将<code>P0=0x00;</code>放到函数开头可以实现函数执行结束后延时的无缝对接。</p>
-<p>我们对NiXieTable[]也做了一定修改，具体如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> NiXieTable[]=&#123;</span><br><span class="line"><span class="number">0x3F</span>,<span class="number">0x06</span>,<span class="number">0x5B</span>,<span class="number">0x4F</span>,<span class="number">0x66</span>,<span class="number">0x6D</span>,<span class="number">0x7D</span>,<span class="number">0x07</span>,<span class="number">0x7F</span>,<span class="number">0x6F</span>,<span class="number">0x00</span>,<span class="number">0x40</span>&#125;;</span><br><span class="line"><span class="comment">//0,1,2,3,4,5,6,7,8,NULL,-</span></span><br></pre></td></tr></table></figure>
-
-<p>NiXie_Buf[i]是我们想显示的数字与符号，我们先初始化：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> NiXie_Buf[<span class="number">9</span>]=&#123;<span class="number">0</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>NiXie_Buf长度为9是因为NiXie(i,NiXie_Buf[i])中的i∈[1,8]，下标范围为0~8方便直接调用。根据NiXieTable[]可知初始化为10表示清空数码管显示。</p>
-<p>这样，我只需要再定义一个NiXie_SetBuf()函数用于设定第location位显示的数字为number，在主函数中调用NiXie_SetBuf()函数即可控制数码管显示。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NiXie_SetBuf</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> location,number)</span></span>&#123;</span><br><span class="line">	NiXie_Buf[location]=number;<span class="comment">//设定第location位显示的数字为number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AT24C02的引脚及应用电路如下图所示：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/1-1.png" style="zoom:60%;">
 
 <br>
 
 <br>
 
-<h3 id="3-主函数编写"><a href="#3-主函数编写" class="headerlink" title="3.主函数编写"></a>3.主函数编写</h3><p>首先定义三个变量用于存放分、秒与百分秒：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> Min,Sec,MinSec;</span><br></pre></td></tr></table></figure>
+<h3 id="2-I2C总线简介及原理"><a href="#2-I2C总线简介及原理" class="headerlink" title="2.I2C总线简介及原理"></a>2.I2C总线简介及原理</h3><p>I2C总线（Inter IC BUS）是由Philips公司开发的一种通用数据总线。</p>
+<p>它具有两根通信线：SCL（Serial Clock）、SDA（Serial Data）。</p>
+<p>它有以下特点：同步、半双工，带数据应答。</p>
+<p>通用的I2C总线，可以使各种设备的通信标准统一，对于厂家来说，使用成熟的方案可以缩短芯片设计周期、提高稳定性，对于应用者来说，使用通用的通信协议可以避免学习各种各样的自定义协议，降低了学习和应用的难度。</p>
+<p>I2C的具体原理如下：</p>
+<ul>
+<li>所有I2C设备的SCL连在一起，SDA连在一起</li>
+<li>设备的SCL和SDA均要配置成开漏输出模式</li>
+<li>SCL和SDA各添加一个上拉电阻，阻值一般为4.7KΩ左右</li>
+<li>开漏输出和上拉电阻的共同作用实现了“线与”的功能，此设计主要是为了解决多机通信互相干扰的问题</li>
+</ul>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/2-1.png" style="zoom:60%;">
 
-<p>再定义一个变量用于控制按键：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> KeyNum;</span><br></pre></td></tr></table></figure>
+<p>简而言之：在默认状态下，SDA和SCL均处于高电平（置1）（挂起）状态，此时所有设备开关断开，均处于悬空状态；当SDA或SCL置0时，开关闭合，对应导线接地，即处于低电平（置0）（拉低）状态。</p>
+<p>通过控制SCL与SDA可以实现开关的闭合，从而实现通信。</p>
+<br>
 
-<p>最后定义一个变量用于控制按键1的开始与暂停状态：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> RunFlag;</span><br></pre></td></tr></table></figure>
+<br>
 
-<p>以上变量均为全局变量。</p>
-<p>在主函数中，我们需要实现“真正”的计时功能，再次复用定时器中断：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Timer0_Routine</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> T0Count1,T0Count2,T0Count3;</span><br><span class="line">	TL0 = <span class="number">0x66</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	TH0 = <span class="number">0xFC</span>;		<span class="comment">//设置定时初值</span></span><br><span class="line">	T0Count1++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count1&gt;=<span class="number">20</span>)<span class="comment">//每隔20ms检测一次</span></span><br><span class="line">	&#123;</span><br><span class="line">		T0Count1=<span class="number">0</span>;</span><br><span class="line">		Key_Loop();</span><br><span class="line">	&#125;</span><br><span class="line">	T0Count2++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count2&gt;=<span class="number">2</span>)<span class="comment">//每隔2ms检测一次</span></span><br><span class="line">	&#123;</span><br><span class="line">		T0Count2=<span class="number">0</span>;</span><br><span class="line">		NiXie_Loop();</span><br><span class="line">	&#125;</span><br><span class="line">	T0Count3++;</span><br><span class="line">	<span class="keyword">if</span>(T0Count3&gt;=<span class="number">10</span>)<span class="comment">//每隔10ms检测一次</span></span><br><span class="line">	&#123;</span><br><span class="line">		T0Count3=<span class="number">0</span>;</span><br><span class="line">		Sec_Loop();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-I2C数据帧"><a href="#3-I2C数据帧" class="headerlink" title="3.I2C数据帧"></a>3.I2C数据帧</h3><p>要实现”主机对指定从机发送指定信息”，或”主机从指定从机接收指定信息“的功能，需要多种数据帧进行拼接实现，下面介绍这些数据帧及对应的代码实现：</p>
+<p><strong>Start帧与Stop帧：</strong></p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/3-1.png" style="zoom:40%;">
 
-<p>Sec_Loop()函数用于控制时间的进位，具体代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Sec_Loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(RunFlag)&#123;<span class="comment">//RunFlag=1时才计时</span></span><br><span class="line">		MinSec++;</span><br><span class="line">		<span class="keyword">if</span>(MinSec&gt;=<span class="number">100</span>)&#123;<span class="comment">//10ms扫描一次，100次相当于过了1s，进位</span></span><br><span class="line">			MinSec=<span class="number">0</span>;</span><br><span class="line">			Sec++;</span><br><span class="line">			<span class="keyword">if</span>(Sec&gt;=<span class="number">60</span>)&#123;<span class="comment">//进位</span></span><br><span class="line">				Sec=<span class="number">0</span>;</span><br><span class="line">				Min++;</span><br><span class="line">				<span class="keyword">if</span>(Min&gt;=<span class="number">60</span>)&#123;<span class="comment">//进位</span></span><br><span class="line">					Min=<span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">I2C_Start</span><span class="params">()</span></span>&#123;</span><br><span class="line">	I2C_SDA=<span class="number">1</span>;<span class="comment">//若SCL先置1，则可能会读取SDA的数据，为了不产生影响先把SDA置1</span></span><br><span class="line">	I2C_SCL=<span class="number">1</span>;<span class="comment">//此时SCL与SDA均处于高电平，符合Start帧的初始条件</span></span><br><span class="line">	</span><br><span class="line">	I2C_SDA=<span class="number">0</span>;<span class="comment">//在SCL处于高电平时拉低SDA，表示开始</span></span><br><span class="line">	I2C_SCL=<span class="number">0</span>;<span class="comment">//SCL置0还原，对接后续帧</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>自此，所有的函数组件已经全部搭建完毕，main函数的编写就没有任何困难了：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  Timer0_Init();</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">		KeyNum=Key();</span><br><span class="line">		<span class="keyword">if</span>(KeyNum==<span class="number">1</span>)&#123;</span><br><span class="line">			RunFlag=!RunFlag;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(KeyNum==<span class="number">2</span>)&#123;</span><br><span class="line">			Min=<span class="number">0</span>;</span><br><span class="line">			Sec=<span class="number">0</span>;</span><br><span class="line">			MinSec=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(KeyNum==<span class="number">3</span>)&#123;</span><br><span class="line">			AT24C02_WriteByte(<span class="number">0</span>,Min);</span><br><span class="line">			Delay(<span class="number">5</span>);</span><br><span class="line">			AT24C02_WriteByte(<span class="number">1</span>,Sec);</span><br><span class="line">			Delay(<span class="number">5</span>);</span><br><span class="line">			AT24C02_WriteByte(<span class="number">2</span>,MinSec);</span><br><span class="line">			Delay(<span class="number">5</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(KeyNum==<span class="number">4</span>)&#123;</span><br><span class="line">			Min=AT24C02_ReadByte(<span class="number">0</span>);</span><br><span class="line">			Sec=AT24C02_ReadByte(<span class="number">1</span>);</span><br><span class="line">			MinSec=AT24C02_ReadByte(<span class="number">2</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		NiXie_SetBuf(<span class="number">1</span>,Min/<span class="number">10</span>);</span><br><span class="line">		NiXie_SetBuf(<span class="number">2</span>,Min%<span class="number">10</span>);</span><br><span class="line">		NiXie_SetBuf(<span class="number">3</span>,<span class="number">11</span>);</span><br><span class="line">		NiXie_SetBuf(<span class="number">4</span>,Sec/<span class="number">10</span>);</span><br><span class="line">		NiXie_SetBuf(<span class="number">5</span>,Sec%<span class="number">10</span>);</span><br><span class="line">		NiXie_SetBuf(<span class="number">6</span>,<span class="number">11</span>);</span><br><span class="line">		NiXie_SetBuf(<span class="number">7</span>,MinSec/<span class="number">10</span>);</span><br><span class="line">		NiXie_SetBuf(<span class="number">8</span>,MinSec%<span class="number">10</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
 
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">I2C_Stop</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//I2C_SCL=0;//此处SCL无需置0，是因为Stop帧都是跟在ACK帧后的，而ACK帧的SCL都以0结束</span></span><br><span class="line">	I2C_SDA=<span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	I2C_SCL=<span class="number">1</span>;</span><br><span class="line">	I2C_SDA=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><strong>SendByte帧：</strong></p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/3-2.png" style="zoom:40%;">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">I2C_SendByte</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> Byte)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> i,currentBit;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">		currentBit=Byte&amp;(<span class="number">0x80</span>&gt;&gt;i);</span><br><span class="line">		I2C_SDA=currentBit;</span><br><span class="line">		I2C_SCL=<span class="number">1</span>;<span class="comment">//I2C_SCL置1开始读取数据</span></span><br><span class="line">		I2C_SCL=<span class="number">0</span>;<span class="comment">//I2C_SCL置0结束读取数据</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：由于24C02的电气特性中，SCL灵敏度支持的最大频率为1000kHz(即只要电平持续时间大于1μs即可正常读取数据)。而11.0592MHz经过12分频后为921.6KHz，即约1.085μs翻转一下，再翻回来形成一个周期，即2.170μs。<br> 2.170&gt;1，因此I2C_SCL可以直接置1后置0。<br>同时，还需要满足24C02的电气特性中的时钟高电平宽度要求，该要求要求高电平持续时间至少0.4μs。 2.170&gt;0.4,因此I2C_SCL可以直接置1后置0。</p>
+<p>下图为24C02的电气特性表（部分）：</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/3-5.png" style="zoom:80%;">
+
+<br>
+
+<p><strong>ReceiveByte帧：</strong></p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/3-3.png" style="zoom:40%;">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="title">I2C_ReceiveByte</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> i,currentBit;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> Byte=<span class="number">0x00</span>;<span class="comment">//0000 0000</span></span><br><span class="line">	</span><br><span class="line">	I2C_SDA=<span class="number">1</span>;<span class="comment">//主机释放总线（松手悬挂），将控制权交给从机</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">		I2C_SCL=<span class="number">1</span>;<span class="comment">//I2C_SCL置1开始读取数据</span></span><br><span class="line">		currentBit=I2C_SDA;</span><br><span class="line">		<span class="keyword">if</span>(currentBit)&#123;</span><br><span class="line">			Byte|=(<span class="number">0x80</span>&gt;&gt;i);</span><br><span class="line">		&#125;</span><br><span class="line">		I2C_SCL=<span class="number">0</span>;<span class="comment">//I2C_SCL置0结束读取数据</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> Byte;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>SendAck帧与ReceiveAck帧：</strong></p>
+<p>Ack帧0表示收到，1表示未收到。</p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/3-4.png" style="zoom:40%;">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">I2C_SendAck</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> Ackbit)</span></span>&#123;<span class="comment">//此处也可以用bit类型，bit是C51中特有的数据类型，类似bool型，只有0和1</span></span><br><span class="line">	I2C_SDA=Ackbit;<span class="comment">//把数据放入I2C_SDA</span></span><br><span class="line">	I2C_SCL=<span class="number">1</span>;<span class="comment">//I2C_SCL置1开始读取I2C_SDA的数据</span></span><br><span class="line">	I2C_SCL=<span class="number">0</span>;<span class="comment">//I2C_SCL置0结束读取I2C_SDA的数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="title">I2C_ReceiveAck</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> Ackbit;</span><br><span class="line">	I2C_SDA=<span class="number">1</span>;<span class="comment">//主机释放总线（松手悬挂），将控制权交给从机</span></span><br><span class="line">	<span class="comment">//...			//此时从机会更改I2C_SDA的电平</span></span><br><span class="line">	I2C_SCL=<span class="number">1</span>;<span class="comment">//I2C_SCL置1开始读取I2C_SDA的数据</span></span><br><span class="line">	Ackbit=I2C_SDA;</span><br><span class="line">	I2C_SCL=<span class="number">0</span>;<span class="comment">//I2C_SCL置0结束读取I2C_SDA的数据</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> Ackbit;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="4-AT24C02数据帧"><a href="#4-AT24C02数据帧" class="headerlink" title="4.AT24C02数据帧"></a>4.AT24C02数据帧</h3><p>AT24C02的数据帧就由上面的六中最基本的数据帧拼凑而成。具体的拼凑方式及对应代码如下：</p>
+<p><strong>字节写：</strong></p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/4-1.png" style="zoom:60%;">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AT24C02_WriteByte</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> WordAddress,Data)</span></span>&#123;</span><br><span class="line">	I2C_Start();</span><br><span class="line">	I2C_SendByte(AT24C02_ADDRESS);</span><br><span class="line">	I2C_ReceiveAck();</span><br><span class="line">	I2C_SendByte(WordAddress);</span><br><span class="line">	I2C_ReceiveAck();</span><br><span class="line">	I2C_SendByte(Data);</span><br><span class="line">	I2C_ReceiveAck();</span><br><span class="line">	I2C_Stop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><strong>随机读：</strong></p>
+<img src="/Blog.io/assets/img/STM51单片机学习记录（八）AT24C02实现掉电存储/4-2.png" style="zoom:60%;">
+
+<p>这里讲解一下随机读的逻辑：</p>
+<p>开始→主机声明要读的设备（此处需要SLAVE ADDRESS+W而非SLAVE ADDRESS+R是为了继续发送WordAddress）→主机接收从机的ACK→主机声明读的设备的具体位置（要在该设备的哪个地址写入）主机接收从机的ACK→</p>
+<p>重新开始，把控制权交给从机→主机声明要读的设备（要读哪个设备）→主机接收从机的ACK→主机读取从机发到SDA线上的数据→主机发送ACK表示是否接收到从机发来的数据（此处SendAck为0为1均可）→结束</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="title">AT24C02_ReadByte</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> WordAddress)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> Data;</span><br><span class="line">	I2C_Start();</span><br><span class="line">	I2C_SendByte(AT24C02_ADDRESS);</span><br><span class="line">	I2C_ReceiveAck();</span><br><span class="line">	I2C_SendByte(WordAddress);</span><br><span class="line">	I2C_ReceiveAck();</span><br><span class="line">	I2C_Start();</span><br><span class="line">	I2C_SendByte(AT24C02_ADDRESS|<span class="number">0X01</span>);</span><br><span class="line">	I2C_ReceiveAck();	</span><br><span class="line">	Data=I2C_ReceiveByte();</span><br><span class="line">	I2C_SendAck(<span class="number">1</span>);</span><br><span class="line">	I2C_Stop();</span><br><span class="line">	<span class="keyword">return</span> Data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：AT24C02的固定地址为1010，本开发板上的可配置地址为000，所以SLAVE ADDRESS+W为0xA0，SLAVE ADDRESS+R为0xA1。</p>
+<br>
+
+<br>
+
+<h3 id="5-利用AT24C02实现掉电存储数据"><a href="#5-利用AT24C02实现掉电存储数据" class="headerlink" title="5.利用AT24C02实现掉电存储数据"></a>5.利用AT24C02实现掉电存储数据</h3><p>功能如下：</p>
+<p>初始状态：LCD1602显示5个0。</p>
+<p>按独立按键1：显示数值+1。</p>
+<p>按独立按键2：显示数值-1。</p>
+<p>按独立按键3：把数据存至AT24C02，显示写入成功。</p>
+<p>按独立按键4：将AT24C02中的数据读出，显示读出成功。</p>
+<br>
+
+<p>具体代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;REGX52.H&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"LCD1602.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Delay.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Key.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AT24C02.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> KeyNum;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> Num;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	LCD_Init();</span><br><span class="line">	LCD_ShowNum(<span class="number">1</span>,<span class="number">1</span>,Num,<span class="number">5</span>);</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">		KeyNum=Key();</span><br><span class="line">		<span class="keyword">if</span>(KeyNum==<span class="number">1</span>)&#123;</span><br><span class="line">			Num++;</span><br><span class="line">			LCD_ShowNum(<span class="number">1</span>,<span class="number">1</span>,Num,<span class="number">5</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(KeyNum==<span class="number">2</span>)&#123;</span><br><span class="line">			Num--;</span><br><span class="line">			LCD_ShowNum(<span class="number">1</span>,<span class="number">1</span>,Num,<span class="number">5</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(KeyNum==<span class="number">3</span>)&#123;</span><br><span class="line">			AT24C02_WriteByte(<span class="number">0</span>,Num%<span class="number">256</span>);<span class="comment">//Num有16位，在0位置存入低8位</span></span><br><span class="line">			Delay(<span class="number">5</span>);</span><br><span class="line">			AT24C02_WriteByte(<span class="number">1</span>,Num/<span class="number">256</span>);<span class="comment">//Num有16位，在1位置存入高8位</span></span><br><span class="line">			Delay(<span class="number">5</span>);</span><br><span class="line">			LCD_ShowString(<span class="number">2</span>,<span class="number">1</span>,<span class="string">"Write OK!"</span>);</span><br><span class="line">			Delay(<span class="number">1000</span>);</span><br><span class="line">			LCD_ShowString(<span class="number">2</span>,<span class="number">1</span>,<span class="string">"         "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(KeyNum==<span class="number">4</span>)&#123;</span><br><span class="line">			Num=AT24C02_ReadByte(<span class="number">0</span>);<span class="comment">//精度低的赋值给精度高的，高位自动补零；精度高的赋值给精度低的，从低位开始保留</span></span><br><span class="line">			Num|=AT24C02_ReadByte(<span class="number">1</span>)&lt;&lt;<span class="number">8</span>;<span class="comment">//这里会先将AT24C02_ReadByte(1)转换为16位并将高8位补0，因此在左移8位后不会清零</span></span><br><span class="line">			LCD_ShowNum(<span class="number">1</span>,<span class="number">1</span>,Num,<span class="number">5</span>);</span><br><span class="line">			LCD_ShowString(<span class="number">2</span>,<span class="number">1</span>,<span class="string">"Read OK!"</span>);</span><br><span class="line">			Delay(<span class="number">1000</span>);</span><br><span class="line">			LCD_ShowString(<span class="number">2</span>,<span class="number">1</span>,<span class="string">"        "</span>);			</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，同样由于24C02的电气特性，在字节写的时候需要有5ms的延迟确保写入成功，因此需要在AT24C02_WriteByte后Delay(5)。</p>
 
       
 
@@ -406,7 +410,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B9%9D%EF%BC%89%E9%80%9A%E8%BF%87%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%8A%96/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89%E9%80%9A%E8%BF%87AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -420,9 +424,18 @@
   
 <nav id="article-nav">
   
+    <a href="/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B9%9D%EF%BC%89%E9%80%9A%E8%BF%87%E7%A7%92%E8%A1%A8%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E9%80%9A%E8%BF%87%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%8A%96/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          STM51单片机学习记录（九）通过秒表项目学习通过定时器实现消抖
+        
+      </div>
+    </a>
   
-    <a href="/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">STM51单片机学习记录（八）AT24C02实现掉电存储</div>
+  
+    <a href="/Blog.io/2024/07/22/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%83%EF%BC%89%E8%9C%82%E9%B8%A3%E5%99%A8%E6%BC%94%E5%A5%8F%E9%9F%B3%E4%B9%90%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STM51单片机学习记录（七）蜂鸣器演奏音乐设计思路</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -600,23 +613,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">私密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,7 +641,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,11 +649,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,6 +662,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
