@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%EF%BC%89unsigned%20char%E4%B8%8Ebit%E7%9A%84%E9%99%B7%E9%98%B1/1-1.png">
 <meta property="article:published_time" content="2024-07-25T20:42:30.344Z">
-<meta property="article:modified_time" content="2024-07-25T21:26:15.648Z">
+<meta property="article:modified_time" content="2024-07-25T21:41:14.434Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM51">
@@ -258,10 +258,9 @@
 <p>原因就在于，我们在OneWire_SendByte()函数中，通过调用OneWire_SendBit()，传入的参数为：Byte&amp;(0x01&lt;&lt;i)，这实际上是一个无符号八位字节型数据，如：0b 1010 1100。</p>
 <p>而我们在写OneWire_SendBit()时，可能会由于书写习惯，将Bit形参定义为unsigned char类型，这就使得会导致if判断出现错误：方法二和方法四中均存在if(Bit==1)的判断，而实际上传入的参数并不一定是1，可能是其他的非0值，在逻辑上我们认为其应该与1等价，但程序由于已经预设了传入参数的类型为unsigned char，因此在传入非0非1值时不会执行对应的代码。</p>
 <p>在修改传入参数后，方法二和方法四同样可以正常示数了，下面以方法二为例：</p>
-<p>方法二：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OneWire_SendBit</span><span class="params">(<span class="built_in">bit</span> Bit)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> i;</span><br><span class="line">	OneWire_DQ=<span class="number">1</span>;<span class="comment">//由于OneWire_SendBit肯定跟在OneWire_Init后面，如果从机应答成功，此时OneWire_DQ=0，因此本句写不写都行</span></span><br><span class="line">    </span><br><span class="line">	<span class="comment">//if判断法：</span></span><br><span class="line">	<span class="keyword">if</span>(Bit==<span class="number">0</span>)&#123;</span><br><span class="line">		OneWire_DQ=<span class="number">0</span>;</span><br><span class="line">		i = <span class="number">41</span>;<span class="keyword">while</span> (--i);	<span class="comment">//Delay 90μs	</span></span><br><span class="line">		OneWire_DQ=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(Bit==<span class="number">1</span>)&#123;</span><br><span class="line">		OneWire_DQ=<span class="number">0</span>;</span><br><span class="line">		i = <span class="number">4</span>;<span class="keyword">while</span> (--i);	<span class="comment">//Delay 10μs	</span></span><br><span class="line">		OneWire_DQ=<span class="number">1</span>;</span><br><span class="line">		i = <span class="number">25</span>;<span class="keyword">while</span> (--i); <span class="comment">//Delay 60μs</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这是因为当传入参数为Byte&amp;(0x01&lt;&lt;i)时，由于预设的传入参数的类型为bit型，程序会自动执行类型转换，将unsigned char转换为bit，即将非0非1值转化为1，这样就不会出现问题了。</p>
+<p>这是因为当传入参数为Byte&amp;(0x01&lt;&lt;i)时，预设的传入参数的类型为bit型，程序会自动执行类型转换，将unsigned char转换为bit，即将非0非1值转化为1，这样就不会出现问题了。</p>
 
       
 
@@ -529,11 +528,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,14 +552,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
               </li>
              
@@ -561,23 +560,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,6 +573,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
