@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>真货 | 观测的博客</title>
+  <title>STM51单片机学习记录（十三）外接直流电机时进行程序烧录需要注意的事项 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Chapter.1破烂不堪的军用载货车在荒草丛生的郊野上低鸣。 车很长，看上去不是常见的作战运输两用车，更像是已经被淘汰的上一代主运输用途的车，跑起来比现代的两用车更快些，但是因为不灵活以及不适合武器的搭载而被军方淘汰。 车轮下是两道长长的泥痕，像一条暗蟒，在深夜的掩护下潜行。 车上一共有五个人，都穿着迷彩的军装，虽然已经是深夜，但是所有人都捏着手里的枪，打着十二分的精神。 没有人希望这次的任务失">
+  <meta name="description" content="在开发板需要外接直流电机时，不能在已经外接电机的情况下烧录程序。应该按照如下步骤： 程序编译→启动按键→程序烧录→关闭按键→外接电机→更换电源→启动按键 如果直接在已经外接的电机的情况下烧录，会出现电脑无法识别串口的情况出现，也就无法烧录成功。 在程序烧录好以后再外接电机时，如果连接的电源是电脑电源，会出现程序无法正常执行的现象。而在连接其他电源时可以正常工作，暂不知道出现此现象的原因。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="真货">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2021/03/14/%E7%9C%9F%E8%B4%A7/index.html">
+<meta property="og:title" content="STM51单片机学习记录（十三）外接直流电机时进行程序烧录需要注意的事项">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/07/27/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="Chapter.1破烂不堪的军用载货车在荒草丛生的郊野上低鸣。 车很长，看上去不是常见的作战运输两用车，更像是已经被淘汰的上一代主运输用途的车，跑起来比现代的两用车更快些，但是因为不灵活以及不适合武器的搭载而被军方淘汰。 车轮下是两道长长的泥痕，像一条暗蟒，在深夜的掩护下潜行。 车上一共有五个人，都穿着迷彩的军装，虽然已经是深夜，但是所有人都捏着手里的枪，打着十二分的精神。 没有人希望这次的任务失">
+<meta property="og:description" content="在开发板需要外接直流电机时，不能在已经外接电机的情况下烧录程序。应该按照如下步骤： 程序编译→启动按键→程序烧录→关闭按键→外接电机→更换电源→启动按键 如果直接在已经外接的电机的情况下烧录，会出现电脑无法识别串口的情况出现，也就无法烧录成功。 在程序烧录好以后再外接电机时，如果连接的电源是电脑电源，会出现程序无法正常执行的现象。而在连接其他电源时可以正常工作，暂不知道出现此现象的原因。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-14T09:09:18.000Z">
-<meta property="article:modified_time" content="2024-07-09T18:52:56.000Z">
+<meta property="article:published_time" content="2024-07-27T15:37:11.269Z">
+<meta property="article:modified_time" content="2024-07-27T15:45:44.345Z">
 <meta property="article:author" content="观测">
-<meta property="article:tag" content="随笔">
+<meta property="article:tag" content="个人学习">
+<meta property="article:tag" content="STM51">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
@@ -168,7 +169,7 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-真货" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-STM51单片机学习记录（十三）外接直流电机时进行程序烧录需要注意的事项" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -177,169 +178,29 @@
 <center><p>
   
     <h1 class="article-title_code_ant" itemprop="name">
-      真货
+      STM51单片机学习记录（十三）外接直流电机时进行程序烧录需要注意的事项
     </h1>
   
 </p></center>
 
         
-        <a href="/Blog.io/2021/03/14/%E7%9C%9F%E8%B4%A7/" class="archive-article-date">
-  	<time datetime="2021-03-14T09:09:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
+        <a href="/Blog.io/2024/07/27/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
+  	<time datetime="2024-07-27T15:37:11.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-27</time>
 </a>
         
       </header>
     
 <!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-          <span class="btn-bg"></span>
-          <span class="btn-text">文章导航</span>
-          </p>
-	<div id="toc-article" class="toc-article">
-	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Chapter-1"><span class="toc-number">1.</span> <span class="toc-text">Chapter.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chapter-2"><span class="toc-number">2.</span> <span class="toc-text">Chapter.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chapter-3"><span class="toc-number">3.</span> <span class="toc-text">Chapter.3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chapter-4"><span class="toc-number">4.</span> <span class="toc-text">Chapter.4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chapter-5"><span class="toc-number">5.</span> <span class="toc-text">Chapter.5</span></a></li></ol>
-         </div>
-   <script type="text/javascript">
-	function showToc(){
-		var toc_article = document.getElementById("toc-article");
-		var show_toc_btn = document.getElementById("show-toc-btn");
-		toc_article.setAttribute("style","display:block");
-		show_toc_btn.setAttribute("style","display:none");
-		};
-	function showBtn(){
-		var toc_article = document.getElementById("toc-article");
-		var show_toc_btn = document.getElementById("show-toc-btn");
-		toc_article.setAttribute("style","display:none");
-		show_toc_btn.setAttribute("style","display:block");
-		};
-   </script>
-      		
+		
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter.1"></a>Chapter.1</h3><p>破烂不堪的军用载货车在荒草丛生的郊野上低鸣。</p>
-<p>车很长，看上去不是常见的作战运输两用车，更像是已经被淘汰的上一代主运输用途的车，跑起来比现代的两用车更快些，但是因为不灵活以及不适合武器的搭载而被军方淘汰。</p>
-<p>车轮下是两道长长的泥痕，像一条暗蟒，在深夜的掩护下潜行。</p>
-<p>车上一共有五个人，都穿着迷彩的军装，虽然已经是深夜，但是所有人都捏着手里的枪，打着十二分的精神。</p>
-<p>没有人希望这次的任务失败。</p>
-<a id="more"></a>
-<p> &emsp;</p>
-<p>“老鬼，你说上头说的真货，在我们这儿不？”坐在靠近车头的瘦小伙回过头来，对着一旁低着头的胡茬男问道。</p>
-<p>“不知道，鬼知道这破箱子里头的是真的还是假的。”被瘦小伙叫做“老鬼”的士兵用腿轻轻踢了踢放在车子中间的箱子，“瘦猴，你不是最近和大烟枪混得挺好么？怎么，他没和你透露点？”</p>
-<p>瘦猴耸了耸肩：“大烟枪？他知道个屁？他虽然比我们职位高点，但也就一破团长，按照他当时的形容，这种玩意他能知道才是真的有鬼了。”瘦猴也用力踢了一脚箱子，但很快就把脚缩了回来，“草，真他妈疼，这玩意还挺沉。”</p>
-<p>瘦猴瞥了一眼车尾，小声嘟囔道：“也不知道大烟枪为啥给我们这队安排了个女同志，还从来没见过，这玩意就够沉了，没她车还能跑快点……”</p>
-<p>“别瞎嘟囔，保不齐是大烟枪送给司令的礼物……”在瘦猴和老鬼旁边的胖士兵用枪尾戳了戳瘦猴，示意他别再说了。</p>
-<p> &emsp;</p>
-<p>车尾躺着一名女性，看上去大概二十出头的样子，样貌算不算出众，但是在这样一个战争年代，看上去却很是清秀。奇怪的是她从上车前开始就一直没睁开过眼睛，瘦猴在出发前偷偷问过大烟枪，大烟枪只是摆摆手，用食指指了指上面，瘦猴也就不再问了。</p>
-<p>反正是都上面的意思，他和大烟枪都只是军队的齿轮而已，执行任务就可以了。</p>
-<p>车子颠簸了一下，一只黄鼠狼的尸体滚上了车轮的泥印。</p>
-<p> &emsp;<br> &emsp;</p>
-<p>二十小时前。</p>
-<p>“听好了，这次是最高层派下来的任务，所有等级都是最高级……”大烟枪点了一杆烟，云雾冲着昏暗的灯漫了上去，火星子弹在脚边，很快就熄灭了。</p>
-<p>“你们的任务，是护送，明天会有一个箱子给到你们手里。你们负责把它运到北国的边界镇，那里会有人接应你们。”</p>
-<p>大烟枪把烟杆子放在一旁，从桌子的抽屉里拿出一份地图来，双手一展，平铺在桌子上。</p>
-<p>“就是这里，北国边境镇，从咱们这到那儿最快只要一天的时间。上头对这次的任务很重视，你们在保证安全的情况下能快则快。同时，这次的保密等级也是最高等，除了你们以外还有很多人执行同样的任务，会在不同的时间从不同的营地出发，你们中只有一个运的是真货，但你们不用管那么多，运过去，交接，就可以了。”</p>
-<p>房顶的吊灯晃了晃，昏黄的灯光让本来就很简陋的小屋更显得残破。</p>
-<p>几个士兵互相看了一眼，立正，军礼：“是！保证完成任务！”</p>
-<p>大烟枪重新拿回烟杆：“很好，早点回去休息，这次任务要是能完成，你们最起码都能到我这个位置。”</p>
-<p>瘦猴等人的脸色明显变了变，军礼行地更标准了。</p>
-<p>“对了，要是你们遇到了我军的其他人，就算对方呼叫，也不要理会，尽量避开，还是那句话，这次的保密性很高，不要节外生枝。”</p>
-<p>“是！保证完成任务！”</p>
-<p> &emsp;</p>
-<p>等士兵们离去后，大烟枪长吸了一口烟，又重重地吐了出来。</p>
-<p>他将烟杆子重重地掰断，随后转过身，木门被嘎吱声合上。</p>
-<p>那天晚上的月亮被深深地藏在云层后面。</p>
-<p> &emsp;<br> &emsp;</p>
-<h3 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter.2"></a>Chapter.2</h3><p>从地图上的距离来看，最多还有六个小时的时间，就应该能到北国边境镇了。</p>
-<p>烈风如同刀子，在军人们的脸上划刺着，车子已经开进了一个小森林里，道路很不好开，几乎每一秒都在颠簸。</p>
-<p>林中有不少运输用小径，错综复杂，像是盘缠在一起的许多大蟒。偶见的几棵合抱粗的巨木就如同叉戟一般，刺裂了蟒蛇们的七寸。</p>
-<p>这里是最靠近北境的森林。</p>
-<p>在当地原住民的称呼里，它被称为“被乌鸦遗弃的森林”。</p>
-<p> &emsp;</p>
-<p>“滴——前方的车辆，立即停车，重复一遍，立即停车！”</p>
-<p>军用对讲机突然传来了讯号，除非频段被破译，否则只有同一营地的友军才能进行对话。</p>
-<p>大概是边境巡逻队那边的人吧。平时负责联络的胖军人刚按下对讲机的联络按键，</p>
-<p>“砰——”熟悉得不能再熟悉的枪声响起，一枪打在了车子的侧面，差点击中了轮胎。</p>
-<p>车子紧急改变着行驶的轨迹，同时加速，试图甩开跟在身后却不知在何处的“友军”。</p>
-<p>“草！巡逻队的人什么时候这么不讲理了——这里是8421支队，请停止你的攻击，重复，这里是……”</p>
-<p>“砰——”又是一声枪响，这一下差点打到驾驶员的脑袋。</p>
-<p>“这里是8527，请立即停下你们的车辆，上交你们的人员，这里——滋——滋————”</p>
-<p>信号中断，尚且不知道是什么原因，对讲机再也传不出有效的信息，只有嘈杂的白噪音在不停作响。虽然枪声、汽车行驶声，各种声音在空气中翻滚，但是这滋滋的噪音却如同附骨之疽，侵染着每个人的耳膜。</p>
-<p>攻击没有停止，枪声一直在响，林中的视野很有限，再加上是夜晚，军人们看不清8527的车辆到底在哪里。</p>
-<p>“妈的，这都什么玩意？自己人打自己人？”瘦猴跳了起来，对着枪声的来源也放了两枪，子弹就如同破晓的利箭，但也迅速融化在了黑夜之中。</p>
-<p>司机则是尽力伏低身子防止被突如其来的子弹击中：“8527应该是叛变了要劫货，这帮最靠近边境的家伙就是不可靠。”</p>
-<p>“加速，全力甩开他们！”老鬼嘶哑着嗓子吼道。</p>
-<p>他可不想死在叛军的枪口下，当兵的每个人都做好了随时赴死的准备，但一定是在杀敌的战场，而不是内乱的闹剧中。</p>
-<p>车子试图提速，但是地形本就崎岖不平，一提速更是让所有人都颠簸不堪。</p>
-<p>“胖子，保护好箱子！再把那个女的拉过来，别让她被流弹打中了！大驴子，再开快点啊，你平时和我炫耀你以前的飙车技术呢？！”</p>
-<p>老鬼作为团队的小指挥，在大烟枪不在的时候，他就是团队的主心骨。</p>
-<p>“瘦猴，你和我准备迎击，不能让这群畜生嚣张。”</p>
-<p>“他妈的用你说？老子早就在换子弹了。”</p>
-<p> &emsp;</p>
-<p>边境的密林枪声四起，鸟兽惊走，枝叶残败。</p>
-<p>云层叠起，归于寂静。</p>
-<p>&emsp;<br>&emsp;</p>
-<h3 id="Chapter-3"><a href="#Chapter-3" class="headerlink" title="Chapter.3"></a>Chapter.3</h3><p>身体好痛。</p>
-<p>我试图挪动我的手臂，瞬间一阵剧烈的疼痛传来，如同针刺。</p>
-<p>腿部已经失去了知觉，勉强睁开了眼睛，能看到压在腿上的车子的废壳。</p>
-<p>周围很黑，能感受到雨水淋在自己的身上，雨水很大，几乎要让我窒息。</p>
-<p>往上看，透过树林的枝叶，能勉强看见寥寥的星点，但是看不见月亮。</p>
-<p>“哑——哑————”树枝上的乌鸦突然尖利地叫了起来，刺得我的耳膜生疼。</p>
-<p>我是谁？</p>
-<p>我为什么会在这里？</p>
-<p>像是想起了什么，我急忙试图起身，但是身上的车子完全将我的下半身压死。</p>
-<p> &emsp;</p>
-<p>我叫妍，是特定血清的拥有者，被军方发现后，他们决定将我将我送给中央最高院的那群疯狂的科学家，据说如果能够成功，我的血清或许能够成为大范围生化杀伤武器的根本。</p>
-<p>我是一名军人，服从命令是我的天职，虽然我觉得使用这种武器有悖战争的道德，但既然是命令，那么我愿意成为那个牺牲品。</p>
-<p>只是有一点遗憾，我的未婚夫，那个什么都好只是平时抽烟的男人，又多了一点不好。</p>
-<p>我希望他在这件事上能为我做点什么，虽然注定是无意义的，但是他不仅什么都没有做，反而在知道了以后就再也没有与我有过交谈。</p>
-<p>我很爱他，我也能理解他，就当是我的一点小遗憾吧。</p>
-<p>不是作为一名军人，而是作为一名女人。</p>
-<p> &emsp;</p>
-<p>按理来说，中央最高院那边会派来保护队，在今天把我带走。</p>
-<p>可是现在是什么情况？为什么我一觉醒来就在这里？保护队被劫持了么？是敌国的间谍？</p>
-<p>从营地到最高院，应该不需要经过什么森林。</p>
-<p> &emsp;</p>
-<p>我尽力试图理解眼前发生的事情：我被一辆几乎报废的车子压住，周围是大量的断木残枝，再往上看能看见一处断崖，车子应该是因为从上面翻滚下来，从而导致了现在的状况。</p>
-<p>不远处有一具男人的尸体，应该是尸体吧，背靠着断崖坐着，被雨水冲刷而一动不动，就像是路边随处可见的土疙瘩。</p>
-<p>回头看向车子，里面似乎也有几具尸体，断手断脚被胡乱得扯碎，即使是平日接受了大量残酷的训练的士兵，在强大的物理法则面前，依然是没有任何讨价还价的余地。</p>
-<p>费力地用手撑起地面，水花溅起，幸亏双腿失去了知觉，才能勉强把它从车下拔出来，不然怕是会痛得失去知觉。</p>
-<p>头脑一阵晕眩，大出血让我身体的机能迅速下降，简单的包扎大概已经没有用了吧。</p>
-<p>一点一点地向前面的那个男人的尸体靠近，别的人应该是在车子翻下来的一瞬间就死了，他应该没有立刻死去，才有能力走到这个地方坐下。</p>
-<p> &emsp;</p>
-<p>男人的尸体比较完好，脸上的胡茬十分醒目。身上虽然有多处受伤，但是大多不是致命伤。胸口被血浸染，左手的枪对准着自己的心脏，右手则死死地捏着一只黑色的对讲机。</p>
-<p>森林还是森林，乌鸦还是乌鸦，人还是人。</p>
-<p>大雨依然在下着。</p>
-<p> &emsp;<br> &emsp;</p>
-<h3 id="Chapter-4"><a href="#Chapter-4" class="headerlink" title="Chapter.4"></a>Chapter.4</h3><p>这里是8421支队，在执行任务的过程中除了我和一名女性，全军覆灭。我们对自己的罪行供认不讳，叛国性质恶劣，很快我也会自杀，但请允许我用录音记录下本次不应存在的任务的记录。</p>
-<p>本支队接受了来自上级的护送任务，根据任务描述，需要我们将货物运送到北国的边境镇，会有人员接应，保密性为最高级。</p>
-<p>但事实并非如此，没有人会接应我们，也不存在什么货物，这也并非是什么任务，而是一场彻头彻尾的叛国行动。</p>
-<p>说不存在货物可能不大恰当，真要说的话，那名女性其实才是我们真正的运送对象。</p>
-<p>在查看了她的相关证件和身上的一封信件后，我才明白这一切背后的真相。</p>
-<p>我们在任务过程中还遇到了前来追查的8527支队，很抱歉，在尚不知道真相的情况下与友军进行了交火，最终被逼下了断崖，造成了现在的结果。</p>
-<p>下面不属于本次任务记录，只是我自己的一些想法，也算我的遗言。</p>
-<p>这是一次叛国行动，作为一名军人，我为自己的行为不齿，为伤害了友军与同胞而惭愧，为背叛了自己的国家而无地自容。</p>
-<p>但作为一个人，我不认我们的行动是错误的，也不认为团长是错误的。</p>
-<p>再见了，这个世界。</p>
-<p>我将为自己赎罪。</p>
-<p> &emsp;<br> &emsp;</p>
-<h3 id="Chapter-5"><a href="#Chapter-5" class="headerlink" title="Chapter.5"></a>Chapter.5</h3><p>妍，当你读到这封信的时候，说明他们应该已经把你送出国境了。你现在在北国的边境镇，悄悄地离开这个国家，越远越好。</p>
-<p>很抱歉，这是我自己的一点小私心，我做不到眼睁睁看着你成为实验的牺牲品。只能用这样的方法，让你离开这个已经疯狂的国度。</p>
-<p>如果你见到了我的那些兄弟们，希望你能替我向他们道歉，他们也再也无法回到这里，这件事很快就会暴露，你们会成为全国通缉的“罪人”。</p>
-<p>还记得我们第一次见面，那还是和平年代，你和我相遇在长长的坡道上，那个春天，整个坡道上的樱花树都为你绽放。</p>
-<p>我们是那么意趣相投，朋友们都夸我们是天生一对。湖畔的小船、长桥的晚月、寂静的山林…….</p>
-<p>后来战争开始了，我和你都选择了为国而战。</p>
-<p>我们有两个约定，一个是我会把这烟给戒了。还有一个就是，等战争结束，我们就结婚，然后幸福地度过这一生。</p>
-<p>现在看来，这两个约定可能都无法实现了，我已经无路可逃，也无路可退，只能希望你能好好地，一定要好好地活下去。</p>
-<p>我给你写过很多情书，这应该是最后一封了。</p>
-<p>一定要，过得好好的。</p>
-<p>真希望，能和你再看一次初见的樱花。</p>
-<p> &emsp;</p>
-<p align="right">——你的大烟枪</p>
+        <br>
 
-
-
+<p>在开发板需要外接直流电机时，不能在已经外接电机的情况下烧录程序。应该按照如下步骤：</p>
+<p>程序编译→启动按键→程序烧录→关闭按键→外接电机→更换电源→启动按键</p>
+<p>如果直接在已经外接的电机的情况下烧录，会出现电脑无法识别串口的情况出现，也就无法烧录成功。</p>
+<p>在程序烧录好以后再外接电机时，如果连接的电源是电脑电源，会出现程序无法正常执行的现象。而在连接其他电源时可以正常工作，暂不知道出现此现象的原因。</p>
 
       
 
@@ -353,7 +214,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
         		</li>
       		
 		</ul>
@@ -409,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2021/03/14/%E7%9C%9F%E8%B4%A7/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/07/27/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -423,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2021/03/24/Matlab%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Matlab练习笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2020/10/18/%E6%88%91%E6%98%AFfw/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">我是fw</div>
+    <a href="/Blog.io/2024/07/27/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89LCD1602%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E6%A8%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STM51单片机学习记录（十二）LCD1602自定义字模</div>
       <i class="icon-circle-right"></i>
     </a>
   
