@@ -166,6 +166,279 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-STM51单片机学习记录（八）通过AT24C02实现掉电存储" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89%E9%80%9A%E8%BF%87AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/">STM51单片机学习记录（八）通过AT24C02实现掉电存储</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89%E9%80%9A%E8%BF%87AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/" class="archive-article-date">
+  	<time datetime="2024-07-24T12:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-24</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="1-AT24C02简介"><a href="#1-AT24C02简介" class="headerlink" title="1.AT24C02简介"></a>1.AT24C02简介</h3><p>AT24C02是一种可以实现掉电不丢失的存储器，可用于保存单片机运行时想要永久保存的数据信息存储介质：E2PROM通讯接口：I2C总线容量：256字节。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89%E9%80%9A%E8%BF%87AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/07/24/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AB%EF%BC%89%E9%80%9A%E8%BF%87AT24C02%E5%AE%9E%E7%8E%B0%E6%8E%89%E7%94%B5%E5%AD%98%E5%82%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-STM51单片机学习记录（七）蜂鸣器演奏音乐设计思路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/07/22/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%83%EF%BC%89%E8%9C%82%E9%B8%A3%E5%99%A8%E6%BC%94%E5%A5%8F%E9%9F%B3%E4%B9%90%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/">STM51单片机学习记录（七）蜂鸣器演奏音乐设计思路</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/07/22/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%83%EF%BC%89%E8%9C%82%E9%B8%A3%E5%99%A8%E6%BC%94%E5%A5%8F%E9%9F%B3%E4%B9%90%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/" class="archive-article-date">
+  	<time datetime="2024-07-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-22</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>蜂鸣器是一种将电信号转换为声音信号的器件，常用来产生设备的按键音、报警音等提示信号。</p>
+<p>蜂鸣器按驱动方式可分为有源蜂鸣器和无源蜂鸣器。</p>
+<ul>
+<li><p>有源蜂鸣器：内部自带振荡源，将正负极接上直流电压即可持续发声，频率固定。</p>
+</li>
+<li><p>无源蜂鸣器：内部不带振荡源，需要控制器提供振荡脉冲才可发声，调整提供振荡脉冲的频率，可发出不同频率的声音。</p>
+</li>
+</ul>
+<p>如果需要实现演奏音乐的功能，需要使用无源蜂鸣器。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2024/07/22/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%83%EF%BC%89%E8%9C%82%E9%B8%A3%E5%99%A8%E6%BC%94%E5%A5%8F%E9%9F%B3%E4%B9%90%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/07/22/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%83%EF%BC%89%E8%9C%82%E9%B8%A3%E5%99%A8%E6%BC%94%E5%A5%8F%E9%9F%B3%E4%B9%90%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-STM51单片机学习记录（六）DS1302时钟" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/07/17/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/">STM51单片机学习记录（六）DS1302时钟</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/07/17/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/" class="archive-article-date">
+  	<time datetime="2024-07-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-17</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>DS1302是由美国DALLAS公司推出的具有涓细电流充电能力的低功耗实时时钟芯片。它可以对年、月、日、周、时、分、秒进行计时，且具有闰年补偿等多种功能。</p>
+<p>RTC(Real Time Clock)：实时时钟，是一种集成电路，通常称为时钟芯片</p>
+        
+          <a class="article-more-a" href="/Blog.io/2024/07/17/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/07/17/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89DS1302%E6%97%B6%E9%92%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-STM51单片机学习记录（五）LED点阵屏幕" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -182,7 +455,7 @@
 
         
         <a href="/Blog.io/2024/07/16/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89LED%E7%82%B9%E9%98%B5%E5%B1%8F%E5%B9%95/" class="archive-article-date">
-  	<time datetime="2024-07-16T06:47:00.537Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-16</time>
+  	<time datetime="2024-07-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-16</time>
 </a>
         
       </header>
@@ -366,7 +639,7 @@
 
         
         <a href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2024-07-14T06:17:48.369Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-14</time>
+  	<time datetime="2024-07-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-14</time>
 </a>
         
       </header>
@@ -416,190 +689,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-STM51单片机学习记录（二）数码管的应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/">STM51单片机学习记录（二）数码管的应用</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2024-07-10T07:35:56.546Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>数码管是一种简单、廉价的显示器，是由多个发光二极管封装在一起组成“8”字型的器件。二极管箭头由高电平指向低电平（阳极指向阴极）。管脚的定义有两种：下图中右上的为共阴极、右下的为共阳极。</p>
-<ul>
-<li><p>当使用共阴极管脚数码管时，只有当阴极接地（0）（位选），阳极接高电平（1）（段选），才能点亮对应的二极管。</p>
-</li>
-<li><p>当使用共阳极管脚数码管时，只有当阴极接高电平（1）（位选），阳极接地（0）（段选），才能点亮对应的二极管。</p>
-</li>
-</ul>
-<p>点亮的核心原理是二极管连接的两端需要存在电势差。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-STM51单片机学习记录（一）延时函数与按键消抖" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/">STM51单片机学习记录（一）延时函数与按键消抖</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/" class="archive-article-date">
-  	<time datetime="2024-07-10T05:15:44.283Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<h3 id="1-延时函数"><a href="#1-延时函数" class="headerlink" title="1.延时函数"></a>1.延时函数</h3><p>在51单片机中，Delay延时函数是一个非常实用且常用的函数，可以用来防止按键抖动，也可以完成多种需要等待时间进行的操作。</p>
-<p>由于不同单片机的系统频率与指令集各不相同，我们可以使用STC-ISP自动生成对应的延时函数，下面是由STC-ISP生成的一个系统频率为11.0592MHz，指令集为STC-Y1的1000μs延时函数。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/">展开全文 >></a>
         </p>
       
 
@@ -682,6 +771,190 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/Blog.io/2024/07/10/%E9%87%8D%E5%90%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-STM51单片机学习记录（一）延时函数与按键消抖" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/">STM51单片机学习记录（一）延时函数与按键消抖</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/" class="archive-article-date">
+  	<time datetime="2024-07-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="1-延时函数"><a href="#1-延时函数" class="headerlink" title="1.延时函数"></a>1.延时函数</h3><p>在51单片机中，Delay延时函数是一个非常实用且常用的函数，可以用来防止按键抖动，也可以完成多种需要等待时间进行的操作。</p>
+<p>由于不同单片机的系统频率与指令集各不相同，我们可以使用STC-ISP自动生成对应的延时函数，下面是由STC-ISP生成的一个系统频率为11.0592MHz，指令集为STC-Y1的1000μs延时函数。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-STM51单片机学习记录（二）数码管的应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/">STM51单片机学习记录（二）数码管的应用</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2024-07-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>数码管是一种简单、廉价的显示器，是由多个发光二极管封装在一起组成“8”字型的器件。二极管箭头由高电平指向低电平（阳极指向阴极）。管脚的定义有两种：下图中右上的为共阴极、右下的为共阳极。</p>
+<ul>
+<li><p>当使用共阴极管脚数码管时，只有当阴极接地（0）（位选），阳极接高电平（1）（段选），才能点亮对应的二极管。</p>
+</li>
+<li><p>当使用共阳极管脚数码管时，只有当阴极接高电平（1）（位选），阳极接地（0）（段选），才能点亮对应的二极管。</p>
+</li>
+</ul>
+<p>点亮的核心原理是二极管连接的两端需要存在电势差。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/">展开全文 >></a>
         </p>
       
 
@@ -799,286 +1072,9 @@
 
 
   
-    <article id="post-Latex学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2022/02/13/Latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Latex练习笔记</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2022/02/13/Latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2022-02-13T15:43:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-13</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;<br></p>
-<h1 id="源文件基本结构"><a href="#源文件基本结构" class="headerlink" title="源文件基本结构"></a>源文件基本结构</h1><p>基本结构分文两个部分：导言区和正文区。</p>
-<br>
-
-<h2 id="1-导言区"><a href="#1-导言区" class="headerlink" title="1.导言区"></a>1.导言区</h2><p>导言区主要负责文档的一些全局设置，比较常见的导言区内容有以下几种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\documentclass&#123;article&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>\documentclass</code>负责修饰文章的种类，常见的种类有：article、book、report、letter、ctexart等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;ctex&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>\usepackage</code>来导入各种包。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\title&#123;\heiti Latex练习文档&#125;</span><br><span class="line">\author&#123;\kaishu 观测&#125;</span><br><span class="line">\date&#123;\today&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这三个分别修饰文章的标题，作者，以及时间，我们可以使用<code>\today</code>来自动获得今天的日期。</p>
-<p>在导入ctex包后(<code>\usepackage{ctex}</code>)，可以使用<code>\heiti</code>、<code>\kaishu</code>等设置字体（常见的有宋体、黑体、楷书、仿宋）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\newcommand\degree&#123;^\circ&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>\newcommand</code>命令宏定义字符，此处是定义角度为<code>\degree</code>。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2022/02/13/Latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Latex</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2022/02/13/Latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Matlab学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2021/03/24/Matlab%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Matlab练习笔记</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2021/03/24/Matlab%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2021-03-24T02:35:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;<br></p>
-<h1 id="写在前面："><a href="#写在前面：" class="headerlink" title="写在前面："></a>写在前面：</h1><p>本文非本人原创，仅作搬运自用，原作者请关注B站glanny大佬，附上原文网址：</p>
-<p><a href="https://www.bilibili.com/read/cv7966685" target="_blank" rel="noopener">https://www.bilibili.com/read/cv7966685</a></p>
-        
-          <a class="article-more-a" href="/Blog.io/2021/03/24/Matlab%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Matlab</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2021/03/24/Matlab%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-真货" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2021/03/14/%E7%9C%9F%E8%B4%A7/">真货</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2021/03/14/%E7%9C%9F%E8%B4%A7/" class="archive-article-date">
-  	<time datetime="2021-03-14T09:09:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter.1"></a>Chapter.1</h3><p>破烂不堪的军用载货车在荒草丛生的郊野上低鸣。</p>
-<p>车很长，看上去不是常见的作战运输两用车，更像是已经被淘汰的上一代主运输用途的车，跑起来比现代的两用车更快些，但是因为不灵活以及不适合武器的搭载而被军方淘汰。</p>
-<p>车轮下是两道长长的泥痕，像一条暗蟒，在深夜的掩护下潜行。</p>
-<p>车上一共有五个人，都穿着迷彩的军装，虽然已经是深夜，但是所有人都捏着手里的枪，打着十二分的精神。</p>
-<p>没有人希望这次的任务失败。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2021/03/14/%E7%9C%9F%E8%B4%A7/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2021/03/14/%E7%9C%9F%E8%B4%A7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/Blog.io/">上一页</a><a class="page-number" href="/Blog.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/Blog.io/page/3/">3</a><a class="page-number" href="/Blog.io/page/4/">4</a><a class="page-number" href="/Blog.io/page/5/">5</a><a class="extend next" rel="next" href="/Blog.io/page/3/">下一页</a>
+      <a class="extend prev" rel="prev" href="/Blog.io/">上一页</a><a class="page-number" href="/Blog.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/Blog.io/page/3/">3</a><a class="page-number" href="/Blog.io/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/Blog.io/page/6/">6</a><a class="extend next" rel="next" href="/Blog.io/page/3/">下一页</a>
     </nav>
   
 
@@ -1200,11 +1196,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1212,11 +1208,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
+                <a href="javascript:void(0)" class="js-tag color1">STM32</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1232,23 +1232,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Win11</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+                <a href="javascript:void(0)" class="js-tag color1">Win11</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1257,6 +1245,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
