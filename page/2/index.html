@@ -166,6 +166,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-STM51单片机学习记录（十）unsigned char与bit的陷阱" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/07/26/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%EF%BC%89unsigned%20char%E4%B8%8Ebit%E7%9A%84%E9%99%B7%E9%98%B1/">STM51单片机学习记录（十）unsigned char与bit的陷阱</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/07/26/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%EF%BC%89unsigned%20char%E4%B8%8Ebit%E7%9A%84%E9%99%B7%E9%98%B1/" class="archive-article-date">
+  	<time datetime="2024-07-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-26</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<p>在写DS18B20温度传感器的代码时，我们需要对各种操作写出对应的函数，再在其他函数中将这些函数调用，以此达成更复杂的目的。</p>
+<p>例如，我们需要有“发送一位”函数：OneWire_SendBit()。</p>
+<p>然后通过循环调用OneWire_SendBit()八次，即可实现“发送字节函数”：OneWire_SendByte()。</p>
+<p>逻辑上十分清晰，但在具体写函数的时候，却可能因为unsigned char与bit的细节，导致错误的出现。</p>
+<p>下面是具体说明：</p>
+        
+          <a class="article-more-a" href="/Blog.io/2024/07/26/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%EF%BC%89unsigned%20char%E4%B8%8Ebit%E7%9A%84%E9%99%B7%E9%98%B1/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/07/26/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%EF%BC%89unsigned%20char%E4%B8%8Ebit%E7%9A%84%E9%99%B7%E9%98%B1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-STM51单片机学习记录（九）通过秒表项目学习通过定时器实现消抖" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -988,95 +1080,6 @@
 
 
   
-    <article id="post-STM51单片机学习记录（一）延时函数与按键消抖" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/">STM51单片机学习记录（一）延时函数与按键消抖</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/" class="archive-article-date">
-  	<time datetime="2024-07-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<h3 id="1-延时函数"><a href="#1-延时函数" class="headerlink" title="1.延时函数"></a>1.延时函数</h3><p>在51单片机中，Delay延时函数是一个非常实用且常用的函数，可以用来防止按键抖动，也可以完成多种需要等待时间进行的操作。</p>
-<p>由于不同单片机的系统频率与指令集各不相同，我们可以使用STC-ISP自动生成对应的延时函数，下面是由STC-ISP生成的一个系统频率为11.0592MHz，指令集为STC-Y1的1000μs延时函数。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/Blog.io/">上一页</a><a class="page-number" href="/Blog.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/Blog.io/page/3/">3</a><a class="page-number" href="/Blog.io/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/Blog.io/page/6/">6</a><a class="extend next" rel="next" href="/Blog.io/page/3/">下一页</a>
@@ -1197,19 +1200,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1221,10 +1228,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM51</a>
               </li>
              
@@ -1233,11 +1236,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color1">Win11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1249,19 +1260,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Win11</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
