@@ -6,23 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>STM32单片机学习记录（五）定时器实现PWM | 观测的博客</title>
+  <title>STM32单片机学习记录（六）定时器实现捕获输入信号 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.PWM中断初始化函数PWM初始化流程如下图所示：">
+  <meta name="description" content="1.PWM中断初始化函数在上一节中，我们使用定时器实现了输出PWM信号，这一节将实现用定时器捕获输入信号的频率和占空比的功能。 初始化流程如下图所示：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STM32单片机学习记录（五）定时器实现PWM">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/08/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM/index.html">
+<meta property="og:title" content="STM32单片机学习记录（六）定时器实现捕获输入信号">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/08/16/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8D%95%E8%8E%B7%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="1.PWM中断初始化函数PWM初始化流程如下图所示：">
+<meta property="og:description" content="1.PWM中断初始化函数在上一节中，我们使用定时器实现了输出PWM信号，这一节将实现用定时器捕获输入信号的频率和占空比的功能。 初始化流程如下图所示：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM/1-1.png">
-<meta property="article:published_time" content="2024-08-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-15T07:39:57.726Z">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8D%95%E8%8E%B7%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7/1-1.png">
+<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8D%95%E8%8E%B7%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7/2-1.png">
+<meta property="article:published_time" content="2024-08-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T05:01:27.470Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM32">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://arizzer.github.io/Blog.io/assets/img/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM/1-1.png">
+<meta name="twitter:image" content="https://arizzer.github.io/Blog.io/assets/img/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8D%95%E8%8E%B7%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7/1-1.png">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
   
@@ -171,7 +172,7 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-STM32单片机学习记录（五）定时器实现PWM" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-STM32单片机学习记录（六）定时器实现捕获输入信号" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -180,14 +181,14 @@
 <center><p>
   
     <h1 class="article-title_code_ant" itemprop="name">
-      STM32单片机学习记录（五）定时器实现PWM
+      STM32单片机学习记录（六）定时器实现捕获输入信号
     </h1>
   
 </p></center>
 
         
-        <a href="/Blog.io/2024/08/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM/" class="archive-article-date">
-  	<time datetime="2024-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-15</time>
+        <a href="/Blog.io/2024/08/16/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8D%95%E8%8E%B7%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7/" class="archive-article-date">
+  	<time datetime="2024-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-16</time>
 </a>
         
       </header>
@@ -201,7 +202,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-PWM中断初始化函数"><span class="toc-number">1.</span> <span class="toc-text">1.PWM中断初始化函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改占空比"><span class="toc-number">2.</span> <span class="toc-text">2.修改占空比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-引脚复用"><span class="toc-number">3.</span> <span class="toc-text">3.引脚复用</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-PWM中断初始化函数"><span class="toc-number">1.</span> <span class="toc-text">1.PWM中断初始化函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-获得频率与占空比"><span class="toc-number">2.</span> <span class="toc-text">2.获得频率与占空比</span></a></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -223,34 +224,34 @@
       
         <br>
 
-<h3 id="1-PWM中断初始化函数"><a href="#1-PWM中断初始化函数" class="headerlink" title="1.PWM中断初始化函数"></a>1.PWM中断初始化函数</h3><p>PWM初始化流程如下图所示：</p>
+<h3 id="1-PWM中断初始化函数"><a href="#1-PWM中断初始化函数" class="headerlink" title="1.PWM中断初始化函数"></a>1.PWM中断初始化函数</h3><p>在上一节中，我们使用定时器实现了输出PWM信号，这一节将实现用定时器捕获输入信号的频率和占空比的功能。</p>
+<p>初始化流程如下图所示：</p>
 <a id="more"></a>
 
 <br>
 
-<img src="/Blog.io/assets/img/STM32单片机学习记录（五）定时器实现PWM/1-1.png" style="zoom:100%;">
+<img src="/Blog.io/assets/img/STM32单片机学习记录（六）定时器实现捕获输入信号/1-1.png" style="zoom:100%;">
 
 <p>对应的初始化代码及注释如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PWM_Init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//开启Timer2时钟，Timer2为通用计时器</span></span><br><span class="line">	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2,ENABLE);</span><br><span class="line">	<span class="comment">//开启GPIOA时钟</span></span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);</span><br><span class="line">	</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	<span class="comment">//这里需要配置为复用推挽输出，引脚的控制权才能交给片上外设（此处为定时器），PWM波形才能通过引脚输出，</span></span><br><span class="line">	<span class="comment">//否则引脚的控制权来自于输出数据寄存器</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//设置Timer2为内部时钟模式</span></span><br><span class="line">	TIM_InternalClockConfig(TIM2);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&#123;----配置时基单元----</span></span><br><span class="line">	TIM_TimeBaseInitTypeDef Timer_InitStructure;</span><br><span class="line">	Timer_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;<span class="comment">//计数器模式，TIM_CounterMode_Up表示向上计数</span></span><br><span class="line">	Timer_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;<span class="comment">//时钟分频的值，设置为TIM_CKD_DIV1表示不分频</span></span><br><span class="line">	Timer_InitStructure.TIM_RepetitionCounter = <span class="number">0</span>;<span class="comment">//重复计数器的值，高级计时器才有，这里直接给0</span></span><br><span class="line">	Timer_InitStructure.TIM_Prescaler = <span class="number">720</span> - <span class="number">1</span>;<span class="comment">//PSC预分频值(计数次数)</span></span><br><span class="line">	Timer_InitStructure.TIM_Period = <span class="number">100</span> - <span class="number">1</span>;<span class="comment">//ARR自动重装器的值(每次计数值)</span></span><br><span class="line">	TIM_TimeBaseInit(TIM2,&amp;Timer_InitStructure);<span class="comment">//初始化时基单元</span></span><br><span class="line">	<span class="comment">//----时基单元配置完毕----&#125;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&#123;----配置输出比较单元----</span></span><br><span class="line">	TIM_OCInitTypeDef TIM_OCInitStruct;</span><br><span class="line">	TIM_OCStructInit(&amp;TIM_OCInitStruct);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//PWM1：向上计数：CNT&lt;CCR时，REF置有效电平，CNT≥CCR时，REF置无效电平</span></span><br><span class="line">	TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_PWM1;<span class="comment">//输出比较模式</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//PWM1正极性和PWM2反极性的输出结果是一样的，都是CNT&lt;CCR时，REF置有效电平，CNT≥CCR时，REF置无效电平（负负得正）</span></span><br><span class="line">	TIM_OCInitStruct.TIM_OCPolarity = TIM_OCPolarity_High;<span class="comment">//输出比较极性</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//PWM频率：		Freq = CK_PSC / (PSC + 1) / (ARR + 1)</span></span><br><span class="line">	<span class="comment">//PWM占空比：	Duty = CCR / (ARR + 1)</span></span><br><span class="line">	<span class="comment">//PWM分辨率：	Reso = 1 / (ARR + 1)</span></span><br><span class="line">	<span class="comment">//若想产生一个频率为1KHz，占空比为50%，分辨率为1%的PWM波形，对应值：</span></span><br><span class="line">	<span class="comment">//ARR = 99（Reso = 1 / (ARR + 1) = 1%）</span></span><br><span class="line">	<span class="comment">//CCR = 50（Duty = CCR / (ARR + 1) = 50%）</span></span><br><span class="line">	<span class="comment">//PSC = 719 （Freq = CK_PSC / (PSC + 1) / (ARR + 1) = 10001）</span></span><br><span class="line">	TIM_OCInitStruct.TIM_Pulse = <span class="number">0</span>;<span class="comment">//设置CCR</span></span><br><span class="line">	</span><br><span class="line">	TIM_OCInitStruct.TIM_OutputState = TIM_OutputState_Enable;<span class="comment">//输出使能</span></span><br><span class="line">	TIM_OC1Init(TIM2,&amp;TIM_OCInitStruct);</span><br><span class="line">	<span class="comment">//----输出比较单元配置完毕----&#125;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//启动定时器</span></span><br><span class="line">	TIM_Cmd(TIM2,ENABLE);</span><br><span class="line">	<span class="comment">//此时，PWM波形就能通过PA0输出了</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IC_Init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//开启Timer2时钟，Timer2为通用计时器</span></span><br><span class="line">	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);</span><br><span class="line">	<span class="comment">//开启GPIOA时钟</span></span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);</span><br><span class="line">	</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	<span class="comment">//这里需要配置为复用推挽输出，引脚的控制权才能交给片上外设（此处为定时器），PWM波形才能通过引脚输出，</span></span><br><span class="line">	<span class="comment">//否则引脚的控制权来自于输出数据寄存器</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;	</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//设置Timer2为内部时钟模式</span></span><br><span class="line">	TIM_InternalClockConfig(TIM3);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&#123;----配置时基单元----</span></span><br><span class="line">	TIM_TimeBaseInitTypeDef Timer_InitStructure;</span><br><span class="line">	Timer_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;<span class="comment">//计数器模式，TIM_CounterMode_Up表示向上计数</span></span><br><span class="line">	Timer_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;<span class="comment">//时钟分频的值，设置为TIM_CKD_DIV1表示不分频</span></span><br><span class="line">	Timer_InitStructure.TIM_RepetitionCounter = <span class="number">0</span>;<span class="comment">//重复计数器的值，高级计时器才有，这里直接给0</span></span><br><span class="line">	Timer_InitStructure.TIM_Prescaler = <span class="number">72</span> - <span class="number">1</span>;<span class="comment">//PSC预分频值(计数次数),此时标准频率为1MHz</span></span><br><span class="line">	Timer_InitStructure.TIM_Period = <span class="number">65536</span> - <span class="number">1</span>;<span class="comment">//ARR自动重装器的值(每次计数值)</span></span><br><span class="line">	TIM_TimeBaseInit(TIM3,&amp;Timer_InitStructure);<span class="comment">//初始化时基单元</span></span><br><span class="line">	<span class="comment">//----时基单元配置完毕----&#125;</span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&#123;----配置输入捕获单元----</span></span><br><span class="line">	TIM_ICInitTypeDef TIM_ICInitStruct;</span><br><span class="line">	TIM_ICInitStruct.TIM_Channel = TIM_Channel_1;<span class="comment">//选择输入通道1</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICFilter = <span class="number">0xf</span>;<span class="comment">//选择滤波器大小</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICPolarity = TIM_ICPolarity_Rising;<span class="comment">//选择极性</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICPrescaler = TIM_ICPSC_DIV1;<span class="comment">//选择分频系数</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICSelection = TIM_ICSelection_DirectTI;<span class="comment">//选择直连通道输入</span></span><br><span class="line">	TIM_ICInit(TIM3,&amp;TIM_ICInitStruct);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//可以再配置一次TIM_ICInitStruct实现对通道2的配置</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_Channel = TIM_Channel_2;//选择输入通道2</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_ICFilter = 0xf;//选择滤波器大小</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_ICPolarity = TIM_ICPolarity_Falling;//选择极性</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_ICPrescaler = TIM_ICPSC_DIV1;//选择分频系数</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_ICSelection = TIM_ICSelection_IndirectTI;//选择交叉通道输入</span></span><br><span class="line"><span class="comment">//	TIM_ICInit(TIM3,&amp;TIM_ICInitStruct);</span></span><br><span class="line">	<span class="comment">//----输入捕获单元配置完毕----&#125;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//也可以用TIM_PWMIConfig实现一次性配置</span></span><br><span class="line">	<span class="comment">//例如TIM_Channel_1选择上升沿直连通道输入，就会顺带对TIM_Channel_2选择下降沿交叉通道输入</span></span><br><span class="line">	TIM_PWMIConfig(TIM3, &amp;TIM_ICInitStruct);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//触发源选择TI1FP1 </span></span><br><span class="line">	TIM_SelectInputTrigger(TIM3,TIM_TS_TI1FP1);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//配置从模式为Reset，实现CNT自动清零功能</span></span><br><span class="line">	TIM_SelectSlaveMode(TIM3,TIM_SlaveMode_Reset);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//启动定时器</span></span><br><span class="line">	TIM_Cmd(TIM3,ENABLE);</span><br><span class="line">	<span class="comment">//此时，CNT会在定时器的作用下不断自增，每当有信号进入PA6引脚，就会将当前CNT值存入CCR1中，然后将CNT清零</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <br>
 
-<h3 id="2-修改占空比"><a href="#2-修改占空比" class="headerlink" title="2.修改占空比"></a>2.修改占空比</h3><p>由于占空比由ARR和CCR共同决定，在ARR不变（设置为100）的情况下，CCR的取值在0~100之间即为占空比。我们可以通过<code>TIM_SetCompare1()</code>函数实现。封装好的函数如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PWM_SetCompare1</span><span class="params">(<span class="keyword">uint16_t</span> Compare1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	TIM_SetCompare1(TIM2,Compare1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-获得频率与占空比"><a href="#2-获得频率与占空比" class="headerlink" title="2.获得频率与占空比"></a>2.获得频率与占空比</h3><p>我们用测周法测频率，测周法的计算过程如下：</p>
+<img src="/Blog.io/assets/img/STM32单片机学习记录（六）定时器实现捕获输入信号/2-1.png" style="zoom:50%;">
 
-<p>例如，想要实现呼吸灯效果，在主函数中循环修改CCR的值即可：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=<span class="number">100</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			PWM_SetCompare1(i);	</span><br><span class="line">			Delay_ms(<span class="number">10</span>);			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=<span class="number">100</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			PWM_SetCompare1(<span class="number">100</span>-i);	</span><br><span class="line">			Delay_ms(<span class="number">10</span>);			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>由于我们在初始化过程中预分频PSC为72，将晶振频率72MHz72分频后，标准频率fc为1MHz。</p>
+<p>CCR1中的值就是每两个上升沿（一个周期内）的计数次数，也就是公式中的N，注意：由于CCR从0开始计数，因此实际计数值要+1</p>
+<p>得到频率代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">uint32_t</span> <span class="title">IC_GetFreq</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1000000</span> / (TIM_GetCapture1(TIM3) + <span class="number">1</span>);	<span class="comment">//TIM_GetCapture1返回CCR1中的值</span></span><br><span class="line">	<span class="comment">//由于CCR从0开始计数因此实际计数值要+1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<br>
-
-<br>
-
-<h3 id="3-引脚复用"><a href="#3-引脚复用" class="headerlink" title="3.引脚复用"></a>3.引脚复用</h3><p>TIM2的CH1通道默认在PA0引脚上，还可以复用到PA15引脚上，具体修改代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);<span class="comment">//开启AFIO时钟</span></span><br><span class="line">GPIO_PinRemapConfig(GPIO_PartialRemap1_TIM2,ENABLE);<span class="comment">//局部复用TIM2模式1</span></span><br><span class="line">GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);<span class="comment">//禁用原本的JTAG(PA15,PB3,PB4)</span></span><br></pre></td></tr></table></figure>
-
-
+<p>CCR2中的值是从计时开始到第一个下降沿的计数次数，CCR2/CCR1即为占空比。</p>
+<p>同样的，由于CCR从0开始计数，因此实际计数值要+1。</p>
+<p>需要注意，如果为了显示百分比，需要将结果乘以100，但不能放在后面乘，否则CCR2/CCR1得到的数小于1，在C语言中会自动向下取整为0,而0乘以100还是0，会出现结果错误。</p>
+<p>得到占空比代码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">uint32_t</span> <span class="title">IC_GetDuty</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (TIM_GetCapture2(TIM3) + <span class="number">1</span>)*<span class="number">100</span> / (TIM_GetCapture1(TIM3) + <span class="number">1</span>);<span class="comment">//TIM_GetCapture2返回CCR2中的值</span></span><br><span class="line">	<span class="comment">//由于CCR从0开始计数因此实际计数值要+1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -325,7 +326,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/08/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/08/16/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8D%95%E8%8E%B7%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -340,8 +341,8 @@
 <nav id="article-nav">
   
   
-    <a href="/Blog.io/2024/08/14/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">STM32单片机学习记录（四）定时器中断</div>
+    <a href="/Blog.io/2024/08/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM%E8%BE%93%E5%87%BA%E4%BF%A1%E5%8F%B7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STM32单片机学习记录（五）定时器实现PWM输出信号</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -523,19 +524,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,10 +568,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">校内学习</a>
               </li>
              
@@ -584,6 +581,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
