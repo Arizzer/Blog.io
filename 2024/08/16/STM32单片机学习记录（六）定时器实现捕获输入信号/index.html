@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8D%95%E8%8E%B7%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7/1-1.png">
 <meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8D%95%E8%8E%B7%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7/2-1.png">
 <meta property="article:published_time" content="2024-08-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-16T05:01:27.470Z">
+<meta property="article:modified_time" content="2024-08-18T05:34:13.839Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
 <meta property="article:tag" content="STM32">
@@ -233,7 +233,7 @@
 <img src="/Blog.io/assets/img/STM32单片机学习记录（六）定时器实现捕获输入信号/1-1.png" style="zoom:100%;">
 
 <p>对应的初始化代码及注释如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IC_Init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//开启Timer2时钟，Timer2为通用计时器</span></span><br><span class="line">	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);</span><br><span class="line">	<span class="comment">//开启GPIOA时钟</span></span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);</span><br><span class="line">	</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	<span class="comment">//这里需要配置为复用推挽输出，引脚的控制权才能交给片上外设（此处为定时器），PWM波形才能通过引脚输出，</span></span><br><span class="line">	<span class="comment">//否则引脚的控制权来自于输出数据寄存器</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;	</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//设置Timer2为内部时钟模式</span></span><br><span class="line">	TIM_InternalClockConfig(TIM3);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&#123;----配置时基单元----</span></span><br><span class="line">	TIM_TimeBaseInitTypeDef Timer_InitStructure;</span><br><span class="line">	Timer_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;<span class="comment">//计数器模式，TIM_CounterMode_Up表示向上计数</span></span><br><span class="line">	Timer_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;<span class="comment">//时钟分频的值，设置为TIM_CKD_DIV1表示不分频</span></span><br><span class="line">	Timer_InitStructure.TIM_RepetitionCounter = <span class="number">0</span>;<span class="comment">//重复计数器的值，高级计时器才有，这里直接给0</span></span><br><span class="line">	Timer_InitStructure.TIM_Prescaler = <span class="number">72</span> - <span class="number">1</span>;<span class="comment">//PSC预分频值(计数次数),此时标准频率为1MHz</span></span><br><span class="line">	Timer_InitStructure.TIM_Period = <span class="number">65536</span> - <span class="number">1</span>;<span class="comment">//ARR自动重装器的值(每次计数值)</span></span><br><span class="line">	TIM_TimeBaseInit(TIM3,&amp;Timer_InitStructure);<span class="comment">//初始化时基单元</span></span><br><span class="line">	<span class="comment">//----时基单元配置完毕----&#125;</span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&#123;----配置输入捕获单元----</span></span><br><span class="line">	TIM_ICInitTypeDef TIM_ICInitStruct;</span><br><span class="line">	TIM_ICInitStruct.TIM_Channel = TIM_Channel_1;<span class="comment">//选择输入通道1</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICFilter = <span class="number">0xf</span>;<span class="comment">//选择滤波器大小</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICPolarity = TIM_ICPolarity_Rising;<span class="comment">//选择极性</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICPrescaler = TIM_ICPSC_DIV1;<span class="comment">//选择分频系数</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICSelection = TIM_ICSelection_DirectTI;<span class="comment">//选择直连通道输入</span></span><br><span class="line">	TIM_ICInit(TIM3,&amp;TIM_ICInitStruct);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//可以再配置一次TIM_ICInitStruct实现对通道2的配置</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_Channel = TIM_Channel_2;//选择输入通道2</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_ICFilter = 0xf;//选择滤波器大小</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_ICPolarity = TIM_ICPolarity_Falling;//选择极性</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_ICPrescaler = TIM_ICPSC_DIV1;//选择分频系数</span></span><br><span class="line"><span class="comment">//	TIM_ICInitStruct.TIM_ICSelection = TIM_ICSelection_IndirectTI;//选择交叉通道输入</span></span><br><span class="line"><span class="comment">//	TIM_ICInit(TIM3,&amp;TIM_ICInitStruct);</span></span><br><span class="line">	<span class="comment">//----输入捕获单元配置完毕----&#125;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//也可以用TIM_PWMIConfig实现一次性配置</span></span><br><span class="line">	<span class="comment">//例如TIM_Channel_1选择上升沿直连通道输入，就会顺带对TIM_Channel_2选择下降沿交叉通道输入</span></span><br><span class="line">	TIM_PWMIConfig(TIM3, &amp;TIM_ICInitStruct);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//触发源选择TI1FP1 </span></span><br><span class="line">	TIM_SelectInputTrigger(TIM3,TIM_TS_TI1FP1);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//配置从模式为Reset，实现CNT自动清零功能</span></span><br><span class="line">	TIM_SelectSlaveMode(TIM3,TIM_SlaveMode_Reset);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//启动定时器</span></span><br><span class="line">	TIM_Cmd(TIM3,ENABLE);</span><br><span class="line">	<span class="comment">//此时，CNT会在定时器的作用下不断自增，每当有信号进入PA6引脚，就会将当前CNT值存入CCR1中，然后将CNT清零</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IC_Init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//开启Timer3时钟，Timer3为通用计时器</span></span><br><span class="line">	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);</span><br><span class="line">	<span class="comment">//开启GPIOA时钟</span></span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);</span><br><span class="line">	</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;	</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//设置Timer3为内部时钟模式</span></span><br><span class="line">	TIM_InternalClockConfig(TIM3);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&#123;----配置时基单元----</span></span><br><span class="line">	TIM_TimeBaseInitTypeDef Timer_InitStructure;</span><br><span class="line">	Timer_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;<span class="comment">//计数器模式，TIM_CounterMode_Up表示向上计数</span></span><br><span class="line">	Timer_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;<span class="comment">//时钟分频的值，设置为TIM_CKD_DIV1表示不分频</span></span><br><span class="line">	Timer_InitStructure.TIM_RepetitionCounter = <span class="number">0</span>;<span class="comment">//重复计数器的值，高级计时器才有，这里直接给0</span></span><br><span class="line">	Timer_InitStructure.TIM_Prescaler = <span class="number">72</span> - <span class="number">1</span>;<span class="comment">//PSC预分频值(计数次数),此时标准频率为1MHz</span></span><br><span class="line">	Timer_InitStructure.TIM_Period = <span class="number">65536</span> - <span class="number">1</span>;<span class="comment">//ARR自动重装器的值(每次计数值)</span></span><br><span class="line">	TIM_TimeBaseInit(TIM3,&amp;Timer_InitStructure);<span class="comment">//初始化时基单元</span></span><br><span class="line">	<span class="comment">//----时基单元配置完毕----&#125;</span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&#123;----配置输入捕获单元----</span></span><br><span class="line">	TIM_ICInitTypeDef TIM_ICInitStruct;</span><br><span class="line">	TIM_ICInitStruct.TIM_Channel = TIM_Channel_1;<span class="comment">//选择输入通道1</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICFilter = <span class="number">0xf</span>;<span class="comment">//选择滤波器大小</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICPolarity = TIM_ICPolarity_Rising;<span class="comment">//选择极性</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICPrescaler = TIM_ICPSC_DIV1;<span class="comment">//选择分频系数</span></span><br><span class="line">	TIM_ICInitStruct.TIM_ICSelection = TIM_ICSelection_DirectTI;<span class="comment">//选择直连通道还是交叉通道输入</span></span><br><span class="line">	TIM_ICInit(TIM3,&amp;TIM_ICInitStruct);</span><br><span class="line">	<span class="comment">//----输入捕获单元配置完毕----&#125;</span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//触发源选择TI1FP1</span></span><br><span class="line">	TIM_SelectInputTrigger(TIM3,TIM_TS_TI1FP1);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//配置从模式为Reset，实现CNT自动清零功能</span></span><br><span class="line">	TIM_SelectSlaveMode(TIM3,TIM_SlaveMode_Reset);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//启动定时器</span></span><br><span class="line">	TIM_Cmd(TIM3,ENABLE);</span><br><span class="line">	<span class="comment">//此时，CNT会在定时器的作用下不断自增，每当有信号进入PA6引脚，就会将当前CNT值存入CCR1中，然后将CNT清零</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -520,6 +520,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
@@ -528,15 +532,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,6 +541,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM32</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,6 +568,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">校内学习</a>
               </li>
              
@@ -580,19 +584,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">同人</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">纪念</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
