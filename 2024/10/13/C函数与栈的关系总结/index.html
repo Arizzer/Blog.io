@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>Archives: 2020/10 | 观测的博客</title>
+  <title>C函数与栈的关系总结 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="观测的博客">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/archives/2020/10/index.html">
+  <meta name="description" content="假设一个多任务场景，有A函数和B函数，要实现两个函数的并发运行。 这就面临两个问题：  任务切换时，假如A中的结果没有还保存到寄存器中，或者即使保存在寄存器（假设r0）中，由于切换到B后也要用r0存储数据，是不是会出现“A白算了”的现象？ 我们知道C代码会转为汇编码，再变回机器码让机器识别，在汇编码的执行过程中，PC（Program Counter）是指向下一个执行的指令的地址，这决定了程序的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C函数与栈的关系总结">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="南京邮电大学在读大学生，刚刚转入计算机科学与技术专业，在代码的入门之路上不断奋斗">
+<meta property="og:description" content="假设一个多任务场景，有A函数和B函数，要实现两个函数的并发运行。 这就面临两个问题：  任务切换时，假如A中的结果没有还保存到寄存器中，或者即使保存在寄存器（假设r0）中，由于切换到B后也要用r0存储数据，是不是会出现“A白算了”的现象？ 我们知道C代码会转为汇编码，再变回机器码让机器识别，在汇编码的执行过程中，PC（Program Counter）是指向下一个执行的指令的地址，这决定了程序的">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-13T07:33:42.971Z">
 <meta property="article:author" content="观测">
+<meta property="article:tag" content="个人学习">
+<meta property="article:tag" content="FreeRTOS">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
@@ -165,73 +169,51 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-C函数与栈的关系总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog.io/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Blog.io/2020/10/18/%E6%88%91%E6%98%AFfw/" class="archive-article-date">
-  	<time datetime="2020-10-18T12:47:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+
+
+<center><p>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog.io/2020/10/18/%E6%88%91%E6%98%AFfw/">我是fw</a>
+    <h1 class="article-title_code_ant" itemprop="name">
+      C函数与栈的关系总结
     </h1>
   
+</p></center>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Blog.io/2020/10/05/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-10-05T04:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-05</time>
+        
+        <a href="/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2024-10-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-10-13</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog.io/2020/10/05/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">常见排序算法</a>
-    </h1>
-  
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
 
-        <div class="article-info info-on-right">
-          
+<p>假设一个多任务场景，有A函数和B函数，要实现两个函数的并发运行。</p>
+<p>这就面临两个问题：</p>
+<ol>
+<li>任务切换时，假如A中的结果没有还保存到寄存器中，或者即使保存在寄存器（假设r0）中，由于切换到B后也要用r0存储数据，是不是会出现“A白算了”的现象？</li>
+<li>我们知道C代码会转为汇编码，再变回机器码让机器识别，在汇编码的执行过程中，PC（Program Counter）是指向下一个执行的指令的地址，这决定了程序的运行顺序。假设A在PC=100时切换到B，当再想切换回A任务时，由于PC值已经改变，此时的PC为B下一个执行的指令的地址，我们怎么知道“回到哪里执行A”？</li>
+</ol>
+<br>
+
+<p>在C语言中，每一个任务都有对应的一个栈。栈位于内存中，我们可以使用栈来解决上面两个问题。首先，栈将A函数的现场（PC值，各局部变量的值与对应存储的寄存器关系等）保存到栈中；等B函数切换回A函数时，先将A函数栈中的现场恢复到硬件（即CPU）上。这样硬件就能知道”我刚刚算了什么东西”（各局部变量的值与对应存储的寄存器关系）和”我刚刚算到哪儿了”（PC值）。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -241,66 +223,140 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FreeRTOS</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Blog.io/2020/10/05/Java%E4%B8%AD%E8%AF%BB%E5%8F%96%E8%B5%84%E6%BA%90%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-10-05T03:35:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/Blog.io/2024/10/05/STM32%E6%B1%9F%E7%A7%91%E5%A4%A7%E5%AD%A6%E4%B9%A0%E5%AE%8C%E6%AF%95%E7%95%99%E5%BF%B5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STM32江科大学习完毕留念</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog.io/2020/10/05/Java%E4%B8%AD%E8%AF%BB%E5%8F%96%E8%B5%84%E6%BA%90%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/">Java中读取资源的一些常见方法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
+  
+
+  
+
+    
+        <section id="comments" class="comments">
+          <style>
+            .comments{margin:30px;padding:10px;background:#fff}
+            @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+          </style>
+          <div id="vcomment" class="comment"></div> 
+<script src="https://unpkg.com/leancloud-storage@4.12.2/dist/av-live-query-min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "sDLb9WwVsxsbQurLU4lU2BW7-gzGzoHsz",
+            app_key: "GeoflI2CuRR6d1g5Y7vqdF3X",
+            placeholder: "欢迎留言~",
+            avatar:"mp"
+        });
+    }
+</script>
+
+      </section>
     
 
 
@@ -324,8 +380,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
