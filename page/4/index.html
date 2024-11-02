@@ -166,6 +166,109 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Latex学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2022/02/13/Latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Latex练习笔记</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2022/02/13/Latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2022-02-13T15:43:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-13</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;<br></p>
+<h1 id="源文件基本结构"><a href="#源文件基本结构" class="headerlink" title="源文件基本结构"></a>源文件基本结构</h1><p>基本结构分文两个部分：导言区和正文区。</p>
+<br>
+
+<h2 id="1-导言区"><a href="#1-导言区" class="headerlink" title="1.导言区"></a>1.导言区</h2><p>导言区主要负责文档的一些全局设置，比较常见的导言区内容有以下几种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\documentclass&#123;article&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>\documentclass</code>负责修饰文章的种类，常见的种类有：article、book、report、letter、ctexart等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;ctex&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>\usepackage</code>来导入各种包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\title&#123;\heiti Latex练习文档&#125;</span><br><span class="line">\author&#123;\kaishu 观测&#125;</span><br><span class="line">\date&#123;\today&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这三个分别修饰文章的标题，作者，以及时间，我们可以使用<code>\today</code>来自动获得今天的日期。</p>
+<p>在导入ctex包后(<code>\usepackage{ctex}</code>)，可以使用<code>\heiti</code>、<code>\kaishu</code>等设置字体（常见的有宋体、黑体、楷书、仿宋）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\newcommand\degree&#123;^\circ&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>\newcommand</code>命令宏定义字符，此处是定义角度为<code>\degree</code>。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2022/02/13/Latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Latex</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2022/02/13/Latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Matlab学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -978,97 +1081,9 @@
 
 
   
-    <article id="post-随手写的文本处理程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2020/08/15/%E9%9A%8F%E6%89%8B%E5%86%99%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/">随手写的文本处理程序</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2020/08/15/%E9%9A%8F%E6%89%8B%E5%86%99%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-08-15T04:06:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-15</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<p>没想到第一个为自己写的程序居然是用Python写的（确实简洁好用），在一开始写两门课的笔记的时候没想到图片会这么多，就都放在img文件夹下了，现在图片越来越多，是该分一下类，同时笔记中图片的路径也需要更改。于是就写了个更改路径的小程序，因为是一次性的，所以代码没啥可观性，这里仅记录一下：</p>
-        
-          <a class="article-more-a" href="/Blog.io/2020/08/15/%E9%9A%8F%E6%89%8B%E5%86%99%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2020/08/15/%E9%9A%8F%E6%89%8B%E5%86%99%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/Blog.io/page/3/">上一页</a><a class="page-number" href="/Blog.io/">1</a><a class="page-number" href="/Blog.io/page/2/">2</a><a class="page-number" href="/Blog.io/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/Blog.io/page/5/">5</a><a class="page-number" href="/Blog.io/page/6/">6</a><a class="extend next" rel="next" href="/Blog.io/page/5/">下一页</a>
+      <a class="extend prev" rel="prev" href="/Blog.io/page/3/">上一页</a><a class="page-number" href="/Blog.io/">1</a><a class="page-number" href="/Blog.io/page/2/">2</a><a class="page-number" href="/Blog.io/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/Blog.io/page/5/">5</a><a class="page-number" href="/Blog.io/page/6/">6</a><a class="page-number" href="/Blog.io/page/7/">7</a><a class="extend next" rel="next" href="/Blog.io/page/5/">下一页</a>
     </nav>
   
 
@@ -1186,6 +1201,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
@@ -1194,15 +1213,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1210,11 +1221,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM32</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1226,19 +1241,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">校内学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">描统</a>
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1251,6 +1258,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">校内学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">描统</a>
               </li>
              
               <li class="article-tag-list-item">
