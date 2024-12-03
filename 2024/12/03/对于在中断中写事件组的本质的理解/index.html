@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>Spring中使用MongoDB进行分页查询 | 观测的博客</title>
+  <title>对于在中断中写事件组的本质的理解 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="调用 PageRequest.of() 方法构建一个分页对象,然后注入到查询对象。 PageRequest.of() 方法用于确定分页规则：  第一个参数是页码,注意从0 开始计数,第一页的值是0 ; 第二个参数是每页的数量。  例： 12345import org.springframework.data.domain.PageRequest;import org.springframework">
+  <meta name="description" content="省流：在中断中写事件组需要调用 xEventGroupSetBitsFromISR 函数，该函数会使用 xTimerPendFunctionCallFromISR 将 vEventGroupSetBitsCallback 这一回调函数挂起到定时器队列中。vEventGroupSetBitsCallback 回调函数会在定时器队列中被调用，并执行 xEventGroupSetBits 函数来实际">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring中使用MongoDB进行分页查询">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2020/07/23/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/index.html">
+<meta property="og:title" content="对于在中断中写事件组的本质的理解">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/12/03/%E5%AF%B9%E4%BA%8E%E5%9C%A8%E4%B8%AD%E6%96%AD%E4%B8%AD%E5%86%99%E4%BA%8B%E4%BB%B6%E7%BB%84%E7%9A%84%E6%9C%AC%E8%B4%A8%E7%9A%84%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="调用 PageRequest.of() 方法构建一个分页对象,然后注入到查询对象。 PageRequest.of() 方法用于确定分页规则：  第一个参数是页码,注意从0 开始计数,第一页的值是0 ; 第二个参数是每页的数量。  例： 12345import org.springframework.data.domain.PageRequest;import org.springframework">
+<meta property="og:description" content="省流：在中断中写事件组需要调用 xEventGroupSetBitsFromISR 函数，该函数会使用 xTimerPendFunctionCallFromISR 将 vEventGroupSetBitsCallback 这一回调函数挂起到定时器队列中。vEventGroupSetBitsCallback 回调函数会在定时器队列中被调用，并执行 xEventGroupSetBits 函数来实际">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-23T04:44:04.000Z">
-<meta property="article:modified_time" content="2024-07-09T18:52:56.000Z">
+<meta property="article:published_time" content="2024-12-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-03T13:09:39.550Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="个人学习">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Spring">
-<meta property="article:tag" content="MongoDB">
+<meta property="article:tag" content="FreeRTOS">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
@@ -171,7 +169,7 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-Spring中使用MongDB进行分页查询" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-对于在中断中写事件组的本质的理解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -180,14 +178,14 @@
 <center><p>
   
     <h1 class="article-title_code_ant" itemprop="name">
-      Spring中使用MongoDB进行分页查询
+      对于在中断中写事件组的本质的理解
     </h1>
   
 </p></center>
 
         
-        <a href="/Blog.io/2020/07/23/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2020-07-23T04:44:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
+        <a href="/Blog.io/2024/12/03/%E5%AF%B9%E4%BA%8E%E5%9C%A8%E4%B8%AD%E6%96%AD%E4%B8%AD%E5%86%99%E4%BA%8B%E4%BB%B6%E7%BB%84%E7%9A%84%E6%9C%AC%E8%B4%A8%E7%9A%84%E7%90%86%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2024-12-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-03</time>
 </a>
         
       </header>
@@ -197,43 +195,42 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p>调用 <code>PageRequest.of()</code> 方法构建一个分页对象,然后注入到查询对象。</p>
-<p><code>PageRequest.of()</code> 方法用于确定分页规则：</p>
-<ol>
-<li>第一个参数是页码,注意从<strong>0</strong> 开始计数,第一页的值是<strong>0</strong> ;</li>
-<li>第二个参数是每页的数量。</li>
-</ol>
-<p>例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.domain.PageRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Pageable;</span><br><span class="line"></span><br><span class="line">Pageable pageable = PageRequest.of(<span class="number">0</span> , <span class="number">20</span>);</span><br><span class="line">query.with(pageable);</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>在实际操纵中，我们还需要知道符合条件的数据数量，可以用<code>mongoTemplate.count(query, xxx.class)</code>方法获得数据数量。第一个参数是Query类，第二个参数是查询对象类型。</p>
-<p>例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> count = mongoTemplate.count(query, Song<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+        <br>
 
-<p>通过分页条件，数据总数这两个参数，再加上一个结果参数，就可以构建一个分页器了。</p>
-<p>例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Page;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.support.PageableExecutionUtils;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 总数</span></span><br><span class="line"><span class="keyword">long</span> count = mongoTemplate.count(query, Song<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">// 构建分页器</span></span><br><span class="line">Page&lt;Song&gt; pageResult = PageableExecutionUtils.getPage(songs, pageable, <span class="keyword">new</span> LongSupplier() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getAsLong</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><code>PageableExecutionUtils.getPage()</code>方法第一个参数是查询结果;第二个参数是分页条件对象;第三个参数稍微复杂一点,实现一个 <strong>LongSupplier</strong> 接口的匿名类,在匿名类的 <code>getAsLong()</code> 方法中返回结果总数，方法返回值是一个 <strong>Page 分页器</strong>对象。</p>
-<p>关于<strong>Page</strong>分页器的一些常见方法如下：</p>
-<blockquote>
-<p>getTotalElements() </p>
-</blockquote>
-<h5 id="返回类型-long-，返回元素总数"><a href="#返回类型-long-，返回元素总数" class="headerlink" title="返回类型:long ，返回元素总数"></a>返回类型:long ，返回元素总数</h5><blockquote>
-<p>getTotalPages() </p>
-</blockquote>
-<h5 id="返回类型-int-，返回总页数"><a href="#返回类型-int-，返回总页数" class="headerlink" title="返回类型:int ，返回总页数"></a>返回类型:int ，返回总页数</h5><blockquote>
-<p>getContent() </p>
-</blockquote>
-<h5 id="返回类型-List-，返回当前页面元素集合"><a href="#返回类型-List-，返回当前页面元素集合" class="headerlink" title="返回类型:List ，返回当前页面元素集合"></a>返回类型:List<T> ，返回当前页面元素集合</T></h5><blockquote>
-<p>getNumber() </p>
-</blockquote>
-<h5 id="返回类型-int-返回当前页码号-，注意是以-0-开始计数的-0-表示第一页-1-表示第二页"><a href="#返回类型-int-返回当前页码号-，注意是以-0-开始计数的-0-表示第一页-1-表示第二页" class="headerlink" title="返回类型:int 返回当前页码号 ，注意是以 0 开始计数的,0 表示第一页,1 表示第二页"></a>返回类型:int 返回当前页码号 ，注意是以 0 开始计数的,0 表示第一页,1 表示第二页</h5><blockquote>
-<p>getSize() </p>
-</blockquote>
-<h5 id="返回类型-int-，返回每页额定元素数"><a href="#返回类型-int-，返回每页额定元素数" class="headerlink" title="返回类型:int ，返回每页额定元素数"></a>返回类型:int ，返回每页额定元素数</h5><blockquote>
-<p>getNumberOfElements() </p>
-</blockquote>
-<h5 id="返回类型-int-，返回页中的元素数"><a href="#返回类型-int-，返回页中的元素数" class="headerlink" title="返回类型:int ，返回页中的元素数"></a>返回类型:int ，返回页中的元素数</h5><br>
+<p>省流：在中断中写事件组需要调用 <code>xEventGroupSetBitsFromISR</code> 函数，该函数会使用 <code>xTimerPendFunctionCallFromISR</code> 将 <code>vEventGroupSetBitsCallback</code> 这一回调函数挂起到定时器队列中。<code>vEventGroupSetBitsCallback</code> 回调函数会在定时器队列中被调用，并执行 <code>xEventGroupSetBits</code> 函数来实际设置事件组的位。</p>
+<a id="more"></a>
+
+<br>
+
+<h3 id="具体流程："><a href="#具体流程：" class="headerlink" title="具体流程："></a>具体流程：</h3><p><strong>1. xEventGroupSetBitsFromISR：</strong></p>
+<p>源码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> ( ( configUSE_TRACE_FACILITY == 1 ) &amp;&amp; ( INCLUDE_xTimerPendFunctionCall == 1 ) &amp;&amp; ( configUSE_TIMERS == 1 ) )</span></span><br><span class="line"></span><br><span class="line">	<span class="function">BaseType_t <span class="title">xEventGroupSetBitsFromISR</span><span class="params">( EventGroupHandle_t xEventGroup, <span class="keyword">const</span> EventBits_t uxBitsToSet, BaseType_t *pxHigherPriorityTaskWoken )</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	BaseType_t xReturn;</span><br><span class="line"></span><br><span class="line">		traceEVENT_GROUP_SET_BITS_FROM_ISR( xEventGroup, uxBitsToSet );</span><br><span class="line">		xReturn = xTimerPendFunctionCallFromISR( vEventGroupSetBitsCallback, ( <span class="keyword">void</span> * ) xEventGroup, ( <span class="keyword">uint32_t</span> ) uxBitsToSet, pxHigherPriorityTaskWoken );</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> xReturn;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该函数接受事件组句柄、要设置的位以及一个指向<code>BaseType_t</code>的指针（用于指示是否需要进行上下文切换）。</li>
+<li>它内部会调用<code>xTimerPendFunctionCallFromISR</code>，将<code>vEventGroupSetBitsCallback</code>回调函数挂起到定时器队列中。</li>
+</ul>
+<p><strong>2. xTimerPendFunctionCallFromISR</strong>：</p>
+<p>源码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BaseType_t <span class="title">xTimerPendFunctionCallFromISR</span><span class="params">( PendedFunction_t xFunctionToPend, <span class="keyword">void</span> *pvParameter1, <span class="keyword">uint32_t</span> ulParameter2, BaseType_t *pxHigherPriorityTaskWoken )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">DaemonTaskMessage_t xMessage;</span><br><span class="line">BaseType_t xReturn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Complete the message with the function parameters and post it to the</span></span><br><span class="line"><span class="comment">	daemon task. */</span></span><br><span class="line">	xMessage.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK_FROM_ISR;</span><br><span class="line">	xMessage.u.xCallbackParameters.pxCallbackFunction = xFunctionToPend;</span><br><span class="line">	xMessage.u.xCallbackParameters.pvParameter1 = pvParameter1;</span><br><span class="line">	xMessage.u.xCallbackParameters.ulParameter2 = ulParameter2;</span><br><span class="line"></span><br><span class="line">	xReturn = xQueueSendFromISR( xTimerQueue, &amp;xMessage, pxHigherPriorityTaskWoken );</span><br><span class="line"></span><br><span class="line">	tracePEND_FUNC_CALL_FROM_ISR( xFunctionToPend, pvParameter1, ulParameter2, xReturn );</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> xReturn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该函数将<code>vEventGroupSetBitsCallback</code>回调函数、事件组句柄、要设置的位以及一个标志（用于指示是否需要进行上下文切换）作为参数传递。</li>
+<li>回调函数<code>vEventGroupSetBitsCallback</code>会在定时器队列中被调度执行。</li>
+</ul>
+<p><strong>3. vEventGroupSetBitsCallback</strong>：</p>
+<p>源码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vEventGroupSetBitsCallback</span><span class="params">( <span class="keyword">void</span> *pvEventGroup, <span class="keyword">const</span> <span class="keyword">uint32_t</span> ulBitsToSet )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	( <span class="keyword">void</span> ) xEventGroupSetBits( pvEventGroup, ( EventBits_t ) ulBitsToSet );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这是一个回调函数，它会在定时器队列中被调用。</li>
+<li>在这个回调函数中，会调用<code>xEventGroupSetBits</code>来实际设置事件组的位。</li>
+</ul>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><ul>
+<li><strong><code>xEventGroupSetBitsFromISR</code></strong> 是用于ISR的函数，它通过<code>xTimerPendFunctionCallFromISR</code>将事件组的设置操作推迟到定时器队列中执行，从而避免了在中断上下文中直接调用可能阻塞的API函数。</li>
+<li><strong><code>vEventGroupSetBitsCallback</code></strong> 是一个回调函数，它在定时器队列中被调用，实际执行<code>xEventGroupSetBits</code>来设置事件组的位。</li>
+</ul>
+
       
 
       
@@ -250,15 +247,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FreeRTOS</a>
         		</li>
       		
 		</ul>
@@ -314,7 +303,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2020/07/23/Spring%E4%B8%AD%E4%BD%BF%E7%94%A8MongDB%E8%BF%9B%E8%A1%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/12/03/%E5%AF%B9%E4%BA%8E%E5%9C%A8%E4%B8%AD%E6%96%AD%E4%B8%AD%E5%86%99%E4%BA%8B%E4%BB%B6%E7%BB%84%E7%9A%84%E6%9C%AC%E8%B4%A8%E7%9A%84%E7%90%86%E8%A7%A3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -328,18 +317,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2020/07/26/Spring%E4%B8%AD%E5%90%AF%E5%8A%A8IOC%E5%AE%B9%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Spring中启动IOC容器
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2020/07/22/MongoDB%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MongoDB配置</div>
+    <a href="/Blog.io/2024/12/02/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vTaskDelay与mdelay的异同</div>
       <i class="icon-circle-right"></i>
     </a>
   

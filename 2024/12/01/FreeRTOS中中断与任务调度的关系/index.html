@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>vTaskDelay与mdelay的异同 | 观测的博客</title>
+  <title>FreeRTOS中中断与任务调度的关系 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在嵌入式系统编程中，VTaskDelay 和 mdelay 是两种常见的延时函数，它们的主要区别在于实现方式、使用场景和精度。">
+  <meta name="description" content="在 FreeRTOS 中，如果你在执行某行代码前关闭了所有中断（即禁用了全局中断），那么在执行该行代码的过程中，任务调度将不会发生。这是因为 FreeRTOS 的调度机制依赖于中断来触发任务切换和调度。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vTaskDelay与mdelay的异同">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/12/03/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/index.html">
+<meta property="og:title" content="FreeRTOS中中断与任务调度的关系">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/12/01/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="在嵌入式系统编程中，VTaskDelay 和 mdelay 是两种常见的延时函数，它们的主要区别在于实现方式、使用场景和精度。">
+<meta property="og:description" content="在 FreeRTOS 中，如果你在执行某行代码前关闭了所有中断（即禁用了全局中断），那么在执行该行代码的过程中，任务调度将不会发生。这是因为 FreeRTOS 的调度机制依赖于中断来触发任务切换和调度。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-12-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-03T07:18:52.218Z">
+<meta property="article:published_time" content="2024-11-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-03T12:17:07.913Z">
 <meta property="article:author" content="观测">
-<meta property="article:tag" content="FreeRTOS">
 <meta property="article:tag" content="个人学习">
+<meta property="article:tag" content="FreeRTOS">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
@@ -169,7 +169,7 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-vTaskDelay与mdelay的异同" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-FreeRTOS中中断与任务调度的关系" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -178,14 +178,14 @@
 <center><p>
   
     <h1 class="article-title_code_ant" itemprop="name">
-      vTaskDelay与mdelay的异同
+      FreeRTOS中中断与任务调度的关系
     </h1>
   
 </p></center>
 
         
-        <a href="/Blog.io/2024/12/03/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/" class="archive-article-date">
-  	<time datetime="2024-12-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-03</time>
+        <a href="/Blog.io/2024/12/01/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/" class="archive-article-date">
+  	<time datetime="2024-11-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-01</time>
 </a>
         
       </header>
@@ -197,44 +197,38 @@
       
         <br>
 
-<p>在嵌入式系统编程中，<code>VTaskDelay</code> 和 <code>mdelay</code> 是两种常见的延时函数，它们的主要区别在于实现方式、使用场景和精度。</p>
+<p>在 FreeRTOS 中，如果你在执行某行代码前关闭了所有中断（即禁用了全局中断），那么在执行该行代码的过程中，任务调度将不会发生。这是因为 FreeRTOS 的调度机制依赖于中断来触发任务切换和调度。</p>
 <a id="more"></a>
 
 <br>
 
-<h3 id="VTaskDelay"><a href="#VTaskDelay" class="headerlink" title="VTaskDelay"></a>VTaskDelay</h3><ul>
-<li><strong>来源</strong>: <code>VTaskDelay</code> 通常是 FreeRTOS 操作系统中的一个函数。</li>
-<li><strong>功能</strong>: 它用于让当前任务进入阻塞状态，等待指定的时间（以系统时钟节拍数为单位）。</li>
-<li><strong>使用场景</strong>: 主要用于多任务环境中，允许其他任务在当前任务等待时运行。</li>
-<li><strong>精度</strong>: 精度取决于系统的时钟节拍频率（tick rate），通常是毫秒级别的精度。</li>
-<li><strong>特点</strong>:<ul>
-<li>任务在延时期间不会占用 CPU 资源。</li>
-<li>可以与其他任务并发执行。</li>
-<li>适用于需要任务间协作的场景。</li>
+<h3 id="详细解释"><a href="#详细解释" class="headerlink" title="详细解释"></a>详细解释</h3><p><strong>关闭中断的影响</strong>：</p>
+<ul>
+<li>当你调用 <code>taskDISABLE_INTERRUPTS()</code> 或类似的函数来禁用全局中断时，所有中断（包括 SysTick、PendSV 等）都将被屏蔽，直到你重新启用中断。</li>
+<li>由于中断被禁用，SysTick 定时器中断不会触发，因此 <code>xTaskIncrementTick()</code> 不会被调用，系统时钟计数器不会更新，任务调度器也不会检查任务状态。</li>
 </ul>
-</li>
+<p><strong>任务调度的依赖</strong>：</p>
+<ul>
+<li>任务调度通常依赖于 SysTick 中断来定期检查任务状态，并在需要时触发任务切换。</li>
+<li>如果中断被禁用，SysTick 中断不会触发，任务调度器不会运行，因此任务切换也不会发生。</li>
 </ul>
-<br>
-
-<h3 id="mdelay"><a href="#mdelay" class="headerlink" title="mdelay"></a>mdelay</h3><ul>
-<li><strong>来源</strong>: <code>mdelay</code> 通常是裸机编程或操作系统中提供的简单延时函数。</li>
-<li><strong>功能</strong>: 它通过循环执行空操作（通常是 <code>NOP</code> 指令）来实现延时，延时时间以毫秒为单位。</li>
-<li><strong>使用场景</strong>: 主要用于单任务环境中，或者在不需要任务调度的简单系统中。</li>
-<li><strong>精度</strong>: 精度取决于 CPU 的时钟频率和指令执行时间，通常是毫秒级别的精度。</li>
-<li><strong>特点</strong>:<ul>
-<li>在延时期间会占用 CPU 资源，导致其他任务无法执行。</li>
-<li>适用于简单的、不需要任务调度的系统。</li>
-<li>可能会受到中断、任务切换等因素的影响，导致实际延时时间不准确。</li>
-</ul>
-</li>
+<p><strong>任务切换的触发</strong>：</p>
+<ul>
+<li>任务切换通常在 PendSV 中断中完成，或者在主循环中通过 <code>taskYIELD()</code> 或 <code>portYIELD()</code> 触发。</li>
+<li>如果中断被禁用，PendSV 中断不会触发，<code>taskYIELD()</code> 或 <code>portYIELD()</code> 也不会执行，因此任务切换不会发生。</li>
 </ul>
 <br>
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><strong><code>VTaskDelay</code></strong>: 适用于多任务环境，允许任务间协作，不占用 CPU 资源，精度取决于系统时钟节拍。</li>
-<li><strong><code>mdelay</code></strong>: 适用于单任务环境或简单系统，占用 CPU 资源，精度取决于 CPU 时钟频率和指令执行时间。</li>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如果你在执行某行代码前关闭了所有中断，那么在执行该行代码的过程中，任务调度将不会发生。任务调度依赖于中断来触发，中断被禁用后，调度机制将无法运行。</p>
+<br>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>关闭中断的时间应尽量短，以避免影响系统的实时性和响应性。</li>
+<li>在某些情况下，你可能需要使用临界区（Critical Section）来保护代码片段，而不是完全禁用中断。临界区可以通过 <code>taskENTER_CRITICAL()</code> 和 <code>taskEXIT_CRITICAL()</code> 来实现，这样可以避免长时间禁用中断。</li>
 </ul>
-<p>选择使用哪种延时函数取决于具体的应用场景和系统需求。在多任务环境中，<code>VTaskDelay</code> 是更好的选择，而在简单的单任务环境中，<code>mdelay</code> 可能更为合适。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">taskENTER_CRITICAL();</span><br><span class="line"><span class="comment">// 临界区代码</span></span><br><span class="line">taskEXIT_CRITICAL();</span><br></pre></td></tr></table></figure>
+
+<p>通过这种方式，你可以在保护代码片段的同时，仍然允许高优先级中断的响应。</p>
 
       
 
@@ -248,11 +242,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FreeRTOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FreeRTOS</a>
         		</li>
       		
 		</ul>
@@ -308,7 +302,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/12/03/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/12/01/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -322,9 +316,18 @@
   
 <nav id="article-nav">
   
+    <a href="/Blog.io/2024/12/02/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vTaskDelay与mdelay的异同
+        
+      </div>
+    </a>
   
-    <a href="/Blog.io/2024/12/02/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">FreeRTOS中中断与任务调度的关系</div>
+  
+    <a href="/Blog.io/2024/11/02/weak%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%94%A8%E9%80%94/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">__weak关键字的用途</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -506,15 +509,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">个人学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,15 +533,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM51</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,19 +549,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Win11</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,10 +574,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
