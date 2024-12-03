@@ -16,7 +16,7 @@
 <meta property="og:description" content="在嵌入式系统编程中，VTaskDelay 和 mdelay 是两种常见的延时函数，它们的主要区别在于实现方式、使用场景和精度。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-12-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-03T06:47:33.960Z">
+<meta property="article:modified_time" content="2024-12-03T07:18:52.218Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="FreeRTOS">
 <meta property="article:tag" content="个人学习">
@@ -202,7 +202,7 @@
 
 <br>
 
-<h3 id="1-VTaskDelay"><a href="#1-VTaskDelay" class="headerlink" title="1. VTaskDelay"></a>1. <code>VTaskDelay</code></h3><ul>
+<h3 id="VTaskDelay"><a href="#VTaskDelay" class="headerlink" title="VTaskDelay"></a>VTaskDelay</h3><ul>
 <li><strong>来源</strong>: <code>VTaskDelay</code> 通常是 FreeRTOS 操作系统中的一个函数。</li>
 <li><strong>功能</strong>: 它用于让当前任务进入阻塞状态，等待指定的时间（以系统时钟节拍数为单位）。</li>
 <li><strong>使用场景</strong>: 主要用于多任务环境中，允许其他任务在当前任务等待时运行。</li>
@@ -214,7 +214,9 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-mdelay"><a href="#2-mdelay" class="headerlink" title="2. mdelay"></a>2. <code>mdelay</code></h3><ul>
+<br>
+
+<h3 id="mdelay"><a href="#mdelay" class="headerlink" title="mdelay"></a>mdelay</h3><ul>
 <li><strong>来源</strong>: <code>mdelay</code> 通常是裸机编程或操作系统中提供的简单延时函数。</li>
 <li><strong>功能</strong>: 它通过循环执行空操作（通常是 <code>NOP</code> 指令）来实现延时，延时时间以毫秒为单位。</li>
 <li><strong>使用场景</strong>: 主要用于单任务环境中，或者在不需要任务调度的简单系统中。</li>
@@ -226,6 +228,8 @@
 </ul>
 </li>
 </ul>
+<br>
+
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li><strong><code>VTaskDelay</code></strong>: 适用于多任务环境，允许任务间协作，不占用 CPU 资源，精度取决于系统时钟节拍。</li>
 <li><strong><code>mdelay</code></strong>: 适用于单任务环境或简单系统，占用 CPU 资源，精度取决于 CPU 时钟频率和指令执行时间。</li>
@@ -318,18 +322,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2024/12/03/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          FreeRTOS中中断与任务调度的关系
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2024/11/02/weak%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%94%A8%E9%80%94/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">__weak关键字的用途</div>
+    <a href="/Blog.io/2024/12/02/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">FreeRTOS中中断与任务调度的关系</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -507,6 +502,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
@@ -515,15 +514,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,15 +522,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM51</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,19 +554,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">校内学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">描统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">校内学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">描统</a>
               </li>
              
               <li class="article-tag-list-item">
