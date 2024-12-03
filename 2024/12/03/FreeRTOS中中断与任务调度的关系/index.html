@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>C函数与栈的关系总结 | 观测的博客</title>
+  <title>FreeRTOS中中断与任务调度的关系 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="假设一个多任务场景，有A函数和B函数，要实现两个函数的并发运行。 这就面临两个问题：  任务切换时，假如A中的结果没有还保存到寄存器中，或者即使保存在寄存器（假设r0）中，由于切换到B后也要用r0存储数据，是不是会出现“A白算了”的现象？ 我们知道C代码会转为汇编码，再变回机器码让机器识别，在汇编码的执行过程中，PC（Program Counter）是指向下一个执行的指令的地址，这决定了程序的">
+  <meta name="description" content="在 FreeRTOS 中，如果你在执行某行代码前关闭了所有中断（即禁用了全局中断），那么在执行该行代码的过程中，任务调度将不会发生。这是因为 FreeRTOS 的调度机制依赖于中断来触发任务切换和调度。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C函数与栈的关系总结">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="FreeRTOS中中断与任务调度的关系">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/12/03/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="假设一个多任务场景，有A函数和B函数，要实现两个函数的并发运行。 这就面临两个问题：  任务切换时，假如A中的结果没有还保存到寄存器中，或者即使保存在寄存器（假设r0）中，由于切换到B后也要用r0存储数据，是不是会出现“A白算了”的现象？ 我们知道C代码会转为汇编码，再变回机器码让机器识别，在汇编码的执行过程中，PC（Program Counter）是指向下一个执行的指令的地址，这决定了程序的">
+<meta property="og:description" content="在 FreeRTOS 中，如果你在执行某行代码前关闭了所有中断（即禁用了全局中断），那么在执行该行代码的过程中，任务调度将不会发生。这是因为 FreeRTOS 的调度机制依赖于中断来触发任务切换和调度。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-10-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-13T07:33:42.971Z">
+<meta property="article:published_time" content="2024-12-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-03T04:23:04.743Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="FreeRTOS">
 <meta property="article:tag" content="个人学习">
@@ -169,7 +169,7 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-C函数与栈的关系总结" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-FreeRTOS中中断与任务调度的关系" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -178,14 +178,14 @@
 <center><p>
   
     <h1 class="article-title_code_ant" itemprop="name">
-      C函数与栈的关系总结
+      FreeRTOS中中断与任务调度的关系
     </h1>
   
 </p></center>
 
         
-        <a href="/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2024-10-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-10-13</time>
+        <a href="/Blog.io/2024/12/03/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/" class="archive-article-date">
+  	<time datetime="2024-12-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-03</time>
 </a>
         
       </header>
@@ -197,15 +197,34 @@
       
         <br>
 
-<p>假设一个多任务场景，有A函数和B函数，要实现两个函数的并发运行。</p>
-<p>这就面临两个问题：</p>
-<ol>
-<li>任务切换时，假如A中的结果没有还保存到寄存器中，或者即使保存在寄存器（假设r0）中，由于切换到B后也要用r0存储数据，是不是会出现“A白算了”的现象？</li>
-<li>我们知道C代码会转为汇编码，再变回机器码让机器识别，在汇编码的执行过程中，PC（Program Counter）是指向下一个执行的指令的地址，这决定了程序的运行顺序。假设A在PC=100时切换到B，当再想切换回A任务时，由于PC值已经改变，此时的PC为B下一个执行的指令的地址，我们怎么知道“回到哪里执行A”？</li>
-</ol>
+<p>在 FreeRTOS 中，如果你在执行某行代码前关闭了所有中断（即禁用了全局中断），那么在执行该行代码的过程中，任务调度将不会发生。这是因为 FreeRTOS 的调度机制依赖于中断来触发任务切换和调度。</p>
+<a id="more"></a>
+
 <br>
 
-<p>在C语言中，每一个任务都有对应的一个栈。栈位于内存中，我们可以使用栈来解决上面两个问题。首先，栈将A函数的现场（PC值，各局部变量的值与对应存储的寄存器关系等）保存到栈中；等B函数切换回A函数时，先将A函数栈中的现场恢复到硬件（即CPU）上。这样硬件就能知道”我刚刚算了什么东西”（各局部变量的值与对应存储的寄存器关系）和”我刚刚算到哪儿了”（PC值）。</p>
+<h3 id="详细解释"><a href="#详细解释" class="headerlink" title="详细解释"></a>详细解释</h3><p><strong>关闭中断的影响</strong>：</p>
+<ul>
+<li>当你调用 <code>taskDISABLE_INTERRUPTS()</code> 或类似的函数来禁用全局中断时，所有中断（包括 SysTick、PendSV 等）都将被屏蔽，直到你重新启用中断。</li>
+<li>由于中断被禁用，SysTick 定时器中断不会触发，因此 <code>xTaskIncrementTick()</code> 不会被调用，系统时钟计数器不会更新，任务调度器也不会检查任务状态。</li>
+</ul>
+<p><strong>任务调度的依赖</strong>：</p>
+<ul>
+<li>任务调度通常依赖于 SysTick 中断来定期检查任务状态，并在需要时触发任务切换。</li>
+<li>如果中断被禁用，SysTick 中断不会触发，任务调度器不会运行，因此任务切换也不会发生。</li>
+</ul>
+<p><strong>任务切换的触发</strong>：</p>
+<ul>
+<li>任务切换通常在 PendSV 中断中完成，或者在主循环中通过 <code>taskYIELD()</code> 或 <code>portYIELD()</code> 触发。</li>
+<li>如果中断被禁用，PendSV 中断不会触发，<code>taskYIELD()</code> 或 <code>portYIELD()</code> 也不会执行，因此任务切换不会发生。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如果你在执行某行代码前关闭了所有中断，那么在执行该行代码的过程中，任务调度将不会发生。任务调度依赖于中断来触发，中断被禁用后，调度机制将无法运行。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>关闭中断的时间应尽量短，以避免影响系统的实时性和响应性。</li>
+<li>在某些情况下，你可能需要使用临界区（Critical Section）来保护代码片段，而不是完全禁用中断。临界区可以通过 <code>taskENTER_CRITICAL()</code> 和 <code>taskEXIT_CRITICAL()</code> 来实现，这样可以避免长时间禁用中断。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">taskENTER_CRITICAL();</span><br><span class="line"><span class="comment">// 临界区代码</span></span><br><span class="line">taskEXIT_CRITICAL();</span><br></pre></td></tr></table></figure>
+
+<p>通过这种方式，你可以在保护代码片段的同时，仍然允许高优先级中断的响应。</p>
 
       
 
@@ -279,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/12/03/FreeRTOS%E4%B8%AD%E4%B8%AD%E6%96%AD%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,18 +312,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2024/10/17/FreeRTOS%E5%88%9B%E5%BB%BA%E4%BB%BB%E5%8A%A1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          FreeRTOS创建任务
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2024/10/05/STM32%E6%B1%9F%E7%A7%91%E5%A4%A7%E5%AD%A6%E4%B9%A0%E5%AE%8C%E6%AF%95%E7%95%99%E5%BF%B5/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">STM32江科大学习完毕留念</div>
+    <a href="/Blog.io/2024/11/02/weak%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%94%A8%E9%80%94/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">__weak关键字的用途</div>
       <i class="icon-circle-right"></i>
     </a>
   
