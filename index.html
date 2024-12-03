@@ -254,6 +254,94 @@
 
 
   
+    <article id="post-vTaskDelay与mdelay的异同" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/12/03/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/">vTaskDelay与mdelay的异同</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/12/03/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/" class="archive-article-date">
+  	<time datetime="2024-12-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-03</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<p>在嵌入式系统编程中，<code>VTaskDelay</code> 和 <code>mdelay</code> 是两种常见的延时函数，它们的主要区别在于实现方式、使用场景和精度。</p>
+        
+          <a class="article-more-a" href="/Blog.io/2024/12/03/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FreeRTOS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/12/03/vTaskDelay%E4%B8%8Emdelay%E7%9A%84%E5%BC%82%E5%90%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-weak关键字的用途" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -971,94 +1059,6 @@
 
 
   
-    <article id="post-STM32单片机学习记录（五）定时器实现PWM输出信号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2024/08/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM%E8%BE%93%E5%87%BA%E4%BF%A1%E5%8F%B7/">STM32单片机学习记录（五）定时器实现PWM输出信号</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2024/08/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM%E8%BE%93%E5%87%BA%E4%BF%A1%E5%8F%B7/" class="archive-article-date">
-  	<time datetime="2024-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-15</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<h3 id="1-PWM中断初始化函数"><a href="#1-PWM中断初始化函数" class="headerlink" title="1.PWM中断初始化函数"></a>1.PWM中断初始化函数</h3><p>PWM初始化流程如下图所示：</p>
-        
-          <a class="article-more-a" href="/Blog.io/2024/08/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM%E8%BE%93%E5%87%BA%E4%BF%A1%E5%8F%B7/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM32</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/08/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0PWM%E8%BE%93%E5%87%BA%E4%BF%A1%E5%8F%B7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/Blog.io/page/2/">2</a><a class="page-number" href="/Blog.io/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/Blog.io/page/7/">7</a><a class="extend next" rel="next" href="/Blog.io/page/2/">下一页</a>
@@ -1191,7 +1191,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STM32</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1199,11 +1199,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color1">STM32</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1211,7 +1211,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+                <a href="javascript:void(0)" class="js-tag color1">STM51</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1239,7 +1239,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1247,7 +1247,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
