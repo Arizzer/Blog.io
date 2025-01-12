@@ -166,6 +166,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-STM51单片机学习记录（十三）外接直流电机时进行程序烧录需要注意的事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/07/28/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/">STM51单片机学习记录（十三）外接直流电机时进行程序烧录需要注意的事项</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/07/28/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
+  	<time datetime="2024-07-28T13:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-28</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<p>在开发板需要外接直流电机时，不能在已经外接电机的情况下烧录程序。应该按照如下步骤：</p>
+<p>程序编译→启动按键→程序烧录→关闭按键→外接电机→更换电源→启动按键</p>
+<p>如果直接在已经外接的电机的情况下烧录，会出现电脑无法识别串口的情况出现，也就无法烧录成功。</p>
+<p>在程序烧录好以后再外接电机时，如果连接的电源是电脑电源，会出现程序无法正常执行的现象。而在连接其他电源时可以正常工作，暂不知道出现此现象的原因。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/07/28/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-STM51单片机学习记录（十一）如何取一个数字中的任意一位" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -986,101 +1075,6 @@
 
 
   
-    <article id="post-STM51单片机学习记录（三）定时器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/">STM51单片机学习记录（三）定时器与中断系统</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2024-07-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-14</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>51单片机的定时器属于单片机的内部资源，其电路的连接和运转均在单片机内部完成定时器作用：</p>
-<ol>
-<li>用于计时系统，可实现软件计时，或者使程序每隔一固定时间完成一项操作</li>
-<li>替代长时间的Delay，提高CPU的运行效率和处理速度</li>
-<li>……</li>
-</ol>
-<p>定时器个数：3个（T0、T1、T2），T0和T1与传统的51单片机兼容，T2是STM89C52单片机增加的资源。</p>
-<p>注意：定时器的资源和单片机的型号是关联在一起的，不同的型号可能会有不同的定时器个数和操作方式，但一般来说，T0和T1的操作方式是所有51单片机所共有的。</p>
-        
-          <a class="article-more-a" href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/14/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9A%E6%97%B6%E5%99%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/Blog.io/page/2/">上一页</a><a class="page-number" href="/Blog.io/">1</a><a class="page-number" href="/Blog.io/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/Blog.io/page/4/">4</a><a class="page-number" href="/Blog.io/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/Blog.io/page/7/">7</a><a class="extend next" rel="next" href="/Blog.io/page/4/">下一页</a>
@@ -1095,7 +1089,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 观测
+    		&copy; 2025 观测
     	</div>
       	<div class="footer-right">
       		<p>猫獭鼠 & Forever</p>
@@ -1201,6 +1195,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
@@ -1209,11 +1207,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HOT100</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STM32</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1225,14 +1235,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STM32</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM51</a>
               </li>
              
@@ -1241,11 +1243,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1253,7 +1259,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1262,14 +1272,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">

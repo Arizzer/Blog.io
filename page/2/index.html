@@ -166,6 +166,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C函数与栈的关系总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+
+
+<center><p>
+  
+    <h1 itemprop="name">
+      <a class="article-title_code_ant" href="/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/">C函数与栈的关系总结</a>
+    </h1>
+  
+</p></center>
+
+        
+        <a href="/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2024-10-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-10-13</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <br>
+
+<p>假设一个多任务场景，有A函数和B函数，要实现两个函数的并发运行。</p>
+<p>这就面临两个问题：</p>
+<ol>
+<li>任务切换时，假如A中的结果没有还保存到寄存器中，或者即使保存在寄存器（假设r0）中，由于切换到B后也要用r0存储数据，是不是会出现“A白算了”的现象？</li>
+<li>我们知道C代码会转为汇编码，再变回机器码让机器识别，在汇编码的执行过程中，PC（Program Counter）是指向下一个执行的指令的地址，这决定了程序的运行顺序。假设A在PC=100时切换到B，当再想切换回A任务时，由于PC值已经改变，此时的PC为B下一个执行的指令的地址，我们怎么知道“回到哪里执行A”？</li>
+</ol>
+<br>
+
+<p>在C语言中，每一个任务都有对应的一个栈。栈位于内存中，我们可以使用栈来解决上面两个问题。首先，栈将A函数的现场（PC值，各局部变量的值与对应存储的寄存器关系等）保存到栈中；等B函数切换回A函数时，先将A函数栈中的现场恢复到硬件（即CPU）上。这样硬件就能知道”我刚刚算了什么东西”（各局部变量的值与对应存储的寄存器关系）和”我刚刚算到哪儿了”（PC值）。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FreeRTOS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Blog.io/2024/10/13/C%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%88%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-STM32江科大学习完毕留念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -212,11 +306,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -970,95 +1064,6 @@
 
 
   
-    <article id="post-STM51单片机学习记录（十三）外接直流电机时进行程序烧录需要注意的事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-
-
-<center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/Blog.io/2024/07/28/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/">STM51单片机学习记录（十三）外接直流电机时进行程序烧录需要注意的事项</a>
-    </h1>
-  
-</p></center>
-
-        
-        <a href="/Blog.io/2024/07/28/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
-  	<time datetime="2024-07-28T13:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-28</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-		
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-
-<p>在开发板需要外接直流电机时，不能在已经外接电机的情况下烧录程序。应该按照如下步骤：</p>
-<p>程序编译→启动按键→程序烧录→关闭按键→外接电机→更换电源→启动按键</p>
-<p>如果直接在已经外接的电机的情况下烧录，会出现电脑无法识别串口的情况出现，也就无法烧录成功。</p>
-<p>在程序烧录好以后再外接电机时，如果连接的电源是电脑电源，会出现程序无法正常执行的现象。而在连接其他电源时可以正常工作，暂不知道出现此现象的原因。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Blog.io/2024/07/28/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%A4%96%E6%8E%A5%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E6%97%B6%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%83%A7%E5%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/Blog.io/">上一页</a><a class="page-number" href="/Blog.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/Blog.io/page/3/">3</a><a class="page-number" href="/Blog.io/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/Blog.io/page/7/">7</a><a class="extend next" rel="next" href="/Blog.io/page/3/">下一页</a>
@@ -1073,7 +1078,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 观测
+    		&copy; 2025 观测
     	</div>
       	<div class="footer-right">
       		<p>猫獭鼠 & Forever</p>
@@ -1179,6 +1184,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
@@ -1187,11 +1196,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HOT100</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STM32</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1203,14 +1224,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STM32</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STM51</a>
               </li>
              
@@ -1219,11 +1232,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1231,7 +1248,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1240,14 +1261,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">描统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
