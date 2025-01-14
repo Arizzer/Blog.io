@@ -6,26 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>STM51单片机学习记录（二）数码管的应用 | 观测的博客</title>
+  <title>HOT100-1两数之和 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.简介数码管是一种简单、廉价的显示器，是由多个发光二极管封装在一起组成“8”字型的器件。二极管箭头由高电平指向低电平（阳极指向阴极）。管脚的定义有两种：下图中右上的为共阴极、右下的为共阳极。  当使用共阴极管脚数码管时，只有当阴极接地（0）（位选），阳极接高电平（1）（段选），才能点亮对应的二极管。  当使用共阳极管脚数码管时，只有当阴极接高电平（1）（位选），阳极接地（0）（段选），才能点">
+  <meta name="description" content="题目描述： 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。 你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。 你可以按任意顺序返回答案。 示例 1： 123输入：nums &#x3D; [2,7,11,15], target &#x3D; 9输出：[0,1]解释：因为 nums">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STM51单片机学习记录（二）数码管的应用">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:title" content="HOT100-1两数之和">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2025/01/12/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="1.简介数码管是一种简单、廉价的显示器，是由多个发光二极管封装在一起组成“8”字型的器件。二极管箭头由高电平指向低电平（阳极指向阴极）。管脚的定义有两种：下图中右上的为共阴极、右下的为共阳极。  当使用共阴极管脚数码管时，只有当阴极接地（0）（位选），阳极接高电平（1）（段选），才能点亮对应的二极管。  当使用共阳极管脚数码管时，只有当阴极接高电平（1）（位选），阳极接地（0）（段选），才能点">
+<meta property="og:description" content="题目描述： 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。 你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。 你可以按任意顺序返回答案。 示例 1： 123输入：nums &#x3D; [2,7,11,15], target &#x3D; 9输出：[0,1]解释：因为 nums">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/1-1.png">
-<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/1-2.png">
-<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/1-3.png">
-<meta property="og:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/1-4.png">
-<meta property="article:published_time" content="2024-07-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-11T16:12:57.566Z">
+<meta property="article:published_time" content="2025-01-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-12T09:05:09.343Z">
 <meta property="article:author" content="观测">
-<meta property="article:tag" content="个人学习">
-<meta property="article:tag" content="STM51">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="HOT100">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://arizzer.github.io/Blog.io/assets/img/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/1-1.png">
   
     <link rel="alternative" href="/atom.xml" title="观测的博客" type="application/atom+xml">
   
@@ -174,7 +169,7 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-STM51单片机学习记录（二）数码管的应用" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-HOT100-2字母异位词分组" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -183,14 +178,14 @@
 <center><p>
   
     <h1 class="article-title_code_ant" itemprop="name">
-      STM51单片机学习记录（二）数码管的应用
+      HOT100-1两数之和
     </h1>
   
 </p></center>
 
         
-        <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2024-07-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-10</time>
+        <a href="/Blog.io/2025/01/12/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" class="archive-article-date">
+  	<time datetime="2025-01-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-01-12</time>
 </a>
         
       </header>
@@ -204,7 +199,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-简介"><span class="toc-number">1.</span> <span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-位选与段选"><span class="toc-number">2.</span> <span class="toc-text">2.位选与段选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-消影"><span class="toc-number">3.</span> <span class="toc-text">3.消影</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-解法"><span class="toc-number">1.</span> <span class="toc-text">1. 解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-代码讲解"><span class="toc-number">2.</span> <span class="toc-text">2. 代码讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-代码实现"><span class="toc-number">3.</span> <span class="toc-text">3. 代码实现</span></a></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -226,124 +221,67 @@
       
         <br>
 
-<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>数码管是一种简单、廉价的显示器，是由多个发光二极管封装在一起组成“8”字型的器件。二极管箭头由高电平指向低电平（阳极指向阴极）。管脚的定义有两种：下图中右上的为共阴极、右下的为共阳极。</p>
+<p>题目描述：</p>
+<p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。</p>
+<p>你可以按任意顺序返回答案。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [2,7,11,15], target &#x3D; 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] &#x3D;&#x3D; 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [3,2,4], target &#x3D; 6</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [3,3], target &#x3D; 6</span><br><span class="line">输出：[0,1]</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>提示：</strong></p>
 <ul>
-<li><p>当使用共阴极管脚数码管时，只有当阴极接地（0）（位选），阳极接高电平（1）（段选），才能点亮对应的二极管。</p>
-</li>
-<li><p>当使用共阳极管脚数码管时，只有当阴极接高电平（1）（位选），阳极接地（0）（段选），才能点亮对应的二极管。</p>
-</li>
+<li><code>2 &lt;= nums.length &lt;= 104</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>-109 &lt;= target &lt;= 109</code></li>
+<li><strong>只会存在一个有效答案</strong></li>
 </ul>
-<p>点亮的核心原理是二极管连接的两端需要存在电势差。</p>
+<p><strong>进阶：</strong>你可以想出一个时间复杂度小于 <code>O(n2)</code> 的算法吗？</p>
 <a id="more"></a>
 
-<img src="/Blog.io/assets/img/STM51单片机学习记录（二）数码管的应用/1-1.png" style="zoom:50%;">
+<br>
 
+<h3 id="1-解法"><a href="#1-解法" class="headerlink" title="1. 解法"></a>1. <strong>解法</strong></h3><p>创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。这样的时间复杂度为O(1)。</p>
+<br>
 
+<h3 id="2-代码讲解"><a href="#2-代码讲解" class="headerlink" title="2. 代码讲解"></a>2. <strong>代码讲解</strong></h3><p>首先定义哈希表的结构：键值均为整数类型。再定义全局变量<code>hashTable</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">hashElement</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125;hashElement;</span><br><span class="line"></span><br><span class="line">hashElement* hashTable = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
 
-<p>在普中A2开发板中，数码管定义如下图所示：</p>
-<img src="/Blog.io/assets/img/STM51单片机学习记录（二）数码管的应用/1-2.png" style="zoom:60%;">
+<p>然后写出函数的主框架，定义返回数组<code>answerArray</code>，在for循环中判断“ target - x是否已在哈希表中”，如果存在则将该键值对的值（能与当前数匹配的数在<code>nums</code>数组中的下标）传入<code>anserArray[0]</code>，再将<code>i</code>传入<code>anserArray[1]</code>；如果不存在则“将该键值对加入哈希表”。</p>
+<p>需要注意的是：由于 <code>hashTable</code> 被定义为全局变量，如果不在for循环前清空哈希表的话，会导致多个测试用例之间存在数据残留，从而影响测试结果。在 LeetCode 的环境中，多个测试用例可能共享相同的全局变量，因此需要确保每次调用 <code>twoSum</code> 函数时，哈希表是干净的。</p>
+<p>可以在for循环前加入<code>hashTable = NULL;</code>或者用<code>HASH_CLEAR(hh, hashTable);</code>清空。</p>
+<p>或者也可以将<code>hashTable</code>设为局部变量，防止在Leetcode中出错：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target, <span class="keyword">int</span>* returnSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span>* anserArray = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">2</span>);</span><br><span class="line">    hashElement* anserHash;</span><br><span class="line"></span><br><span class="line">    hashTable = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">//HASH_CLEAR(hh, hashTable);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; numsSize;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> it = nums[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (findKey(target - it))</span><br><span class="line">        &#123;</span><br><span class="line">            anserHash = findKey(target - it);</span><br><span class="line">            anserArray[<span class="number">0</span>] = anserHash-&gt;val;</span><br><span class="line">            anserArray[<span class="number">1</span>] = i;</span><br><span class="line">            *returnSize = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> anserArray;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            addHash(it, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>在普中A2开发板中，74HC138定义如下图所示：</p>
-<img src="/Blog.io/assets/img/STM51单片机学习记录（二）数码管的应用/1-3.png" style="zoom:60%;">
+<p>下面写两个函数用于实现“ target - x是否已在哈希表中”和“将该键值对加入哈希表”。</p>
+<ul>
+<li><p>“ target - x是否已在哈希表中”：</p>
+<p>先新建一个<code>hashElement</code>用于存放找到的键值对结果，然后用<code>HASH_FIND_INT</code>函数将找到的键值对结果存入<code>hashElement</code>中。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">hashElement* <span class="title">findKey</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    hashElement* retHashElement;</span><br><span class="line">    HASH_FIND_INT(hashTable, &amp;key, retHashElement);</span><br><span class="line">    <span class="keyword">return</span> retHashElement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><br><br></p>
-<h3 id="2-位选与段选"><a href="#2-位选与段选" class="headerlink" title="2.位选与段选"></a>2.位选与段选</h3><p>在上述两图中可以看出：数码管的位选（即第几个数码管亮）是由74HC138控制的，在P22-P24（P24为高位）中输入对应的二进制，就会在右侧Y0-Y7的对应位置（对应数码管阴极）输出低电平（0），从而完成位选。例如，在普中A2开发板中，P22-P24的电平应有如下对应关系：</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">P24</th>
-<th align="center">P23</th>
-<th align="center">P22</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">LED1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">LED2</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-</tr>
-<tr>
-<td align="center">LED3</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">LED4</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-<tr>
-<td align="center">LED5</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">LED6</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">1</td>
-</tr>
-<tr>
-<td align="center">LED7</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">LED8</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody></table>
-<p>数码管的段选由74HC24读取P00-P07的数据，缓存后输出给数码管的阳极。数码管与P00-P07有如下对应关系：</p>
-<table>
-<thead>
-<tr>
-<th align="center">P00</th>
-<th align="center">P01</th>
-<th align="center">P02</th>
-<th align="center">P03</th>
-<th align="center">P04</th>
-<th align="center">P05</th>
-<th align="center">P06</th>
-<th align="center">P07</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">a</td>
-<td align="center">b</td>
-<td align="center">c</td>
-<td align="center">d</td>
-<td align="center">e</td>
-<td align="center">f</td>
-<td align="center">g</td>
-<td align="center">dp(小数点)</td>
-</tr>
-</tbody></table>
-<p>这样，先位选后段选，我们就能自由控制哪一位亮什么图案了。</p>
-<p>常见的数码管段码如下图：</p>
-<img src="/Blog.io/assets/img/STM51单片机学习记录（二）数码管的应用/1-4.png" style="zoom:40%;">
+<ul>
+<li><p>“将该键值对加入哈希表”：</p>
+<p>先新建一个<code>hashElement</code>用于接收传入的键值对，然后用<code>HASH_ADD_INT</code>函数将该键值对存入<code>hashTable</code>中。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHash</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    hashElement* temp = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(hashElement));</span><br><span class="line">    temp-&gt;key = key;</span><br><span class="line">    temp-&gt;val = val;</span><br><span class="line">    HASH_ADD_INT(hashTable, key , temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><br><br></p>
-<h3 id="3-消影"><a href="#3-消影" class="headerlink" title="3.消影"></a>3.消影</h3><p>数码管只能做到同时选中一位，如果需要实现同时亮多位，需要以很快的速度循环显示，即：</p>
-<p>位选→段选→位选→段选→位选→段选→位选→段选→……</p>
-<p>但这样会产生重影，因为在一次【位选→段选】结束，下一次位选来临时，由于新的段选还未执行，因此新的位选会直接先对老段选显示。</p>
-<p>想要消影就需要在每次【位选→段选】后加一步段选清零，这样在下一个位选到来的时候，就不会显示上一个段选了。</p>
-<p>同时，为了防止频繁段选清零导致整体亮度变暗，在段选后清零前应当加入一段延时，1ms即可。这样，流程就变成了：</p>
-<p>位选→段选→延时→→位选→段选→延时→段选清零→位选→段选→延时→段选清零→…</p>
-<p>示例代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NiXie</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> location,number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">		<span class="keyword">switch</span>(location)<span class="comment">//位选</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">4</span>:P2_4=<span class="number">1</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">5</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">6</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">1</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">7</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">8</span>:P2_4=<span class="number">0</span>;P2_3=<span class="number">0</span>;P2_2=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		P0=NiXieTable[number];<span class="comment">//段选</span></span><br><span class="line">		Delay(<span class="number">1</span>);<span class="comment">//延时</span></span><br><span class="line">		P0=<span class="number">0</span>;<span class="comment">//段选清零</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+
+<h3 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3. 代码实现"></a>3. <strong>代码实现</strong></h3><p>可用于直接提交的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">hashElement</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125;hashElement;</span><br><span class="line"></span><br><span class="line">hashElement* hashTable = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">hashElement* <span class="title">findKey</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    hashElement* retHashElement;</span><br><span class="line">    HASH_FIND_INT(hashTable, &amp;key, retHashElement);</span><br><span class="line">    <span class="keyword">return</span> retHashElement;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHash</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    hashElement* temp = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(hashElement));</span><br><span class="line">    temp-&gt;key = key;</span><br><span class="line">    temp-&gt;val = val;</span><br><span class="line">    HASH_ADD_INT(hashTable, key , temp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target, <span class="keyword">int</span>* returnSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span>* anserArray = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">2</span>);</span><br><span class="line">    hashElement* anserHash;</span><br><span class="line"></span><br><span class="line">    hashTable = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; numsSize;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> it = nums[i];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (findKey(target - it))</span><br><span class="line">        &#123;</span><br><span class="line">            anserHash = findKey(target - it);</span><br><span class="line">            anserArray[<span class="number">0</span>] = anserHash-&gt;val;</span><br><span class="line">            anserArray[<span class="number">1</span>] = i;</span><br><span class="line">            *returnSize = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> anserArray;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            addHash(it, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试用完整代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;uthash.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">hashElement</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125;hashElement;</span><br><span class="line"></span><br><span class="line">hashElement* hashTable = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">hashElement* <span class="title">findKey</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    hashElement* retHashElement;</span><br><span class="line">    HASH_FIND_INT(hashTable, &amp;key, retHashElement);</span><br><span class="line">    <span class="keyword">return</span> retHashElement;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHash</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    hashElement* temp = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(hashElement));</span><br><span class="line">    temp-&gt;key = key;</span><br><span class="line">    temp-&gt;val = val;</span><br><span class="line">    HASH_ADD_INT(hashTable, key, temp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target, <span class="keyword">int</span>* returnSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span>* anserArray = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">2</span>);</span><br><span class="line">    hashElement* anserHash;</span><br><span class="line"></span><br><span class="line">    hashTable = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; numsSize;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> it = nums[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (findKey(target - it))</span><br><span class="line">        &#123;</span><br><span class="line">            anserHash = findKey(target - it);</span><br><span class="line">            anserArray[<span class="number">0</span>] = anserHash-&gt;val;</span><br><span class="line">            anserArray[<span class="number">1</span>] = i;</span><br><span class="line">            *returnSize = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> anserArray;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            addHash(it, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[] = &#123; <span class="number">3</span>, <span class="number">3</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> target = <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">int</span> returnSize = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>* ans = twoSum(nums, <span class="number">2</span>, target, &amp;returnSize);</span><br><span class="line">    <span class="keyword">if</span> (returnSize == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, ans[<span class="number">0</span>], ans[<span class="number">1</span>]);</span><br><span class="line">        <span class="built_in">free</span>(ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"No solution found.\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -358,11 +296,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STM51</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -418,7 +356,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E7%A0%81%E7%AE%A1%E7%9A%84%E5%BA%94%E7%94%A8/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2025/01/12/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -432,18 +370,9 @@
   
 <nav id="article-nav">
   
-    <a href="/Blog.io/2024/07/10/STM51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          STM51单片机学习记录（一）延时函数与按键消抖
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog.io/2022/02/14/%E5%8D%97%E4%BA%AC%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1%E8%84%9A%E6%9C%AC/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">南京邮电大学企业微信健康打卡脚本</div>
+    <a href="/Blog.io/2025/01/12/HOT100-1%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HOT100-1两数之和</div>
       <i class="icon-circle-right"></i>
     </a>
   
