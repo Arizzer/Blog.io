@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://arizzer.github.io/Blog.io">
-  <title>HOT100-1两数之和 | 观测的博客</title>
+  <title>HOT100-2字母异位词分组 | 观测的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述： 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。 你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。 你可以按任意顺序返回答案。 示例 1： 123输入：nums &#x3D; [2,7,11,15], target &#x3D; 9输出：[0,1]解释：因为 nums">
+  <meta name="description" content="给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。 字母异位词 是由重新排列源单词的所有字母得到的一个新单词。 示例 1: 12输入: strs &#x3D; [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]输">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HOT100-1两数之和">
-<meta property="og:url" content="https://arizzer.github.io/Blog.io/2025/01/12/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/index.html">
+<meta property="og:title" content="HOT100-2字母异位词分组">
+<meta property="og:url" content="https://arizzer.github.io/Blog.io/2025/01/14/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/index.html">
 <meta property="og:site_name" content="观测的博客">
-<meta property="og:description" content="题目描述： 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。 你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。 你可以按任意顺序返回答案。 示例 1： 123输入：nums &#x3D; [2,7,11,15], target &#x3D; 9输出：[0,1]解释：因为 nums">
+<meta property="og:description" content="给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。 字母异位词 是由重新排列源单词的所有字母得到的一个新单词。 示例 1: 12输入: strs &#x3D; [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]输">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-01-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-12T09:05:09.343Z">
+<meta property="article:published_time" content="2025-01-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-14T11:19:51.453Z">
 <meta property="article:author" content="观测">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="HOT100">
@@ -178,14 +178,14 @@
 <center><p>
   
     <h1 class="article-title_code_ant" itemprop="name">
-      HOT100-1两数之和
+      HOT100-2字母异位词分组
     </h1>
   
 </p></center>
 
         
-        <a href="/Blog.io/2025/01/12/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" class="archive-article-date">
-  	<time datetime="2025-01-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-01-12</time>
+        <a href="/Blog.io/2025/01/14/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" class="archive-article-date">
+  	<time datetime="2025-01-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-01-14</time>
 </a>
         
       </header>
@@ -221,67 +221,55 @@
       
         <br>
 
-<p>题目描述：</p>
-<p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。</p>
-<p>你可以按任意顺序返回答案。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [2,7,11,15], target &#x3D; 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] &#x3D;&#x3D; 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
+<p>给你一个字符串数组，请你将 <strong>字母异位词</strong> 组合在一起。可以按任意顺序返回结果列表。</p>
+<p><strong>字母异位词</strong> 是由重新排列源单词的所有字母得到的一个新单词。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: strs &#x3D; [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]</span><br><span class="line">输出: [[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]</span><br></pre></td></tr></table></figure>
 
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [3,2,4], target &#x3D; 6</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: strs &#x3D; [&quot;&quot;]</span><br><span class="line">输出: [[&quot;&quot;]]</span><br></pre></td></tr></table></figure>
 
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [3,3], target &#x3D; 6</span><br><span class="line">输出：[0,1]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: strs &#x3D; [&quot;a&quot;]</span><br><span class="line">输出: [[&quot;a&quot;]]</span><br></pre></td></tr></table></figure>
 
 
 
 <p><strong>提示：</strong></p>
 <ul>
-<li><code>2 &lt;= nums.length &lt;= 104</code></li>
-<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
-<li><code>-109 &lt;= target &lt;= 109</code></li>
-<li><strong>只会存在一个有效答案</strong></li>
+<li><code>1 &lt;= strs.length &lt;= 104</code></li>
+<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>
+<li><code>strs[i]</code> 仅包含小写字母</li>
 </ul>
-<p><strong>进阶：</strong>你可以想出一个时间复杂度小于 <code>O(n2)</code> 的算法吗？</p>
 <a id="more"></a>
 
 <br>
 
-<h3 id="1-解法"><a href="#1-解法" class="headerlink" title="1. 解法"></a>1. <strong>解法</strong></h3><p>创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。这样的时间复杂度为O(1)。</p>
+<h3 id="1-解法"><a href="#1-解法" class="headerlink" title="1. 解法"></a>1. <strong>解法</strong></h3><p>这题的本质是构建一个哈希表，让各字母异位词落在相同的哈希桶中。关键就在于，如何找到一种哈希办法，让各字母异位词能够分别对应起来。</p>
+<p>法一：注意到各字母异位词在排序后的顺序相同，因此可以将排序后的字符串作为键</p>
+<p>法二：注意到各字母异位词仅是字母的顺序不同，各字母出现的次数必定相同，因此可以定义一个长度为26的列表用于存储各字母出现的次数。再将该列表转化为元组后当作键。（注意：列表由于可修改，因此不能直接作为键，需要改为元组后才行）</p>
+<p>法三：在法二的基础上，将列表转化为长度为26的字符串后作为键。</p>
 <br>
 
-<h3 id="2-代码讲解"><a href="#2-代码讲解" class="headerlink" title="2. 代码讲解"></a>2. <strong>代码讲解</strong></h3><p>首先定义哈希表的结构：键值均为整数类型。再定义全局变量<code>hashTable</code>：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">hashElement</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125;hashElement;</span><br><span class="line"></span><br><span class="line">hashElement* hashTable = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="2-代码讲解"><a href="#2-代码讲解" class="headerlink" title="2. 代码讲解"></a>2. <strong>代码讲解</strong></h3><p>法一：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs: List[str])</span> -&gt; List[List[str]]:</span></span><br><span class="line">        mp = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</span><br><span class="line">            key = <span class="string">""</span>.join(sorted(str))</span><br><span class="line">            <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> mp:</span><br><span class="line">                mp[key] = [];</span><br><span class="line">            mp[key].append(str)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list(mp.values())</span><br></pre></td></tr></table></figure>
 
-<p>然后写出函数的主框架，定义返回数组<code>answerArray</code>，在for循环中判断“ target - x是否已在哈希表中”，如果存在则将该键值对的值（能与当前数匹配的数在<code>nums</code>数组中的下标）传入<code>anserArray[0]</code>，再将<code>i</code>传入<code>anserArray[1]</code>；如果不存在则“将该键值对加入哈希表”。</p>
-<p>需要注意的是：由于 <code>hashTable</code> 被定义为全局变量，如果不在for循环前清空哈希表的话，会导致多个测试用例之间存在数据残留，从而影响测试结果。在 LeetCode 的环境中，多个测试用例可能共享相同的全局变量，因此需要确保每次调用 <code>twoSum</code> 函数时，哈希表是干净的。</p>
-<p>可以在for循环前加入<code>hashTable = NULL;</code>或者用<code>HASH_CLEAR(hh, hashTable);</code>清空。</p>
-<p>或者也可以将<code>hashTable</code>设为局部变量，防止在Leetcode中出错：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target, <span class="keyword">int</span>* returnSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span>* anserArray = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">2</span>);</span><br><span class="line">    hashElement* anserHash;</span><br><span class="line"></span><br><span class="line">    hashTable = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">//HASH_CLEAR(hh, hashTable);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; numsSize;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> it = nums[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (findKey(target - it))</span><br><span class="line">        &#123;</span><br><span class="line">            anserHash = findKey(target - it);</span><br><span class="line">            anserArray[<span class="number">0</span>] = anserHash-&gt;val;</span><br><span class="line">            anserArray[<span class="number">1</span>] = i;</span><br><span class="line">            *returnSize = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> anserArray;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            addHash(it, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面写两个函数用于实现“ target - x是否已在哈希表中”和“将该键值对加入哈希表”。</p>
-<ul>
-<li><p>“ target - x是否已在哈希表中”：</p>
-<p>先新建一个<code>hashElement</code>用于存放找到的键值对结果，然后用<code>HASH_FIND_INT</code>函数将找到的键值对结果存入<code>hashElement</code>中。</p>
-</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">hashElement* <span class="title">findKey</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    hashElement* retHashElement;</span><br><span class="line">    HASH_FIND_INT(hashTable, &amp;key, retHashElement);</span><br><span class="line">    <span class="keyword">return</span> retHashElement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>“将该键值对加入哈希表”：</p>
-<p>先新建一个<code>hashElement</code>用于接收传入的键值对，然后用<code>HASH_ADD_INT</code>函数将该键值对存入<code>hashTable</code>中。</p>
-</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHash</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    hashElement* temp = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(hashElement));</span><br><span class="line">    temp-&gt;key = key;</span><br><span class="line">    temp-&gt;val = val;</span><br><span class="line">    HASH_ADD_INT(hashTable, key , temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在此基础上，可以使用<code>collection</code>库中的<code>defaultdict</code>来新建一个默认值为list的字典，这意味着当我们访问一个不存在的<code>key</code>时，<code>defaultdict</code> 会自动创建一个空列表作为该键的值，也不需要判断<code>key</code>是否在字典中了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs: List[str])</span> -&gt; List[List[str]]:</span></span><br><span class="line">        mp = collections.defaultdict(list)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</span><br><span class="line">            key = <span class="string">""</span>.join(sorted(str))</span><br><span class="line">            mp[key].append(str)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list(mp.values())</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<h3 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3. 代码实现"></a>3. <strong>代码实现</strong></h3><p>可用于直接提交的代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">hashElement</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125;hashElement;</span><br><span class="line"></span><br><span class="line">hashElement* hashTable = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">hashElement* <span class="title">findKey</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    hashElement* retHashElement;</span><br><span class="line">    HASH_FIND_INT(hashTable, &amp;key, retHashElement);</span><br><span class="line">    <span class="keyword">return</span> retHashElement;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHash</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    hashElement* temp = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(hashElement));</span><br><span class="line">    temp-&gt;key = key;</span><br><span class="line">    temp-&gt;val = val;</span><br><span class="line">    HASH_ADD_INT(hashTable, key , temp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target, <span class="keyword">int</span>* returnSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span>* anserArray = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">2</span>);</span><br><span class="line">    hashElement* anserHash;</span><br><span class="line"></span><br><span class="line">    hashTable = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; numsSize;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> it = nums[i];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (findKey(target - it))</span><br><span class="line">        &#123;</span><br><span class="line">            anserHash = findKey(target - it);</span><br><span class="line">            anserArray[<span class="number">0</span>] = anserHash-&gt;val;</span><br><span class="line">            anserArray[<span class="number">1</span>] = i;</span><br><span class="line">            *returnSize = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> anserArray;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            addHash(it, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>法二：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    def groupAnagrams(self, strs: List[str]) -&gt; List[List[str]]:</span><br><span class="line">        mp = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> str in strs:</span><br><span class="line">            alphabet = [<span class="number">0</span>] * <span class="number">26</span></span><br><span class="line">            <span class="keyword">for</span> letter in str:</span><br><span class="line">                alphabet[ord(letter) - ord(<span class="string">"a"</span>)] += <span class="number">1</span></span><br><span class="line">            mp[tuple(alphabet)].append(str)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(mp.values())</span><br></pre></td></tr></table></figure>
 
-<p>测试用完整代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;uthash.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">hashElement</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125;hashElement;</span><br><span class="line"></span><br><span class="line">hashElement* hashTable = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">hashElement* <span class="title">findKey</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    hashElement* retHashElement;</span><br><span class="line">    HASH_FIND_INT(hashTable, &amp;key, retHashElement);</span><br><span class="line">    <span class="keyword">return</span> retHashElement;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHash</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    hashElement* temp = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(hashElement));</span><br><span class="line">    temp-&gt;key = key;</span><br><span class="line">    temp-&gt;val = val;</span><br><span class="line">    HASH_ADD_INT(hashTable, key, temp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target, <span class="keyword">int</span>* returnSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span>* anserArray = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">2</span>);</span><br><span class="line">    hashElement* anserHash;</span><br><span class="line"></span><br><span class="line">    hashTable = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; numsSize;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> it = nums[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (findKey(target - it))</span><br><span class="line">        &#123;</span><br><span class="line">            anserHash = findKey(target - it);</span><br><span class="line">            anserArray[<span class="number">0</span>] = anserHash-&gt;val;</span><br><span class="line">            anserArray[<span class="number">1</span>] = i;</span><br><span class="line">            *returnSize = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> anserArray;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            addHash(it, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[] = &#123; <span class="number">3</span>, <span class="number">3</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> target = <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">int</span> returnSize = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>* ans = twoSum(nums, <span class="number">2</span>, target, &amp;returnSize);</span><br><span class="line">    <span class="keyword">if</span> (returnSize == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, ans[<span class="number">0</span>], ans[<span class="number">1</span>]);</span><br><span class="line">        <span class="built_in">free</span>(ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"No solution found.\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+
+<p>法三：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs: List[str])</span> -&gt; List[List[str]]:</span></span><br><span class="line">        mp = collections.defaultdict(list)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> strs:</span><br><span class="line">            alphabet = [<span class="number">0</span>] * <span class="number">26</span></span><br><span class="line">            <span class="keyword">for</span> letter <span class="keyword">in</span> word:</span><br><span class="line">                alphabet[ord(letter) - ord(<span class="string">"a"</span>)] += <span class="number">1</span></span><br><span class="line">            hashstr = <span class="string">''</span>.join(map(str,alphabet))</span><br><span class="line">            mp[hashstr].append(word)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list(mp.values())</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3. 代码实现"></a>3. <strong>代码实现</strong></h3><p>测试用完整代码（以法三为例）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> List</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs: List[str])</span> -&gt; List[List[str]]:</span></span><br><span class="line">        mp = collections.defaultdict(list)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> strs:</span><br><span class="line">            alphabet = [<span class="number">0</span>] * <span class="number">26</span></span><br><span class="line">            <span class="keyword">for</span> letter <span class="keyword">in</span> word:</span><br><span class="line">                alphabet[ord(letter) - ord(<span class="string">"a"</span>)] += <span class="number">1</span></span><br><span class="line">            hashstr = <span class="string">''</span>.join(map(str,alphabet))</span><br><span class="line">            mp[hashstr].append(word)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list(mp.values())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试样例</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment"># 输入</span></span><br><span class="line">    strs = [<span class="string">"eat"</span>, <span class="string">"tea"</span>, <span class="string">"tan"</span>, <span class="string">"ate"</span>, <span class="string">"nat"</span>, <span class="string">"bat"</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建 Solution 对象</span></span><br><span class="line">    solution = Solution()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调用函数</span></span><br><span class="line">    result = solution.groupAnagrams(strs)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 输出结果</span></span><br><span class="line">    print(<span class="string">"输入:"</span>, strs)</span><br><span class="line">    print(<span class="string">"分组后的变位词:"</span>, result)</span><br></pre></td></tr></table></figure>
 
 
       
@@ -356,7 +344,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2025/01/12/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arizzer.github.io/Blog.io/2025/01/14/HOT100-2%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -558,6 +546,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
@@ -566,15 +558,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,11 +566,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Matlab</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">私密</a>
+                <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,11 +586,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ThymeLeaf</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,7 +598,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
+                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,7 +610,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Writingprompts</a>
+                <a href="javascript:void(0)" class="js-tag color2">Autojs</a>
               </li>
              
               <li class="article-tag-list-item">
